@@ -1,10 +1,17 @@
 # ONT data analysis
 
-overall steps:
-1. consensus assembly
+what are we working on:
+- [phage evolution](phages.md)
+- [pangraph](pangraph.md)
+
+steps that i have to do:
+1. [consensus assembly](note_1.md)
 2. map reads to the assembly
 
+## general introduction to high power computing
+
 tools to know:
+- git
 - conda: https://docs.conda.io/en/latest/
 - mamba:https://mamba.readthedocs.io/en/latest/
 - tmux: https://tmuxcheatsheet.com/
@@ -18,7 +25,6 @@ useful things to know about the cluster:
 - srun: runs an interactive shell, it's like a job but it is interactive. basic command to run it: srun --qos=6hours --cpus-per-task=2 -mem=8G --pty bash
 - i only have internet in my folder on the cluster, i do not have internet during job execution
 - scancel <jobID> or scancel -u <username>
-- 
 
 cluster setup (in case i will have to do it again in the future):
 - login: ssh username@server address (login.scicore.unibas.ch)
@@ -42,8 +48,12 @@ base notions on git:
 - git pull
 https://education.github.com/git-cheat-sheet-education.pdf
 
+- clone a repo with ssh: git clone sshlink
 git push always requires the key?
 git pull always requires the link?
+bash script is just like writing in the terminal?
+to do a job in a conda env without snakemake, do i have to write it in the bash script?
+can i write a bash script and run it in the slurm file?
 
 ## conda
 basic notions on conda:
@@ -97,8 +107,7 @@ actually [this site](https://scriptgen.scicore.unibas.ch/pages/generate_slurm.ht
 ml Python                    #Load required modules
 python my_script.py inputdata.txt    #Execute your command(s)
 
-## consensus assembly
-
-tools:
-- miniasm: https://github.com/lh3/miniasm (minipolish? https://github.com/rrwick/Minipolish)
-- flye: https://github.com/fenderglass/Flye
+## general commonsense pipeline to use the cluster
+1. connect to the cluster
+2. activate tmux!!! super important, first thing to do.
+3. run the script (inside the script it's like a new terminal window is running, i have to write each command)

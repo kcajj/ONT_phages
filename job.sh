@@ -27,4 +27,5 @@ ml Python
 #export your required environment variables below
 
 #add your command lines below
+mamba activate phages_genome_assembly
 python python_script.py
