@@ -46,14 +46,9 @@ base notions on git:
 - set target branch to main: git branch -M main
 - push to the cloud: git push -u origin main4
 - git pull
-https://education.github.com/git-cheat-sheet-education.pdf
+- clone a repo with ssh access: git clone sshlink
 
-- clone a repo with ssh: git clone sshlink
-git push always requires the key?
-git pull always requires the link?
-bash script is just like writing in the terminal?
-to do a job in a conda env without snakemake, do i have to write it in the bash script?
-can i write a bash script and run it in the slurm file?
+[github cheat sheet](https://education.github.com/git-cheat-sheet-education.pdf)
 
 ## conda
 basic notions on conda:
@@ -64,7 +59,7 @@ basic notions on conda:
 - conda remove --name myenv --all
 - conda env export > environment.yml (conda env create -f environment.yml, conda env update --name myenv --file environment.yml  --prune)
 
-[cheat_sheet](/images/conda-4.14.pdf)
+[conda cheat sheet](/images/conda-4.14.pdf)
 
 mamba has the same commands. conda and mamba work on the same environments, they are kinda shared. we will always work with mamba becuase it is faster.
 
@@ -111,3 +106,5 @@ python my_script.py inputdata.txt    #Execute your command(s)
 1. connect to the cluster
 2. activate tmux!!! super important, first thing to do.
 3. run the script (inside the script it's like a new terminal window is running, i have to write each command)
+
+DO NOT FORGET ANY OPEN TMUX SESSION IF THEY ARE NOT NECESSARY
