@@ -5,4 +5,5 @@
 - [x] slurm
     - [x] write a basic slurm script to run a py script
     - [x] run the script on the server
-- [ ] flye
+- [x] flye
+- [ ] miniasm
