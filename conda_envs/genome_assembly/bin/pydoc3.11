@@ -1,5 +1,0 @@
-#!/scicore/home/neher/castag0001/Desktop/ONT_phages/conda_envs/genome_assembly/bin/python3.11
-
-import pydoc
-if __name__ == '__main__':
-    pydoc.cli()
