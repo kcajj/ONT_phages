@@ -5,7 +5,7 @@ overall steps:
 2. map reads to the assembly
 
 tools to know:
-- conda: https://docs.conda.io/en/latest/miniconda.html https://docs.conda.io/en/latest/
+- conda: https://docs.conda.io/en/latest/
 - mamba:https://mamba.readthedocs.io/en/latest/
 - tmux: https://tmuxcheatsheet.com/
 - slurm: https://wiki.biozentrum.unibas.ch/display/scicore/SLURM+user+guide
@@ -36,6 +36,13 @@ base notions on git:
 - set target branch to main: git branch -M main
 - push to the cloud: git push -u origin main4
 - git pull
+https://education.github.com/git-cheat-sheet-education.pdf
+perplessità su git:
+- come si tolgono delle righe da git config?
+- sistemare la repo del west nile sul pc ubuntu
+
+basic notions on conda:
+- conda create
 
 ## consensus assembly
 
