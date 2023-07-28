@@ -10,7 +10,7 @@ tools to know:
 - tmux: https://tmuxcheatsheet.com/
 - slurm: https://wiki.biozentrum.unibas.ch/display/scicore/SLURM+user+guide
 
-
+## cluster
 useful things to know about the cluster:
 - htop: lists the resources of the current machine (-u username to see the processes run by me)
 - we have a shared folder in the cluster: /scicore/home/neher/GROUP. in this directory there is the data that we will use for this project: GROUP/data/Giacomo_analysis/
@@ -23,6 +23,7 @@ cluster setup (in case i will have to do it again in the future):
 - login without password: ssh-keygen, ssh-copy-id -i ~/.ssh/id_rsa.pub user@server
 - set the server as system folder: add to ".bashrc": alias mount_scicore="sshfs -o reconnect -o follow_symlinks user@login-transfer.server:/server/folder /system/folder. (the system folder has to exist already)
 
+## git
 base notions on git:
 - git config: set up username and email
 - git init: to make a folder a git repo
@@ -37,12 +38,16 @@ base notions on git:
 - push to the cloud: git push -u origin main4
 - git pull
 https://education.github.com/git-cheat-sheet-education.pdf
-perplessità su git:
-- come si tolgono delle righe da git config?
-- sistemare la repo del west nile sul pc ubuntu
 
+## conda
 basic notions on conda:
-- conda create
+- conda create -n name python=3.11
+- conda env list
+- conda activate ./folder
+- inside a conda environment: conda install whatever
+- conda remove --name myenv --all
+- conda env export > environment.yml (conda env create -f environment.yml, conda env update --name myenv --file environment.yml  --prune)
+
 
 ## consensus assembly
 

@@ -1,3 +1,5 @@
 # tasks
-- learn conda
-- synchronise the repo with the cluster
+- [ ] conda
+- [x] git
+- [ ] tmux
+- [ ] slurm
