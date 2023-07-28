@@ -1,0 +1,13 @@
+# Package Information for pkg-config
+
+prefix=/scicore/home/neher/castag0001/Desktop/ONT_phages/conda_envs/genome_assembly
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: SQLite
+Description: SQL database engine
+Version: 3.41.2
+Libs: -L${libdir} -lsqlite3
+Libs.private: -lz -lm -ldl -lpthread 
+Cflags: -I${includedir}
