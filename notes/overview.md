@@ -47,6 +47,7 @@ base notions on git:
 - push to the cloud: git push -u origin main4
 - git pull
 - clone a repo with ssh access: git clone sshlink
+- git ignore: .gitignore is a file containing in each line the relative path of the elements that are not considered in git sync
 
 [github cheat sheet](https://education.github.com/git-cheat-sheet-education.pdf)
 
