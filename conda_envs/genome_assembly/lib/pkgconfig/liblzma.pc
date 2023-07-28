@@ -1,0 +1,19 @@
+#
+# Author: Lasse Collin
+#
+# This file has been put into the public domain.
+# You can do whatever you want with this file.
+#
+
+prefix=/scicore/home/neher/castag0001/Desktop/ONT_phages/conda_envs/genome_assembly
+exec_prefix=/scicore/home/neher/castag0001/Desktop/ONT_phages/conda_envs/genome_assembly
+libdir=/scicore/home/neher/castag0001/Desktop/ONT_phages/conda_envs/genome_assembly/lib
+includedir=/scicore/home/neher/castag0001/Desktop/ONT_phages/conda_envs/genome_assembly/include
+
+Name: liblzma
+Description: General purpose data compression library
+URL: https://tukaani.org/xz/
+Version: 5.4.2
+Cflags: -I${includedir}
+Libs: -L${libdir} -llzma
+Libs.private: -pthread -lpthread
