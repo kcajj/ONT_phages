@@ -6,19 +6,21 @@ tools:
 
 ## flye
 
-input reads can be fasta, fastq compressed or not.
+input reads can be fasta, fastq compressed or not. flye doesn't require any data preparation.
+
+supported technologies: oxford nanopore (--nano-raw works for most datasets, for nanopore basecalled with guppy5+ weuse --nano-hq if we have q20 data we use --nano-hq and --read-error 0.03. with error corrected ont reads we use --nano-corr) and pac bio (--pacbio-raw)
+
+--genome-size better to specify it (ex. 0.163m)
+
+--asm-coverage together with genome size mandatory, we aim for 40x coverage
 
 --meta option for metagenome/uneven coverage assembly
 
 flye polisher: --polish-target
 
-supported technologies: oxford nanopore (--nano-raw works for most datasets, for nanopore basecalled with guppy5+ weuse --nano-hq if we have q20 data we use --nano-hq and --read-error 0.03. with error corrected ont reads we use --nano-corr) and pac bio (--pacbio-raw)
-
-flye doesn't require any data preparation
-
-haplotype mode keeps some bubbles.
-
 --scaffold to add scaffolding
+
+--haplotype mode keeps some bubbles.
 
 outputs:
 - assembly.fasta: final assembly
