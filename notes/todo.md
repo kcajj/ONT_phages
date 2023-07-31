@@ -1,17 +1,21 @@
 # tasks
-- [x] conda
-- [x] git
-- [x] tmux (cheat sheet should be enough)
-- [x] slurm
-    - [x] write a basic slurm script to run a py script
-    - [x] run the script on the server
-- [x] flye
-    - [x] documentation
-    - [x] install
-    - [x] run an assembly script in local
-    - [x] run an assembly script with an interactive shell on the cluster
-    - [x] run an assembly script submitting a job to the queue
-- [ ] miniasm
-    - [x] documentation
-    - [ ] install
-    - [ ] send a job in the queue
+- [x] basics for the cluster
+    - [x] conda
+    - [x] git
+    - [x] tmux (cheat sheet should be enough)
+    - [x] slurm
+        - [x] write a basic slurm script to run a py script
+        - [x] run the script on the server
+- [ ] genome assembly
+    - [x] flye
+        - [x] documentation
+        - [x] install
+        - [x] run an assembly script in local
+        - [x] run an assembly script with an interactive shell on the cluster
+        - [x] run an assembly script submitting a job to the queue
+    - [ ] miniasm
+        - [x] documentation
+        - [x] install
+        - [ ] send a job in the queue
+- [ ] snakemake
+- [ ] sequence alignment
