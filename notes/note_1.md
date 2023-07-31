@@ -41,6 +41,7 @@ difference between threads and cores.
 
 ### quick
 
+'''
 usage: flye (--pacbio-raw | --pacbio-corr | --pacbio-hifi | --nano-raw |
 	     --nano-corr | --nano-hq ) file1 [file_2 ...]
 	     --out-dir PATH
@@ -99,11 +100,14 @@ optional arguments:
                         stop after the specified stage completed
   --debug               enable debug output
   -v, --version         show program's version number and exit
-
+'''
 
 ## miniasm
 
-
+- Overlap for PacBio reads (or use "-x ava-ont" for nanopore read overlapping)
+  minimap2/minimap2 -x ava-pb -t8 pb-reads.fq pb-reads.fq | gzip -1 > reads.paf.gz
+- Layout
+  miniasm/miniasm -f reads.fq reads.paf.gz > reads.gfa
 
 ## files
 
@@ -122,3 +126,5 @@ EM60_new_chemistry.fastq.gz
 EM60_1.fastq.gz
 EM60_3.fastq.gz
 EM60_5.fastq.gz
+
+EC2D2 phage: genome size = 163 kb
