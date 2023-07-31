@@ -14,8 +14,19 @@
         - [x] run an assembly script with an interactive shell on the cluster
         - [x] run an assembly script submitting a job to the queue
     - [ ] miniasm
-        - [x] documentation
+        - [x] documentation (documentation is too small, we will not use miniasm)
         - [x] install
         - [ ] send a job in the queue
+    - [ ] look at the reconstructed genome
+        - [ ] look at the assembly graph
+        - [x] align the reconstructed genome to a reference sequence of the phage
+            - [x] blast the assembled genome to find the corresponding reference sequence
+            - [x] align the reference with the assembled genome through minimap2 and look at the result
+            - [x] align again the two sequences and build a sam file to look at the CIGARS
 - [ ] snakemake
-- [ ] sequence alignment
+- [ ] read mapping
+    - [ ] create sam file with minimap
+        - [ ] minimap
+    - [ ] convert sam file to bam
+    - [ ] look at the sam file on igv
+    - [ ] build the pylap of the alignment

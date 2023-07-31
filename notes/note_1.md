@@ -16,7 +16,7 @@ supported technologies: oxford nanopore (--nano-raw works for most datasets, for
 
 --meta option for metagenome/uneven coverage assembly
 
-flye polisher: --polish-target
+--polish-target
 
 --scaffold to add scaffolding
 
@@ -39,7 +39,7 @@ outputs:
 which graphs do flye use? The Flye algorithms are using repeat graph as a core data structure. In difference to de Bruijn graphs which require exact k-mer matches, repeat graphs are built using approximate sequence matches, thus can tollerate higher noise of SMS reads.
 The edges of repeat graph represent genomic sequence, and nodes define the junctions. All edges are classified into unique and repetitive. The genome traverses the graph in an unknown way, so as each unique edge appears exactly once in this traversal. Repeat graphs are useful for repeat analysis and resolution - which are one of the key genome assembly challenges.
 
-difference between threads and cores.
+a thread is an independent set of operations of an algorithm, a thread is computed thorugh a core, each core can compute only one thread at a time. if we have 8 threads and 8 cores, 8 independent parts of the algorithm will be executed at the same time. we usually want to have the same number of cores and threads.
 
 ### quick
 
