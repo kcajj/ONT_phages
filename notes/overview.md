@@ -22,7 +22,7 @@ useful things to know about the cluster:
 - htop: lists the resources of the current machine (-u username to see the processes run by me)
 - we have a shared folder in the cluster: /scicore/home/neher/GROUP. in this directory there is the data that we will use for this project: GROUP/data/Giacomo_analysis/
 - squeue: lists the queue of slurm (-u username to see my jobs)
-- srun: runs an interactive shell, it's like a job but it is interactive. basic command to run it: srun --qos=6hours --cpus-per-task=2 -mem=8G --pty bash
+- srun: runs an interactive shell, it's like a job but it is interactive. basic command to run it: srun --qos=6hours --cpus-per-task=2 --mem=8G --pty bash
 - i only have internet in my folder on the cluster, i do not have internet during job execution
 - scancel <jobID> or scancel -u <username>
 

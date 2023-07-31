@@ -25,4 +25,4 @@
 ml Python
 
 #export your required environment variables below
-bash test_genome_assembly.sh
+bash genome_assembly_script.sh

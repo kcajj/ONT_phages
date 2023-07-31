@@ -6,7 +6,12 @@
     - [x] write a basic slurm script to run a py script
     - [x] run the script on the server
 - [x] flye
-    - [ ] run an assembly script in local
-    - [ ] run an assembly script with an interactive shell on the cluster
-    - [ ] run an assembly script submitting a job to the queue
+    - [x] documentation
+    - [x] install
+    - [x] run an assembly script in local
+    - [x] run an assembly script with an interactive shell on the cluster
+    - [x] run an assembly script submitting a job to the queue
 - [ ] miniasm
+    - [x] documentation
+    - [ ] install
+    - [ ] send a job in the queue

@@ -37,6 +37,8 @@ outputs:
 which graphs do flye use? The Flye algorithms are using repeat graph as a core data structure. In difference to de Bruijn graphs which require exact k-mer matches, repeat graphs are built using approximate sequence matches, thus can tollerate higher noise of SMS reads.
 The edges of repeat graph represent genomic sequence, and nodes define the junctions. All edges are classified into unique and repetitive. The genome traverses the graph in an unknown way, so as each unique edge appears exactly once in this traversal. Repeat graphs are useful for repeat analysis and resolution - which are one of the key genome assembly challenges.
 
+difference between threads and cores.
+
 ### quick
 
 usage: flye (--pacbio-raw | --pacbio-corr | --pacbio-hifi | --nano-raw |
@@ -97,6 +99,10 @@ optional arguments:
                         stop after the specified stage completed
   --debug               enable debug output
   -v, --version         show program's version number and exit
+
+
+## miniasm
+
 
 
 ## files
