@@ -7,3 +7,5 @@ minimap2 -ax map-ont  results/EC2D2/assembly.fasta\
     > results/EC2D2/alignment_reads_assembly.sam
 
 samtools sort -@ 8 -o results/EC2D2/to_visualise.bam results/EC2D2/alignment_reads_assembly.sam
+
+samtools index results/EC2D2/to_visualise.bam results/EC2D2/to_visualise.bam.bai

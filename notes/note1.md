@@ -27,4 +27,8 @@ contig_1	2048	MZ501100.1	94675	60	123H55751M94976H	*	0	0
 tp:A:P	cm:i:10429	s1:i:55722	s2:i:0	de:f:0.0001	SA:Z:MZ501100.1,1,+,55874S94975M1S,60,3;	rl:i:0
 
 
-now 
+now we have to align the reads with the assembly that we created before. we will do this with minimap2. we use the command minimap2 -ax map-ont ref.fasta reads.fastq > alignment.sam.
+
+then we have to convert sam to bam, we can use the samtools, more specifically samtools sort. then samtools index to be able to look at the bam in igv.
+
+finally we will build the pileup graph of the alignment thanks to a script produced by the Neher lab: https://github.com/mmolari/morbidostat-genome-analysis/blob/main/scripts/create_allele_counts.py
