@@ -1,69 +1,12 @@
 /scicore/home/neher/castag0001/.bashrc: line 12: /scicore/home/neher/castag0001/.nextstrain/cli-standalone/ne
 xtstrain: No such file or directory
-[2023-07-31 10:41:32] INFO: Starting Flye 2.9.2-b1786
-[2023-07-31 10:41:33] INFO: >>>STAGE: configure
-[2023-07-31 10:41:33] INFO: Configuring run
-[2023-07-31 10:41:35] INFO: Total read length: 125892491
-[2023-07-31 10:41:35] INFO: Input genome size: 163000
-[2023-07-31 10:41:35] INFO: Estimated coverage: 772
-[2023-07-31 10:41:35] INFO: Reads N50/N90: 7308 / 1783
-[2023-07-31 10:41:35] INFO: Minimum overlap set to 2000
-[2023-07-31 10:41:35] INFO: Using longest 40x reads for contig assembly
-[2023-07-31 10:41:35] INFO: >>>STAGE: assembly
-[2023-07-31 10:41:35] INFO: Assembling disjointigs
-[2023-07-31 10:41:35] INFO: Reading sequences
-[2023-07-31 10:41:36] INFO: Building minimizer index
-[2023-07-31 10:41:36] INFO: Pre-calculating index storage
-0% 10% 20% 30% 40% 50% 60% 70% 80% 90% 100% 
-[2023-07-31 10:41:37] INFO: Filling index
-0% 10% 20% 30% 40% 50% 60% 70% 80% 90% 100% 
-[2023-07-31 10:42:42] INFO: Extending reads
-[2023-07-31 10:43:22] INFO: Overlap-based coverage: 32
-[2023-07-31 10:43:22] INFO: Median overlap divergence: 0.0347813
-0% 80% 100% 
-[2023-07-31 10:43:24] INFO: Assembled 1 disjointigs
-[2023-07-31 10:43:24] INFO: Generating sequence
-0% 10% 20% 30% 40% 50% 60% 70% 80% 90% 100% 
-[2023-07-31 10:43:24] INFO: Filtering contained disjointigs
-0% 100% 
-[2023-07-31 10:43:24] INFO: Contained seqs: 0
-[2023-07-31 10:43:24] INFO: >>>STAGE: consensus
-[2023-07-31 10:43:24] INFO: Running Minimap2
-[2023-07-31 10:43:46] INFO: Computing consensus
-[2023-07-31 10:45:07] INFO: Alignment error rate: 0.040968
-[2023-07-31 10:45:07] INFO: >>>STAGE: repeat
-[2023-07-31 10:45:07] INFO: Building and resolving repeat graph
-[2023-07-31 10:45:07] INFO: Parsing disjointigs
-[2023-07-31 10:45:07] INFO: Building repeat graph
-0% 100% 
-[2023-07-31 10:45:07] INFO: Median overlap divergence: 0
-[2023-07-31 10:45:07] INFO: Parsing reads
-[2023-07-31 10:45:09] INFO: Aligning reads to the graph
-0% 10% 20% 30% 40% 50% 60% 70% 80% 90% 100% 
-[2023-07-31 10:45:29] INFO: Aligned read sequence: 103975484 / 111092016 (0.93594)
-[2023-07-31 10:45:29] INFO: Median overlap divergence: 0.0163552
-[2023-07-31 10:45:29] INFO: Mean edge coverage: 680
-[2023-07-31 10:45:29] INFO: Simplifying the graph
-[2023-07-31 10:45:29] INFO: >>>STAGE: contigger
-[2023-07-31 10:45:29] INFO: Generating contigs
-[2023-07-31 10:45:29] INFO: Reading sequences
-[2023-07-31 10:45:31] INFO: Generated 1 contigs
-[2023-07-31 10:45:31] INFO: Added 0 scaffold connections
-[2023-07-31 10:45:31] INFO: >>>STAGE: polishing
-[2023-07-31 10:45:31] INFO: Polishing genome (1/1)
-[2023-07-31 10:45:31] INFO: Running minimap2
-[2023-07-31 10:45:52] INFO: Separating alignment into bubbles
-[2023-07-31 10:47:42] INFO: Alignment error rate: 0.024032
-[2023-07-31 10:47:42] INFO: Correcting bubbles
-0% 10% 20% 30% 40% 50% 60% 70% 80% 90% 100% 
-[2023-07-31 10:47:45] INFO: >>>STAGE: finalize
-[2023-07-31 10:47:45] INFO: Assembly statistics:
-
-	Total length:	150850
-	Fragments:	1
-	Fragments N50:	150850
-	Largest frg:	150850
-	Scaffolds:	0
-	Mean coverage:	637
-
-[2023-07-31 10:47:45] INFO: Final assembly: /scicore/home/neher/castag0001/Desktop/ONT_phages/output_genome_assembly/assembly.fasta
+[M::mm_idx_gen::0.029*0.31] collected minimizers
+[M::mm_idx_gen::0.033*0.48] sorted minimizers
+[M::main::0.033*0.48] loaded/built the index for 1 target sequence(s)
+[M::mm_mapopt_update::0.034*0.50] mid_occ = 10
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.035*0.51] distinct minimizers: 28110 (99.64% are singletons); average occurrences: 1.004; average spacing: 5.345; total length: 150850
+[M::worker_pipeline::18.381*2.75] mapped 32014 sequences
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -ax map-ont results/EC2D2/assembly.fasta /scicore/home/neher/GROUP/data/Giacomo_analysis/raw_data/EC2D2_new_chemistry.fastq.gz
+[M::main] Real time: 18.388 sec; CPU: 50.465 sec; Peak RSS: 0.340 GB

@@ -24,11 +24,12 @@
             - [x] align the reference with the assembled genome through minimap2 and look at the result
             - [x] align again the two sequences and build a sam file to look at the CIGARS
 - [ ] read mapping
-    - [ ] create sam file with minimap
-        - [ ] learn minimap2 documentation
-        - [ ] send a minimap2 alignment to the job queue
-    - [ ] convert sam file to bam with samtools
-    - [ ] look at the sam file on igv
+    - [x] create sam file with minimap
+        - [x] read minimap2 documentation
+        - [x] send a minimap2 alignment to the job queue
+    - [x] convert sam file to bam with samtools
+        - [ ] read samtools documentation
+    - [ ] look at the bam file on igv
     - [ ] build the pylap of the alignment
 
 - [ ] snakemake

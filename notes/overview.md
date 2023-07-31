@@ -53,12 +53,14 @@ base notions on git:
 
 ## conda
 basic notions on conda:
-- conda create -n name python=3.11
+- conda create -n name
 - conda env list
-- conda activate ./folder
+- conda activate environment_name
 - inside a conda environment: conda install whatever
 - conda remove --name myenv --all
-- conda env export > environment.yml (conda env create -f environment.yml, conda env update --name myenv --file environment.yml  --prune)
+- conda env export > environment.yml
+- conda env create -f environment.yml
+- conda env update --name myenv --file environment.yml  --prune
 
 [conda cheat sheet](/images/conda-4.14.pdf)
 
