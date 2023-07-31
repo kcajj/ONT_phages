@@ -2,3 +2,5 @@ test/out_nano
 test/Loman_E.coli_MAP006-1_2D_50x.fasta
 output_genome_assembly
 EC2D2_new_chemistry.fastq.gz
+EC2D2_new_chemistry.fastq
+reads.paf.gz
