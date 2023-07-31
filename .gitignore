@@ -4,3 +4,4 @@ output_genome_assembly
 EC2D2_new_chemistry.fastq.gz
 EC2D2_new_chemistry.fastq
 reads.paf.gz
+results/EC2D2/alignment_reads_assembly.sam

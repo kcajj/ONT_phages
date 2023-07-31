@@ -25,8 +25,9 @@
             - [x] align again the two sequences and build a sam file to look at the CIGARS
 - [ ] read mapping
     - [ ] create sam file with minimap
-        - [ ] minimap2
-    - [ ] convert sam file to bam
+        - [ ] learn minimap2 documentation
+        - [ ] send a minimap2 alignment to the job queue
+    - [ ] convert sam file to bam with samtools
     - [ ] look at the sam file on igv
     - [ ] build the pylap of the alignment
 
