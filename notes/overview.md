@@ -5,8 +5,8 @@ what are we working on:
 - [pangraph](pangraph.md)
 
 steps that i have to do:
-1. [consensus assembly](note_1.md)
-2. map reads to the assembly
+1. [consensus assembly](genome_assembly.md)
+2. [map reads to the assembly](read_mapping.md)
 
 ## general introduction to high power computing
 
@@ -79,10 +79,7 @@ options:
     --qos           choose the qos wisely, overestimate!
     --output
     --error
-
-modules
-
-commands
+polisher
 
 the file has to be savesd in .sh, then submitted to the queue with "sbatch script.sh".
 

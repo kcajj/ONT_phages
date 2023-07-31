@@ -1,4 +1,4 @@
-## consensus assembly
+# de novo genome assembly
 
 tools:
 - flye: https://github.com/fenderglass/Flye
@@ -43,7 +43,8 @@ a thread is an independent set of operations of an algorithm, a thread is comput
 
 ### quick
 
-'''
+<pre>
+
 usage: flye (--pacbio-raw | --pacbio-corr | --pacbio-hifi | --nano-raw |
 	     --nano-corr | --nano-hq ) file1 [file_2 ...]
 	     --out-dir PATH
@@ -102,7 +103,8 @@ optional arguments:
                         stop after the specified stage completed
   --debug               enable debug output
   -v, --version         show program's version number and exit
-'''
+
+</pre>
 
 ## miniasm
 
@@ -110,6 +112,8 @@ optional arguments:
   minimap2/minimap2 -x ava-pb -t8 pb-reads.fq pb-reads.fq | gzip -1 > reads.paf.gz
 - Layout
   miniasm/miniasm -f reads.fq reads.paf.gz > reads.gfa
+
+the documentation on miniasm is too restricted, we will ignore this tool.
 
 ## files
 
