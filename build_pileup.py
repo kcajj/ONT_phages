@@ -171,7 +171,6 @@ def dump_allele_counts(dirname, ac, suffix=""):
         with gzip.open(dirname + "clips" + suffix + ".pkl.gz", "w") as outfile:
             pickle.dump(clip_dict, outfile)
 
-
 # %%
 if __name__ == "__main__":
     import argparse
