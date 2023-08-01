@@ -64,3 +64,10 @@ minimap2 works with hash tables, it hashes the reference sequence and then maps 
 man ./minimap2.1
 
 </pre>
+
+
+http://www.htslib.org/doc/samtools.html
+
+https://bip.weizmann.ac.il/education/materials/gcg/pileup.html
+
+https://long-read-tools.org/index.html
