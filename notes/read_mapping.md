@@ -2,6 +2,8 @@
 
 tools:
 - minimap2
+- samtools
+- pileup script
 
 ## minimap2
 
@@ -65,9 +67,43 @@ man ./minimap2.1
 
 </pre>
 
+## samtools
 
-http://www.htslib.org/doc/samtools.html
+we will use samtools just to transform the sam in bam, then index the bam to make it visualisable on igv
 
-https://bip.weizmann.ac.il/education/materials/gcg/pileup.html
+- sort:
+    
+    samtools sort [-l level] [-m maxMem] [-o out.bam] [-O format] [-n] [-t tag] [-T tmpprefix] [-@ threads] [in.sam|in.bam|in.cram]
+
+    Sort alignments by leftmost coordinates, or by read name when -n is used. An appropriate @HD-SO sort order header tag will be added or an existing one updated if necessary.
+
+    The sorted output is written to standard output by default, or to the specified file (out.bam) when -o is used. This command will also create temporary files tmpprefix.%d.bam as needed when the entire alignment data cannot fit into memory (as controlled via the -m option).
+
+    Note that if the sorted output file is to be indexed with samtools index, the default coordinate sort must be used. Thus the -n and -t options are incompatible with samtools index.
+
+- index:
+
+    samtools index [-bc] [-m INT] aln.sam.gz|aln.bam|aln.cram [out.index]
+
+    Index a coordinate-sorted SAM, BAM or CRAM file for fast random access. Note for SAM this only works if the file has been BGZF compressed first. (Starting from Samtools 1.16, this command can also be given several alignment filenames, which are indexed individually.)
+
+    This index is needed when region arguments are used to limit samtools view and similar commands to particular regions of interest.
+
+    If an output filename is given, the index file will be written to out.index. Otherwise, for a CRAM file aln.cram, index file aln.cram.crai will be created; for a BAM or SAM file aln.bam, either aln.bam.bai or aln.bam.csi will be created, depending on the index format selected.
 
 https://long-read-tools.org/index.html
+
+## pileup
+
+to better understand the bam file we have generated we will use a homemade [pileup script](https://github.com/mmolari/morbidostat-genome-analysis/blob/main/scripts/create_allele_counts.py)
+
+it works just like a bioinformatic tool, the options are:
+
+- bam_file
+- out_dir
+- qual_min
+- clip_minL
+
+e.g.
+
+python build_pileup.py --bam_file results/EC2D2/to_visualise.bam --out_dir pileup_output/ --qual_min 0 --clip_minL 10

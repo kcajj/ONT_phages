@@ -28,13 +28,17 @@
         - [x] read minimap2 documentation
         - [x] send a minimap2 alignment to the job queue
     - [x] convert sam file to bam with samtools
-        - [ ] read samtools documentation
+        - [ ] read samtools documentation (too long, too many tools)
     - [x] look at the bam file on igv
-    - [ ] build the pileup of the alignment
+    - [x] build the pileup of the alignment
         - [ ] understand the script
         - [ ] try to build your own pileup script
     - [ ] extract and look at the information of the pileup (write a py script that plots the useful data)
+        - [x] coverage
+        - [x] clips position
 
 - [ ] snakemake
 
 - [ ] other timepoints
+
+- [ ] pangraph
