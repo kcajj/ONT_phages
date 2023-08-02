@@ -33,9 +33,12 @@
     - [x] build the pileup of the alignment
         - [ ] understand the script
         - [ ] try to build your own pileup script
-    - [ ] extract and look at the information of the pileup (write a py script that plots the useful data)
+    - [x] extract and look at the information of the pileup (write a py script that plots the useful data)
+        - [x] fastq integrity
         - [x] coverage
-        - [x] clips position
+        - [x] non consensus frequency
+        - [x] clips
+        - [x] gaps
 
 - [ ] snakemake
 

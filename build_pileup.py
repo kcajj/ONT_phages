@@ -34,9 +34,10 @@ def sam_to_allele_counts(
     def insertion_datastruct():
         return defaultdict(lambda: defaultdict(lambda: np.zeros(2, int)))
 
-    # Note: the data structure for saving clip points is a dictionary:
-    # position -->  count
-    #  (dict)   (count fwd / count rev / tot fwd / tot rev)
+    # Note: the data structure for saving clip points is nested dictionary:
+    # key=count:
+    #   position -->  data
+    #  (basepair)   (count fwd / count rev / tot fwd / tot rev)
     def clip_datastructure():
         return defaultdict(lambda: np.zeros(4, int))
 
