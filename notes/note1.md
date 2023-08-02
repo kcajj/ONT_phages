@@ -35,13 +35,21 @@ now we have to align the reads with the assembly that we created before. we will
 
 then we have to convert sam to bam, we can use the samtools, more specifically samtools sort. then samtools index to be able to look at the bam in igv.
 
+![artifact](artifact.png)
+
 we noticed something weird! the first 127 basepairs are hypercovered and disjoint with respect to the rest of the genome, the blast didn't give a strong match, they are not even part of the nanopore barcodes. they are probably just an assembly artifact.
+we have some more information! all of the aligned bases in this region are supplementary, meaning that the main part of the read aligns somewhere and a little overhang aligns at the beginning.
+also, almost every read has this sequence as supplementary alignment.
+we conclude that the seuqence is indeed part of the nanopore chemistry, maybe our datasets on the chemistry are not enough updated.
 
-we have to check also the un aligned mid portion of the sams and the last part. in the middle there is nothing strange. at the end of the sequence there are many reads with a lot of ?.
-
-we have to look at the alignment between the reads and the reference sequence. we can see a peak in the coverage at 8000 bp, it looks like the initial part of a 
+the sequence is part of both forward and reverse mapped reads, but it is present only as the plain nucleotide sequence in the dataset, no reverse complement. how can we say that?
 
 
+
+we have to check also the un aligned mid portion of the sams and the last part. in the middle there is nothing strange. at the end of the sequence there are many reads with a lot of ?. these are secondary alignments, probably the main alignment is at the beginning of the sequence and we have the last part at the end, this is consistent with the fact that the phage genome is circular. the thing is that is difficult to check for this because all the reads have a supplementary alignment for the artifact region.
+
+we have to look at the alignment between the reads and the reference sequence. we can see a peak in the coverage at 8000 bp, it looks like the initial part of the genome. this is due to the biological processes of the phages we are studying, the genome presents a high coverage at a certain position because it linearises and then decreases over time.
+the thing is that in this case there is no super covered region, we have at max 2000 of coverage, we have no chemistry artifact, that's because in the reference sequence there is not the sequence of the chemistry.
 
 finally we will build the pileup graph of the alignment thanks to a script produced by the Neher lab: https://github.com/mmolari/morbidostat-genome-analysis/blob/main/scripts/create_allele_counts.py
 
@@ -51,4 +59,3 @@ we plotted the coverage and the position of the clips for the two alignments, in
 we can notice that in the reverse direction at the beginning there is a super uge concentration of clips.
 
 apart from this the genome seems linear, i think there is some sort of artifact, but it is strange that it is both in the reference and in our assembly.
-

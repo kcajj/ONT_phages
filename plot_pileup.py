@@ -54,3 +54,7 @@ if __name__ == "__main__":
     clips_reads_reference='results_read_mapping/EC2D2/clips_reads_reference.pkl.gz'
     make_plot(allele_counts_reads_reference,clips_reads_reference,'forward')
     make_plot(allele_counts_reads_reference,clips_reads_reference,'reverse')
+    #forward and reverse together
+    #consensus frequency
+    #gap frequency
+    #fast q statistics
