@@ -23,7 +23,7 @@
             - [x] blast the assembled genome to find the corresponding reference sequence
             - [x] align the reference with the assembled genome through minimap2 and look at the result
             - [x] align again the two sequences and build a sam file to look at the CIGARS
-- [ ] read mapping
+- [x] read mapping
     - [x] create sam file with minimap
         - [x] read minimap2 documentation
         - [x] send a minimap2 alignment to the job queue
