@@ -39,9 +39,16 @@ we noticed something weird! the first 127 basepairs are hypercovered and disjoin
 
 we have to check also the un aligned mid portion of the sams and the last part. in the middle there is nothing strange. at the end of the sequence there are many reads with a lot of ?.
 
-we have to look at the alignment between the reads and the reference sequence.
+we have to look at the alignment between the reads and the reference sequence. we can see a peak in the coverage at 8000 bp, it looks like the initial part of a 
 
 
 
 finally we will build the pileup graph of the alignment thanks to a script produced by the Neher lab: https://github.com/mmolari/morbidostat-genome-analysis/blob/main/scripts/create_allele_counts.py
+
+command: python build_pileup.py --bam_file results/EC2D2/to_visualise.bam --out_dir pileup_output/ --qual_min 0 --clip_minL 10
+
+we plotted the coverage and the position of the clips for the two alignments, in the forward and reverse direction.
+we can notice that in the reverse direction at the beginning there is a super uge concentration of clips.
+
+apart from this the genome seems linear, i think there is some sort of artifact, but it is strange that it is both in the reference and in our assembly.
 
