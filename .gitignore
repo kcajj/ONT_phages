@@ -3,5 +3,9 @@ test/Loman_E.coli_MAP006-1_2D_50x.fasta
 output_genome_assembly
 EC2D2_new_chemistry.fastq.gz
 EC2D2_new_chemistry.fastq
-results_read_mapping
-results
+results_read_mapping/EC2D2/alignment_reads_assembly.sam
+results_read_mapping/EC2D2/alignment_reads_reference.sam
+results_read_mapping/EC2D2/bam_reads_assembly.bam
+results_read_mapping/EC2D2/bam_reads_assembly.bai
+results_read_mapping/EC2D2/bam_reads_reference.bam
+results_read_mapping/EC2D2/bam_reads_reference.bai
