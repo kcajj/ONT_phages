@@ -4,9 +4,5 @@ output_genome_assembly
 EC2D2_new_chemistry.fastq.gz
 EC2D2_new_chemistry.fastq
 reads.paf.gz
-results/EC2D2/alignment_reads_assembly.sam
-results/EC2D2/to_visualise.bam
-results/EC2D2/to_visualise.bam.bai
-results/EC2D2/alignments_reads_reference.sam
-results/EC2D2/to_visualise_reference.bam
-results/EC2D2/to_visualise_reference.bam.bai
+results_genome_assembly
+results_read_mapping

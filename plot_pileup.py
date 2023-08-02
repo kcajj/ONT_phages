@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-allele_counts=np.load('pileup_output/allele_counts.npz')
+allele_counts=np.load('results_read_mapping/EC2D2/allele_counts_reads_assembly.npz')
 print(allele_counts.files)
 array=allele_counts['arr_0']
 
@@ -24,7 +24,7 @@ import pickle
 
 clips_position=np.zeros(np.shape(forward)[1])
 
-with gzip.open('pileup_output/clips.pkl.gz', 'rb') as f:
+with gzip.open('results_read_mapping/EC2D2/clips_reads_assembly.pkl.gz', 'rb') as f:
     clips = pickle.load(f)
 
 print(clips.keys())

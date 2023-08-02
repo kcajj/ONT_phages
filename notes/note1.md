@@ -44,3 +44,4 @@ we have to look at the alignment between the reads and the reference sequence.
 
 
 finally we will build the pileup graph of the alignment thanks to a script produced by the Neher lab: https://github.com/mmolari/morbidostat-genome-analysis/blob/main/scripts/create_allele_counts.py
+
