@@ -28,7 +28,7 @@ rule minimap:
         reads = nanopore_reads,
         reference = rules.flye.output.assembly
     output:
-        alignment = 'results/{phage}/mapping/{tag}.sam'
+        alignment = 'results/{phage}/mapping/{tag}/{tag}.sam'
     conda:
         'conda_envs/phage_read_mapping.yml'
     shell:
@@ -40,40 +40,41 @@ rule minimap:
 
 rule bam:
     input:
-        sam = minimap.output.alignment
+        sam = rules.minimap.output.alignment
     output:
-        bam = 'results/{phage}/mapping/{tag}.bam',
-        bai = 'results/{phage}/mapping/{tag}.bam.bai'
+        bam = 'results/{phage}/mapping/{tag}/{tag}.bam',
+        bai = 'results/{phage}/mapping/{tag}/{tag}.bam.bai'
     conda:
         'conda_envs/phage_read_mapping.yml'
+    params:
+        cores = 8
     shell:
         """
-        samtools sort -@ 8 \
+        samtools sort -@ {params.cores} \
             -o {output.bam} \
             {input.sam}
         samtools index {output.bam} \
-            {output.bam.bai}
+            {output.bai}
         """
 
 rule build_pileup:
     input:
         bam = rules.bam.output.bam
     output:
-        pileup_folder = directory('results/{phage}/{tag}')
+        pileup_folder = directory('results/{phage}/pileup/{tag}')
     conda:
-        'conda_envs/phage_read_mapping.yml'
+        'conda_envs/pileup.yml'
     params:
-        quality = 0
-        clip_length = 0
+        quality = 0,
+        clip_length = 10
     shell:
         """
         python build_pileup.py --bam_file {input.bam} \
         --out_dir {output.pileup_folder} \
-        --qual_min params.quality \
-        --clip_minL params.clip_length
+        --qual_min {params.quality} \
+        --clip_minL {params.clip_length}
         """
-
 
 rule all:
     input:
-        assembly = expand(rules.flye.output.assembly,tag='new_chemistry',phage='EC2D2')
+        assembly = expand(rules.build_pileup.output.pileup_folder,tag='new_chemistry',phage='EC2D2')
