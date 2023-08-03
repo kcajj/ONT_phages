@@ -1,3 +1,4 @@
+configfile: "config.yml"
 
 
 rule flye:
@@ -7,7 +8,7 @@ rule flye:
         flye_folder = directory('results/{phage}/assemblies/{tag}_flye'),
         assembly = 'results/{phage}/assemblies/{tag}.fasta'
     params:
-        genome_size = '0.163m'
+        genome_size = lambda w : config["genome-size"][w.phage]
     conda:
         'conda_envs/phage_genome_assembly.yml'
     shell:
