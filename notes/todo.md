@@ -40,6 +40,8 @@
         - [x] clips
         - [x] gaps
 
+- [ ] blast the barcode on the raw data
+
 - [ ] snakemake
 
 - [ ] other timepoints

@@ -56,6 +56,8 @@ finally we will build the pileup graph of the alignment thanks to a script produ
 command: python build_pileup.py --bam_file results/EC2D2/to_visualise.bam --out_dir pileup_output/ --qual_min 0 --clip_minL 10
 
 we plotted the coverage and the position of the clips for the two alignments, in the forward and reverse direction.
-we can notice that in the reverse direction at the beginning there is a super uge concentration of clips.
+we can notice that in the reverse direction at the beginning there is a high concentration of clips. still not as high as in the igv.
 
-apart from this the genome seems linear, i think there is some sort of artifact, but it is strange that it is both in the reference and in our assembly.
+we made plots of much more data: coverage, clips, non consensus freq, insertions and fastq statistics
+
+

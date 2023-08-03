@@ -10,8 +10,11 @@ if __name__ == "__main__":
     sample='EC2D2'
     ref_file=f'results_genome_assembly/{sample}/assembly.fasta'
     pileup_file=f'results_pileup/{sample}/allele_counts_reads_assembly.npz'
+    #pileup_file=f'results_pileup/{sample}/allele_counts.npz'
     clips_file=f'results_pileup/{sample}/clips_reads_assembly.pkl.gz'
+    #clips_file=f'results_pileup/{sample}/clips.pkl.gz'
     gaps_file=f'results_pileup/{sample}/insertions_reads_assembly.pkl.gz'
+    #gaps_file=f'results_pileup/{sample}/insertions.pkl.gz'
 
     pileup=extract_npz(pileup_file,'arr_0')
     reference=extract_seq(ref_file)
@@ -19,13 +22,13 @@ if __name__ == "__main__":
     gaps_dict=extract_pkl(gaps_file)
 
     x,y1,y2=coverage(pileup)
-    saveplot(x,y1,y2,'coverage')
+    saveplot(x,y1,y2,sample,'coverage')
     
     x,y1,y2=non_consensus_frequency(pileup,reference,100)
-    saveplot(x,y1,y2,'non_consensus_assembly')
+    saveplot(x,y1,y2,sample,'non_consensus_assembly')
 
     x,y1,y2=clips(pileup,clips_dict,100)
-    saveplot(x,y1,y2,'clips')
+    saveplot(x,y1,y2,sample,'clips')
 
     x,y1,y2=gaps(pileup,gaps_dict,1000)
-    saveplot(x,y1,y2,'gaps')
+    saveplot(x,y1,y2,sample,'gaps')
