@@ -70,11 +70,24 @@ rule build_pileup:
     shell:
         """
         python build_pileup.py --bam_file {input.bam} \
-        --out_dir {output.pileup_folder} \
-        --qual_min {params.quality} \
-        --clip_minL {params.clip_length}
+            --out_dir {output.pileup_folder} \
+            --qual_min {params.quality} \
+            --clip_minL {params.clip_length}
+        """
+
+rule plot_pileup:
+    input:
+        pileup_folder = rules.build_pileup.output.pileup_folder,
+        ref = rules.flye.output.assembly
+    output:
+        plot_folder = directory('plots/{phage}/{tag}')
+    shell:
+        """
+        python pileup_analysis.py --in_dir {input.pileup_folder} \
+            --ref {input.ref} \
+            --out_dir {output.plot_folder}
         """
 
 rule all:
     input:
-        assembly = expand(rules.build_pileup.output.pileup_folder,tag='new_chemistry',phage='EC2D2')
+        assembly = expand(rules.plot_pileup.output.plot_folder,tag='new_chemistry',phage='EC2D2')
