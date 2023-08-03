@@ -12,3 +12,4 @@ results_read_mapping/EC2D2/bam_reads_reference.bai
 data
 results
 .snakemake
+log
