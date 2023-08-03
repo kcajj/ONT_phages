@@ -25,10 +25,10 @@ rule flye:
 
 rule minimap:
     input:
-        reads = nanopore_reads,
-        reference = rules.flye.output.assembly
+        reads = lambda w : expand(rules.flye.input.reads, tag=w.qry_tag, phage=w.phage),
+        reference = lambda w : expand(rules.flye.output.assembly, tag=w.ref_tag, phage=w.phage)
     output:
-        alignment = 'results/{phage}/mapping/{tag}/{tag}.sam'
+        alignment = 'results/{phage}/mapping/{ref_tag}/{qry_tag}.sam'
     conda:
         'conda_envs/phage_read_mapping.yml'
     shell:
@@ -42,8 +42,8 @@ rule bam:
     input:
         sam = rules.minimap.output.alignment
     output:
-        bam = 'results/{phage}/mapping/{tag}/{tag}.bam',
-        bai = 'results/{phage}/mapping/{tag}/{tag}.bam.bai'
+        bam = 'results/{phage}/mapping/{ref_tag}/{qry_tag}.bam',
+        bai = 'results/{phage}/mapping/{ref_tag}/{qry_tag}.bam.bai'
     conda:
         'conda_envs/phage_read_mapping.yml'
     params:
@@ -61,7 +61,7 @@ rule build_pileup:
     input:
         bam = rules.bam.output.bam
     output:
-        pileup_folder = directory('results/{phage}/pileup/{tag}')
+        pileup_folder = directory('results/{phage}/pileup/{ref_tag}/{qry_tag}')
     conda:
         'conda_envs/pileup.yml'
     params:
@@ -78,9 +78,11 @@ rule build_pileup:
 rule plot_pileup:
     input:
         pileup_folder = rules.build_pileup.output.pileup_folder,
-        ref = rules.flye.output.assembly
+        ref = lambda w : expand(rules.flye.output.assembly, tag=w.ref_tag, phage=w.phage)
     output:
-        plot_folder = directory('plots/{phage}/{tag}')
+        plot_folder = directory('plots/{phage}/{ref_tag}/{qry_tag}')
+    conda:
+        'conda_envs/pileup.yml'
     shell:
         """
         python pileup_analysis.py --in_dir {input.pileup_folder} \
@@ -90,4 +92,4 @@ rule plot_pileup:
 
 rule all:
     input:
-        assembly = expand(rules.plot_pileup.output.plot_folder,tag='new_chemistry',phage='EC2D2')
+        assembly = expand(rules.plot_pileup.output.plot_folder,ref_tag='new_chemistry',qry_tag='new_chemistry',phage='EC2D2')
