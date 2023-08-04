@@ -10,15 +10,17 @@ rule flye:
         assembly = 'results/{phage}/assemblies/{tag}.fasta'
     params:
         genome_size = lambda w : config["genome-size"][w.phage]
+        cores = 4
+        coverage = 40
     conda:
         'conda_envs/phage_genome_assembly.yml'
     shell:
         """
         flye --nano-hq {input.reads} \
             --out-dir {output.flye_folder} \
-            --threads 4 \
+            --threads {params.cores} \
             --genome-size {params.genome_size} \
-            --asm-coverage 40
+            --asm-coverage {params.coverage}
         
         cp {output.flye_folder}/assembly.fasta {output.assembly}
         """
@@ -47,7 +49,7 @@ rule bam:
     conda:
         'conda_envs/phage_read_mapping.yml'
     params:
-        cores = 8
+        cores = 4
     shell:
         """
         samtools sort -@ {params.cores} \
