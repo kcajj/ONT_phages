@@ -34,8 +34,8 @@ if __name__ == "__main__":
     x,y1,y2=coverage(pileup)
     saveplot(x,y1,y2,out_folder,'coverage')
     
-    x,y1,y2=non_consensus_frequency(pileup,reference,100)
-    saveplot(x,y1,y2,out_folder,'non_consensus_assembly')
+    x,y1,y2=non_consensus_frequency(pileup,reference,1000)
+    saveplot(x,y1,y2,out_folder,'non_consensus_frequency')
 
     x,y1,y2=clips(pileup,clips_dict,100)
     saveplot(x,y1,y2,out_folder,'clips')

@@ -31,7 +31,7 @@
         - [ ] read samtools documentation (too long, too many tools)
     - [x] look at the bam file on igv
     - [x] build the pileup of the alignment
-        - [ ] understand the script
+        - [x] understand the script
         - [ ] try to build your own pileup script
     - [x] extract and look at the information of the pileup (write a py script that plots the useful data)
         - [x] fastq integrity
@@ -40,10 +40,9 @@
         - [x] clips
         - [x] gaps
 
-- [ ] blast the barcode on the raw data
-
-- [ ] snakemake
-
-- [ ] other timepoints
+- [x] snakemake
+    - [x] pipeline
+    - [x] local and cluster profiles
+    - [x] allow other phages and other timepoints
 
 - [ ] pangraph
