@@ -94,4 +94,4 @@ rule plot_pileup:
 
 rule all:
     input:
-        assembly = expand(rules.plot_pileup.output.plot_folder,ref_tag='new_chemistry',qry_tag='new_chemistry',phage='EC2D2')
+        assembly = expand(rules.plot_pileup.output.plot_folder,ref_tag='new_chemistry',qry_tag='new_chemistry',phage=['EC2D2','EM11','EM60'])
