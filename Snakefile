@@ -9,8 +9,8 @@ rule flye:
         flye_folder = directory('results/{phage}/assemblies/{tag}_flye'),
         assembly = 'results/{phage}/assemblies/{tag}.fasta'
     params:
-        genome_size = lambda w : config["genome-size"][w.phage]
-        cores = 4
+        genome_size = lambda w : config["genome-size"][w.phage],
+        cores = 4,
         coverage = 40
     conda:
         'conda_envs/phage_genome_assembly.yml'
