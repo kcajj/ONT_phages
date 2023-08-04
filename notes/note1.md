@@ -4,12 +4,16 @@ we have finally the first assembly of a phage genome.
 we have assembled the EC2D2_new_chemistry.fastq.gz reads. with a reference genome of approximately 163kb
 
 we have used the following flye command:
+<pre>
 flye --nano-hq /scicore/home/neher/GROUP/data/Giacomo_analysis/raw_data/EC2D2_new_chemistry.fastq.gz \
     --out-dir output_genome_assembly --threads 4 --genome-size 0.163m --asm-coverage 40
+</pre>
 
 we have obtained the following output:
+<pre>
 #seq_name	length	cov.	circ.	repeat	mult.	alt_group	graph_path
 contig_1	150850	637	N	N	1	*	*,1,*
+</pre>
 
 the sequence doesn't result to be circular, but looking at the alignment with a [reference](https://www.ncbi.nlm.nih.gov/nuccore/MZ501100.1?report=fasta) found by blasting the actual sequence.
 
@@ -42,9 +46,7 @@ we have some more information! all of the aligned bases in this region are suppl
 also, almost every read has this sequence as supplementary alignment.
 we conclude that the seuqence is indeed part of the nanopore chemistry, maybe our datasets on the chemistry are not enough updated.
 
-the sequence is part of both forward and reverse mapped reads, but it is present only as the plain nucleotide sequence in the dataset, no reverse complement. how can we say that?
-
-
+the sequence is part of both forward and reverse mapped reads, but it is present only as the plain nucleotide sequence in the dataset, no reverse complement because all the reads that map in the artifact region are forward reads, this is consistent with the fact that the sequence is a barcode.
 
 we have to check also the un aligned mid portion of the sams and the last part. in the middle there is nothing strange. at the end of the sequence there are many reads with a lot of ?. these are secondary alignments, probably the main alignment is at the beginning of the sequence and we have the last part at the end, this is consistent with the fact that the phage genome is circular. the thing is that is difficult to check for this because all the reads have a supplementary alignment for the artifact region.
 
@@ -60,4 +62,6 @@ we can notice that in the reverse direction at the beginning there is a high con
 
 we made plots of much more data: coverage, clips, non consensus freq, insertions and fastq statistics
 
+the scripts were wrong because of the convolution.
 
+we build a snakemake pipeline.
