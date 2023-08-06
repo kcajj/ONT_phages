@@ -8,7 +8,7 @@ steps that i have to do:
 1. [consensus assembly](genome_assembly.md)
 2. [map reads to the assembly](read_mapping.md)
 
-## general introduction to high power computing
+## general introduction to high performance computing
 
 tools to know:
 - git
