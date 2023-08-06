@@ -65,7 +65,3 @@ we made plots of much more data: coverage, clips, non consensus freq, insertions
 the scripts were wrong because of the convolution.
 
 we build a snakemake pipeline.
-
-
-expand("text_{letter}_{num}.txt", num=[1, 2], allow_missing=True)
-conda env export --no-builds --from-history
