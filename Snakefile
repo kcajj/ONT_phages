@@ -1,6 +1,7 @@
 configfile: "config.yml"
 
 nanopore_reads = 'data/nanopore/{phage}_{tag}.fastq.gz'
+reference = 'data/references/{phage}_reference.fasta'
 
 rule flye:
     input:
@@ -35,7 +36,8 @@ rule minimap:
         'conda_envs/phage_read_mapping.yml'
     shell:
         """
-        minimap2 -ax map-ont {input.reference} \
+        minimap2 -ax map-ont \
+            {input.reference} \
             {input.reads} \
             > {output.alignment}
         """
@@ -92,6 +94,23 @@ rule plot_pileup:
             --out_dir {output.plot_folder}
         """
 
+rule alginment_to_ref:
+    input:
+        reference = reference,
+        assembly = rules.flye.output.assembly
+    output:
+        alignment = 'results/{phage}/mapping/reference/alignment_with_reference_{tag}.bam'
+    conda:
+        'conda_envs/phage_read_mapping'
+    shell:
+        """
+        minimap2 -a \
+            {input.reference} \
+            {input.assembly} \
+            > {output.alignment}
+        """
+
 rule all:
     input:
-        assembly = expand(rules.plot_pileup.output.plot_folder,ref_tag='new_chemistry',qry_tag='new_chemistry',phage=['EC2D2','EM11','EM60'])
+        assemblies = expand(rules.plot_pileup.output.plot_folder,ref_tag='new_chemistry',qry_tag='new_chemistry',phage=['EC2D2','EM11','EM60']),
+        reference_alignments = expand(rules.alginment_to_ref.output.alignment,phage=['EC2D2','EM11','EM60'],tag='new_chemistry')

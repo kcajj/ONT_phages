@@ -7,6 +7,7 @@ what are we working on:
 steps that i have to do:
 1. [consensus assembly](genome_assembly.md)
 2. [map reads to the assembly](read_mapping.md)
+3. [creating a pipeline with snakemake](snakemake)
 
 ## general introduction to high performance computing
 

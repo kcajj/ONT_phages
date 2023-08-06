@@ -65,3 +65,23 @@ we made plots of much more data: coverage, clips, non consensus freq, insertions
 the scripts were wrong because of the convolution.
 
 we build a snakemake pipeline.
+
+quality score distribution fastq
+pileup plots
+
+nanopore qc
+rename all envs
+
+expand("text_{letter}_{num}.txt", num=[1, 2], allow_missing=True)
+conda env export --no-builds --from-history
+
+read quality per base:
+![EC2D2](EC2D2.png)
+![EM11](EM11.png)
+
+look at the alignment with the references:
+it's good.
+
+EM11: https://www.ncbi.nlm.nih.gov/nuccore/MZ501111.1?report=fasta
+EM60: https://www.ncbi.nlm.nih.gov/nuccore/MZ501093.1?report=fasta
+
