@@ -1,0 +1,23 @@
+2023-08-04 16:52:46,760 NanoPlot 1.41.6 started with arguments Namespace(threads=4, verbose=False, store=False, raw=False, huge=False, outdir='fastq_stats/EC2D2/', no_static=False, prefix='', tsv_stats=False, info_in_report=False, maxlength=None, minlength=None, drop_outliers=False, downsample=None, loglength=False, percentqual=False, alength=False, minqual=None, runtime_until=None, readtype='1D', barcoded=False, no_supplementary=False, color='#4CB391', colormap='Greens', format=['png'], plots=['dot'], legacy=['hex'], listcolors=False, listcolormaps=False, no_N50=False, N50=False, title=None, font_scale=1, dpi=100, hide_stats=False, fastq=['data/nanopore/EC2D2_new_chemistry.fastq.gz'], fasta=None, fastq_rich=None, fastq_minimal=None, summary=None, bam=None, ubam=None, cram=None, pickle=None, feather=None, path='fastq_stats/EC2D2/')
+2023-08-04 16:52:46,768 Python version is: 3.10.12 | packaged by conda-forge | (main, Jun 23 2023, 22:40:32) [GCC 12.3.0]
+2023-08-04 16:52:46,775 Nanoget: Starting to collect statistics from plain fastq file.
+2023-08-04 16:52:46,775 Nanoget: Decompressing gzipped fastq data/nanopore/EC2D2_new_chemistry.fastq.gz
+2023-08-04 16:52:53,651 Reduced DataFrame memory usage from 0.488616943359375Mb to 0.488616943359375Mb
+2023-08-04 16:52:53,657 Nanoget: Gathered all metrics of 32014 reads
+2023-08-04 16:52:53,665 Calculated statistics
+2023-08-04 16:52:53,666 Using sequenced read lengths for plotting.
+2023-08-04 16:52:53,667 NanoPlot:  Valid color #4CB391.
+2023-08-04 16:52:53,667 NanoPlot:  Valid colormap Greens.
+2023-08-04 16:52:53,668 NanoPlot:  Creating length plots for Read length.
+2023-08-04 16:52:53,668 NanoPlot:  Using 32014 reads maximum of 85993bp.
+2023-08-04 16:52:54,028 Saved fastq_stats/EC2D2/WeightedHistogramReadlength  as png (or png for --legacy)
+2023-08-04 16:52:54,377 Saved fastq_stats/EC2D2/WeightedLogTransformed_HistogramReadlength  as png (or png for --legacy)
+2023-08-04 16:52:54,731 Saved fastq_stats/EC2D2/Non_weightedHistogramReadlength  as png (or png for --legacy)
+2023-08-04 16:52:55,074 Saved fastq_stats/EC2D2/Non_weightedLogTransformed_HistogramReadlength  as png (or png for --legacy)
+2023-08-04 16:52:55,681 Saved fastq_stats/EC2D2/Yield_By_Length  as png (or png for --legacy)
+2023-08-04 16:52:55,681 Created length plots
+2023-08-04 16:52:55,682 NanoPlot: Creating Read lengths vs Average read quality plots using 32014 reads.
+2023-08-04 16:52:56,332 Saved fastq_stats/EC2D2/LengthvsQualityScatterPlot_dot  as png (or png for --legacy)
+2023-08-04 16:52:56,396 Created LengthvsQual plot
+2023-08-04 16:52:56,396 Writing html report.
+2023-08-04 16:52:56,400 Finished!

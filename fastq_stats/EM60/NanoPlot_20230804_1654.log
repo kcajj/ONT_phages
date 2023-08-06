@@ -1,0 +1,23 @@
+2023-08-04 16:54:19,226 NanoPlot 1.41.6 started with arguments Namespace(threads=4, verbose=False, store=False, raw=False, huge=False, outdir='fastq_stats/EM60/', no_static=False, prefix='', tsv_stats=False, info_in_report=False, maxlength=None, minlength=None, drop_outliers=False, downsample=None, loglength=False, percentqual=False, alength=False, minqual=None, runtime_until=None, readtype='1D', barcoded=False, no_supplementary=False, color='#4CB391', colormap='Greens', format=['png'], plots=['dot'], legacy=['hex'], listcolors=False, listcolormaps=False, no_N50=False, N50=False, title=None, font_scale=1, dpi=100, hide_stats=False, fastq=['data/nanopore/EM60_new_chemistry.fastq.gz'], fasta=None, fastq_rich=None, fastq_minimal=None, summary=None, bam=None, ubam=None, cram=None, pickle=None, feather=None, path='fastq_stats/EM60/')
+2023-08-04 16:54:19,226 Python version is: 3.10.12 | packaged by conda-forge | (main, Jun 23 2023, 22:40:32) [GCC 12.3.0]
+2023-08-04 16:54:19,233 Nanoget: Starting to collect statistics from plain fastq file.
+2023-08-04 16:54:19,233 Nanoget: Decompressing gzipped fastq data/nanopore/EM60_new_chemistry.fastq.gz
+2023-08-04 16:55:18,578 Reduced DataFrame memory usage from 3.9309539794921875Mb to 3.9309539794921875Mb
+2023-08-04 16:55:18,592 Nanoget: Gathered all metrics of 257611 reads
+2023-08-04 16:55:18,638 Calculated statistics
+2023-08-04 16:55:18,639 Using sequenced read lengths for plotting.
+2023-08-04 16:55:18,644 NanoPlot:  Valid color #4CB391.
+2023-08-04 16:55:18,644 NanoPlot:  Valid colormap Greens.
+2023-08-04 16:55:18,648 NanoPlot:  Creating length plots for Read length.
+2023-08-04 16:55:18,648 NanoPlot:  Using 257611 reads maximum of 119977bp.
+2023-08-04 16:55:19,026 Saved fastq_stats/EM60/WeightedHistogramReadlength  as png (or png for --legacy)
+2023-08-04 16:55:19,383 Saved fastq_stats/EM60/WeightedLogTransformed_HistogramReadlength  as png (or png for --legacy)
+2023-08-04 16:55:19,732 Saved fastq_stats/EM60/Non_weightedHistogramReadlength  as png (or png for --legacy)
+2023-08-04 16:55:20,077 Saved fastq_stats/EM60/Non_weightedLogTransformed_HistogramReadlength  as png (or png for --legacy)
+2023-08-04 16:55:20,688 Saved fastq_stats/EM60/Yield_By_Length  as png (or png for --legacy)
+2023-08-04 16:55:20,688 Created length plots
+2023-08-04 16:55:20,689 NanoPlot: Creating Read lengths vs Average read quality plots using 257611 reads.
+2023-08-04 16:55:21,334 Saved fastq_stats/EM60/LengthvsQualityScatterPlot_dot  as png (or png for --legacy)
+2023-08-04 16:55:21,395 Created LengthvsQual plot
+2023-08-04 16:55:21,395 Writing html report.
+2023-08-04 16:55:21,398 Finished!
