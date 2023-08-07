@@ -5,6 +5,8 @@ from collections import defaultdict
 from handle_npz_pkl import extract_seq, extract_npz, extract_pkl
 from pileup_plots import coverage
 
+threshold=0.7
+
 def ncf(pileup, reference, l):
     forward=pileup[0]
     reverse=pileup[1]
@@ -23,11 +25,11 @@ def ncf(pileup, reference, l):
         for i_nuc,nuc in enumerate(alphabet):
             forward_total+=forward[i_nuc][pos]
             reverse_total+=reverse[i_nuc][pos]
-            total+=forward_total+reverse_total
+            total+=forward[i_nuc][pos]+reverse[i_nuc][pos]
             if not nuc==ref_nuc:
                 forward_non_consensus+=forward[i_nuc][pos]
                 reverse_non_consensus+=reverse[i_nuc][pos]
-                non_consensus+=forward_non_consensus+reverse_non_consensus
+                non_consensus+=forward[i_nuc][pos]+reverse[i_nuc][pos]
 
         forward_non_consensus_freq[pos]=forward_non_consensus/forward_total
         reverse_non_consensus_freq[pos]=reverse_non_consensus/reverse_total
@@ -51,21 +53,28 @@ if __name__ == "__main__":
     ref_file=args.ref
     '''
     pileup_file='results/EC2D2/pileup/new_chemistry/new_chemistry/allele_counts.npz'
-    ref_file='data/references/EC2D2_reference.fasta'
+    ref_file='results/EC2D2/assemblies/new_chemistry.fasta'
     pileup=extract_npz(pileup_file,'arr_0')
     reference=extract_seq(ref_file)
 
     l=np.shape(pileup)[2]
     fncf, rncf, tncf = ncf(pileup,reference,l)
     fcv, rcv = coverage(pileup,l)
-    
-    mutated_sites=defaultdict()
+    np.set_printoptions(threshold=999999999)
 
     for bp in range(l):
         if np.isnan(tncf[bp]):
             tncf[bp]=0
-        print(tncf[bp])
-        
-        mutated_sites[round(tncf[bp],1)]+=1
+    plt.hist(tncf,bins=100)
+    
 
-    plt.plot(mutated_sites.keys(),mutated_sites.values())
+    mutated_sites=[]
+    for pos,score in enumerate(tncf):
+        if score>threshold:
+            if fncf[pos]-rncf[pos] < 0.1:
+                if fcv[pos]>10 and rcv[pos]>10:
+                    mutated_sites.append((score,pos))
+
+    print(mutated_sites)
+
+    plt.show()
