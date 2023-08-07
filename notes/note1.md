@@ -53,6 +53,21 @@ we have to check also the un aligned mid portion of the sams and the last part. 
 we have to look at the alignment between the reads and the reference sequence. we can see a peak in the coverage at 8000 bp, it looks like the initial part of the genome. this is due to the biological processes of the phages we are studying, the genome presents a high coverage at a certain position because it linearises and then decreases over time.
 the thing is that in this case there is no super covered region, we have at max 2000 of coverage, we have no chemistry artifact, that's because in the reference sequence there is not the sequence of the chemistry.
 
+### alignment of the assembly with the reference sequences
+
+look at the alignment with the references:
+it's good.
+
+EC2D2: 
+
+EM11: https://www.ncbi.nlm.nih.gov/nuccore/MZ501111.1?report=fasta
+
+
+EM60: https://www.ncbi.nlm.nih.gov/nuccore/MZ501093.1?report=fasta
+
+
+### pileup
+
 finally we will build the pileup graph of the alignment thanks to a script produced by the Neher lab: https://github.com/mmolari/morbidostat-genome-analysis/blob/main/scripts/create_allele_counts.py
 
 command: python build_pileup.py --bam_file results/EC2D2/to_visualise.bam --out_dir pileup_output/ --qual_min 0 --clip_minL 10
@@ -66,3 +81,11 @@ there where quite a lot of problems with these graphs:
 - convolutions messed up everything (i have to divide for the length of the window.)
 - gap graph was missing
 - we need labels and titles describing each graph
+
+we can take a first look to the plots from the first sample:
+
+![no_threshold_clips](images/plots_without_threshold/clips.png)
+![no_threshold_coverage](images/plots_without_threshold/coverage.png)
+![no_threshold_gaps](images/plots_without_threshold/gaps.png)
+![no_threshold_insertions](images/plots_without_threshold/insertions.png)
+![no_threshold_non_consensus_frequency](images/plots_without_threshold/non_consensus_frequency.png)

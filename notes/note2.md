@@ -3,14 +3,65 @@ we build a snakemake pipeline.
 
 expand("text_{letter}_{num}.txt", num=[1, 2], allow_missing=True)
 
-read quality per base:
-![EC2D2](EC2D2.png)
 
-look at the alignment with the references:
-it's good.
+once the plots are ok we have to apply the filters on the basis of the distribution of quality and length, we will look at these properties in each sample.
 
-EM11: https://www.ncbi.nlm.nih.gov/nuccore/MZ501111.1?report=fasta
-EM60: https://www.ncbi.nlm.nih.gov/nuccore/MZ501093.1?report=fasta
+## summary of the data up to now
+
+### fastq statistics
+1. the first sample has 32014 reads, with the following quality distribution (since we are working with hundreds of thousands of reads we won't be able to see these plot for the other ones, but we will just consider the score of every nucleotide taken as independent from the others.):
+
+    ![fastqc_EC2D2](fastq_statistics/fastqc_EC2D2.png)
+
+    the quality distribution of the nucleotides of this sample is the following:
+
+    ![EC2D2_quality](fastq_statistics/EC2D2_quality)
+    
+    the length of the reads is:
+
+    ![EC2D2_length](fastq_statistics/EC2D2_length)
+
+2. the second sample has this nucleotide quality distribution, with 226,881 reads:
+
+    ![EM11](fastq_statistics/EM11_quality)
+
+    and this read length distribution
+
+    ![EM11](fastq_statistics/EM11_legth)
+
+3. the third sample has this nucleotide quality distribution:
+
+    ![EM60](fastq_statistics/EM60_quality)
+
+    and this read length distribution
+
+    ![EM60](fastq_statistics/EM60_legth)
+
+### clip length statistics
+
+since we can also put a threshold on the length of the clips it can be useful to look at their distribution
+
+1. 
+
+2.
+
+3.
+n of clips 48814
+avg clip len 136.41524972343998
+291396
+98.28204917020138
+389662
+106.83263956967834
+
+
+by looking at this data we can state that by filtering for a quality score bigger than 20 we can still keep the majority of the information in the reads.
+to clear the data from the barcodes that would influence further analysis we can filter to exclude the clips shorter than 150 bp.
+
+
+## analysis after the filtering
+
+the plots after the filtering are:
+
 
 nanopore qc
 rename all envs

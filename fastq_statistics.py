@@ -33,7 +33,7 @@ for phage in phages:
     for pos,val in len_dict.items():
         len_distr[pos-1]+=val
 
-    len_distr=np.convolve(len_distr, np.ones(10), mode='same')
+    len_distr=np.convolve(len_distr, np.ones(100), mode='same')
 
     plt.plot(b,len_distr)
     plt.ylabel('number of reads')

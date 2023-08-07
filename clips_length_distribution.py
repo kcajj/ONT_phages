@@ -25,4 +25,5 @@ for phage in phages:
     plt.hist(len_distr,bins=bins)
     plt.xscale('log')
     plt.yscale('log')
+    line = plt.axvline(x = 270, color = 'r', label = '270 bp - threshold')
     plt.show()
