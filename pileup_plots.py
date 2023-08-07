@@ -1,14 +1,16 @@
 import numpy as np
 
 def coverage(pileup,l):
+    #the nucleotides are stored in the first 4 rows of the pileup
     forward=pileup[0]
     reverse=pileup[1]
     forward_coverage=np.zeros(l)
     reverse_coverage=np.zeros(l)
     for nuc_i,nuc in enumerate(forward):
-        for pos,val in enumerate(nuc):
-            forward_coverage[pos]+=forward[nuc_i,pos]
-            reverse_coverage[pos]+=reverse[nuc_i,pos]
+        if nuc_i!=4 and nuc_i!=5:
+            for pos,val in enumerate(nuc):
+                forward_coverage[pos]+=forward[nuc_i,pos]
+                reverse_coverage[pos]+=reverse[nuc_i,pos]
     return forward_coverage,reverse_coverage
 
 def non_consensus_frequency(pileup,reference,l):
@@ -44,13 +46,24 @@ def clips(clips_dict,l):
 
     return forward_clips,reverse_clips
 
-def gaps(gap_dict,l):
+def insertions(insertions_dict,l):
+    forward_insertions=np.zeros(l)
+    reverse_insertions=np.zeros(l)
+    for pos, ins_data in insertions_dict.items():
+        pos=pos-1
+        for ins in ins_data.values():
+            forward_insertions[pos]+=ins[0]
+            reverse_insertions[pos]+=ins[1]
+    
+    return forward_insertions,reverse_insertions
+
+def gaps(pileup, l):
+    #the gaps are saved in the fourth raw of the pileup
+    forward=pileup[0]
+    reverse=pileup[1]
     forward_gaps=np.zeros(l)
     reverse_gaps=np.zeros(l)
-    for pos,gap_data in gap_dict.items():
-        pos=pos-1
-        for gap in gap_data.values():
-            forward_gaps[pos]+=gap[0]
-            reverse_gaps[pos]+=gap[1]
-    
+    for pos,val in enumerate(forward[4]):
+        forward_gaps[pos]+=forward[4,pos]
+        reverse_gaps[pos]+=reverse[4,pos]
     return forward_gaps,reverse_gaps

@@ -14,6 +14,8 @@ def saveplot(y1,y2,k,folder,name):
     plt.plot(x,conv_y1,conv_y2)
     plt.legend(['forward','reverse'])
     plt.suptitle(name)
+    plt.ylabel(str('average '+ name +' per base'))
+    plt.xlabel('bp')
     plt.title(str(folder+', using '+str(k)+' as convolution window'), fontsize=9)
     try:
         os.makedirs(folder)

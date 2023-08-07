@@ -65,13 +65,13 @@ rule build_pileup:
     input:
         bam = rules.bam.output.bam
     output:
-        pileup_folder = directory('results/{phage}/pileup/{ref_tag}/{qry_tag}')
+        pileup_folder = directory('results/{phage}/pileup/pileup_without_threshold/{ref_tag}/{qry_tag}')
     conda:
         'conda_envs/pileup.yml'
     params:
-        quality = 30,
-        clip_length = 5
-    shell:reference
+        quality = 0,
+        clip_length = 0
+    shell:
         """
         python build_pileup.py --bam_file {input.bam} \
             --out_dir {output.pileup_folder} \
@@ -84,7 +84,7 @@ rule plot_pileup:
         pileup_folder = rules.build_pileup.output.pileup_folder,
         ref = lambda w : expand(rules.flye.output.assembly, tag=w.ref_tag, phage=w.phage)
     output:
-        plot_folder = directory('plots/{phage}/{ref_tag}/{qry_tag}')
+        plot_folder = directory('plots/plots_without_threshold/{phage}/{ref_tag}/{qry_tag}')
     conda:
         'conda_envs/pileup.yml'
     shell:

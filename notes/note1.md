@@ -60,27 +60,9 @@ command: python build_pileup.py --bam_file results/EC2D2/to_visualise.bam --out_
 we plotted the coverage and the position of the clips for the two alignments, in the forward and reverse direction.
 we can notice that in the reverse direction at the beginning there is a high concentration of clips. still not as high as in the igv.
 
-we made plots of much more data: coverage, clips, non consensus freq, insertions and fastq statistics
+we made plots of much more data: coverage, clips, non consensus freq, insertions and gaps.
 
-the scripts were wrong because of the convolution.
-
-we build a snakemake pipeline.
-
-expand("text_{letter}_{num}.txt", num=[1, 2], allow_missing=True)
-
-read quality per base:
-![EC2D2](EC2D2.png)
-![EM11](EM11.png)
-
-look at the alignment with the references:
-it's good.
-
-EM11: https://www.ncbi.nlm.nih.gov/nuccore/MZ501111.1?report=fasta
-EM60: https://www.ncbi.nlm.nih.gov/nuccore/MZ501093.1?report=fasta
-
-
-pileup plots
-
-quality score distribution fastq
-nanopore qc
-rename all envs
+there where quite a lot of problems with these graphs:
+- convolutions messed up everything (i have to divide for the length of the window.)
+- gap graph was missing
+- we need labels and titles describing each graph

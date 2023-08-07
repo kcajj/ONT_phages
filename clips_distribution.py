@@ -1,34 +1,24 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-from handle_npz_pkl import extract_seq, extract_npz, extract_pkl
-from pileup_plots import coverage,non_consensus_frequency,clips,gaps
-from plot_storage import saveplot
+from handle_npz_pkl import extract_pkl
 
-folders=['pileup_and_plots_without_threshold/EC2D2/pileup',
-         'pileup_and_plots_without_threshold/EM11/pileup',
-         'pileup_and_plots_without_threshold/EM60/pileup']
+phages=['EC2D2','EM11','EM60']
 
-for folder in folders:
-    in_folder=folder
-    #ref_file=args.ref
-
+for phage in phages:
+    in_folder=f'results/{phage}/pileup/pileup_without_threshold/new_chemistry/new_chemistry'
     clips_file=f'{in_folder}/clips.pkl.gz'
-    clips_dict=extract_pkl(clips_file,'seqs')
+    clips_dict=extract_pkl(clips_file,'len')
 
     len_distr=[]
-    for v in clips_dict.values():
-        print(v)
-        for seqs in v.values():
-            for seq in seqs:
-                l=len(seq)
-                if l>1:
-                    len_distr.append(l)
-
-    m= max(len_distr)
+    for clips in clips_dict.values():
+        for clips_lens in clips.values():
+            for clip_len in clips_lens:
+                len_distr.append(clip_len)
+    
     print(len(len_distr))
     print(sum(len_distr)/len(len_distr))
-    print(m)
+
     minn=np.min(len_distr)
     maxx=np.max(len_distr)
     bins=np.logspace(np.log10(minn),np.log10(maxx),200)
@@ -36,4 +26,3 @@ for folder in folders:
     plt.xscale('log')
     plt.yscale('log')
     plt.show()
-

@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 from handle_npz_pkl import extract_seq, extract_npz, extract_pkl
-from pileup_plots import coverage,non_consensus_frequency,clips,gaps
+from pileup_plots import coverage,non_consensus_frequency,clips,insertions,gaps
 from plot_storage import saveplot
 
 if __name__ == "__main__":
@@ -24,14 +24,14 @@ if __name__ == "__main__":
 
     pileup_file=f'{in_folder}/allele_counts.npz'
     clips_file=f'{in_folder}/clips.pkl.gz'
-    gaps_file=f'{in_folder}/insertions.pkl.gz'
+    insertions_file=f'{in_folder}/insertions.pkl.gz'
 
     k=1000
 
     pileup=extract_npz(pileup_file,'arr_0')
     reference=extract_seq(ref_file)
     clips_dict=extract_pkl(clips_file,'count')
-    gaps_dict=extract_pkl(gaps_file)
+    insertions_dict=extract_pkl(insertions_file)
 
     l=np.shape(pileup)[2]
 
@@ -44,5 +44,8 @@ if __name__ == "__main__":
     y1,y2=clips(clips_dict,l)
     saveplot(y1,y2,k,out_folder,'clips')
 
-    y1,y2=gaps(gaps_dict,l)
+    y1,y2=insertions(insertions_dict,l)
+    saveplot(y1,y2,k,out_folder,'insertions')
+
+    y1,y2=gaps(pileup,l)
     saveplot(y1,y2,k,out_folder,'gaps')

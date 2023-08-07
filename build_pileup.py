@@ -37,9 +37,13 @@ def sam_to_allele_counts(
     # Note: the data structure for saving clip points is nested dictionary:
     # key=count:
     #   position -->  data
-    #  (basepair)   (count fwd / count rev / tot fwd / tot rev)
+    #  (basepair)   (count fwd / count rev / tot mappings fwd / tot mappings rev)
     def clip_datastructure():
         return defaultdict(lambda: np.zeros(4, int))
+    def clip_sequence_datastructure():
+        return defaultdict(lambda: {0: [], 1: []})
+    def clip_length_datastructure():
+        return defaultdict(lambda: {0: [], 1: []})
 
     # Open BAM or SAM file
     with pysam.Samfile(sam_fname) as samfile:
@@ -57,7 +61,8 @@ def sam_to_allele_counts(
                     ac_array(L),  # pileup
                     insertion_datastruct(),  # list of insertions
                     clip_datastructure(),  # count of clipped reads
-                    defaultdict(lambda: {0: [], 1: []}),  # sequence of clipped reads
+                    clip_sequence_datastructure(),  # sequence of clipped reads
+                    clip_length_datastructure(),
                 )
             )
 
@@ -79,6 +84,7 @@ def sam_to_allele_counts(
             insertion = ac[read.rname][2]
             clip_count = ac[read.rname][3]
             clip_seqs = ac[read.rname][4]
+            clip_length = ac[read.rname][5]
 
             seq = np.frombuffer(read.seq.encode(), "S1")
             qual = np.frombuffer(read.qual.encode(), np.int8) - 33
@@ -96,12 +102,14 @@ def sam_to_allele_counts(
                         clip_count[pos][rev] += 1
                         seqb = seq[:block_len]
                         clip_seqs[pos][rev].append(seqb.tobytes().decode())
+                        clip_length[pos][rev].append(block_len)
                     seq = seq[block_len:]
                     qual = qual[block_len:]
 
                 elif block_type == 5:  # hard clip
                     if block_len >= clip_minL:
                         clip_count[pos][rev] += 1
+                        clip_length[pos][rev].append(block_len)
 
                 elif block_type == 0:  # Inline block
                     seqb = seq[:block_len]
@@ -162,13 +170,13 @@ def dump_allele_counts(dirname, ac, suffix=""):
         except:
             raise "creating directory failed"
 
-    for refname, ac_array, insertions, clips, clip_seqs in ac:
+    for refname, ac_array, insertions, clips, clip_seqs, clip_length in ac:
         print(refname)
         np.savez_compressed(dirname + "allele_counts" + suffix + ".npz", ac_array)
         with gzip.open(dirname + "insertions" + suffix + ".pkl.gz", "w") as outfile:
             pickle.dump({k: dict(v) for k, v in insertions.items()}, outfile)
 
-        clip_dict = {"count": dict(clips), "seqs": dict(clip_seqs)}
+        clip_dict = {"count": dict(clips), "seqs": dict(clip_seqs), 'len': dict(clip_length)}
         with gzip.open(dirname + "clips" + suffix + ".pkl.gz", "w") as outfile:
             pickle.dump(clip_dict, outfile)
 
