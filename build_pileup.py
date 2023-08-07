@@ -88,7 +88,7 @@ def sam_to_allele_counts(
             for ic, (block_type, block_len) in enumerate(read.cigar):
 
                 # increment total read start/end counter
-                if ic == 0:
+                if ic == 0 :
                     clip_count[pos][rev + 2] += 1
 
                 if block_type == 4:  # softclip

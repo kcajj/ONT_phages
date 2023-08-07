@@ -39,8 +39,8 @@ def clips(clips_dict,l):
     reverse_clips=np.zeros(l)
     for pos,clip_data in clips_dict.items():
         pos=pos-1
-        forward_clips[pos]=clip_data[2]
-        reverse_clips[pos]=clip_data[3]
+        forward_clips[pos]=clip_data[0]
+        reverse_clips[pos]=clip_data[1]
 
     return forward_clips,reverse_clips
 

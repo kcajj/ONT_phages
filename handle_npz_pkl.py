@@ -11,6 +11,7 @@ def extract_pkl(path, field=''):
         file = pickle.load(f)
         if field=='':
             return file
+        print(file.keys())
         dictionary = file[field]
     return dictionary
 

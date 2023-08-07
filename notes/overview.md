@@ -59,9 +59,10 @@ basic notions on conda:
 - conda activate environment_name
 - inside a conda environment: conda install whatever
 - conda remove --name myenv --all
-- conda env export > environment.yml
+- conda env export > environment.yml (--no-builds --from-history)
 - conda env create -f environment.yml
 - conda env update --name myenv --file environment.yml  --prune
+- conda rename -n old_name  new_name
 
 [conda cheat sheet](/images/conda-4.14.pdf)
 

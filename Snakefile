@@ -70,8 +70,8 @@ rule build_pileup:
         'conda_envs/pileup.yml'
     params:
         quality = 30,
-        clip_length = 500
-    shell:
+        clip_length = 5
+    shell:reference
         """
         python build_pileup.py --bam_file {input.bam} \
             --out_dir {output.pileup_folder} \
