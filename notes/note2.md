@@ -11,31 +11,31 @@ once the plots are ok we have to apply the filters on the basis of the distribut
 ### fastq statistics
 1. the first sample has 32014 reads, with the following quality distribution (since we are working with hundreds of thousands of reads we won't be able to see these plot for the other ones, but we will just consider the score of every nucleotide taken as independent from the others.):
 
-    ![fastqc_EC2D2](fastq_statistics/fastqc_EC2D2.png)
+    ![fastqc_EC2D2](images/fastq_statistics/fastqc_EC2D2.png)
 
     the quality distribution of the nucleotides of this sample is the following:
 
-    ![EC2D2_quality](fastq_statistics/EC2D2_quality)
+    ![EC2D2_quality](images/fastq_statistics/EC2D2_quality.png)
     
     the length of the reads is:
 
-    ![EC2D2_length](fastq_statistics/EC2D2_length)
+    ![EC2D2_length](images/fastq_statistics/EC2D2_length.png)
 
 2. the second sample has this nucleotide quality distribution, with 226,881 reads:
 
-    ![EM11_quality](fastq_statistics/EM11_quality)
+    ![EM11_quality](images/fastq_statistics/EM11_quality.png)
 
     and this read length distribution
 
-    ![EM11_length](fastq_statistics/EM11_legth)
+    ![EM11_length](images/fastq_statistics/EM11_legth.png)
 
 3. the third sample has this nucleotide quality distribution:
 
-    ![EM60_quality](fastq_statistics/EM60_quality)
+    ![EM60_quality](images/fastq_statistics/EM60_quality.png)
 
     and this read length distribution
 
-    ![EM60_length](fastq_statistics/EM60_legth)
+    ![EM60_length](images/fastq_statistics/EM60_legth.png)
 
 ### clip length statistics
 
