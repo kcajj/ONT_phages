@@ -23,36 +23,36 @@ once the plots are ok we have to apply the filters on the basis of the distribut
 
 2. the second sample has this nucleotide quality distribution, with 226,881 reads:
 
-    ![EM11](fastq_statistics/EM11_quality)
+    ![EM11_quality](fastq_statistics/EM11_quality)
 
     and this read length distribution
 
-    ![EM11](fastq_statistics/EM11_legth)
+    ![EM11_length](fastq_statistics/EM11_legth)
 
 3. the third sample has this nucleotide quality distribution:
 
-    ![EM60](fastq_statistics/EM60_quality)
+    ![EM60_quality](fastq_statistics/EM60_quality)
 
     and this read length distribution
 
-    ![EM60](fastq_statistics/EM60_legth)
+    ![EM60_length](fastq_statistics/EM60_legth)
 
 ### clip length statistics
 
 since we can also put a threshold on the length of the clips it can be useful to look at their distribution
 
 1. 
-
+    ![EC2D2_clip_length](images/clips_len_distr/EC2D2.png)
+    n of clips 48814
+    avg clip len 136.41524972343998
 2.
-
+    ![EM11_clip_length](images/clips_len_distr/EM11.png)
+    291396
+    98.28204917020138
 3.
-n of clips 48814
-avg clip len 136.41524972343998
-291396
-98.28204917020138
-389662
-106.83263956967834
-
+    ![EM60_clip_length](images/clips_len_distr/EM60.png)
+    389662
+    106.83263956967834
 
 by looking at this data we can state that by filtering for a quality score bigger than 20 we can still keep the majority of the information in the reads.
 to clear the data from the barcodes that would influence further analysis we can filter to exclude the clips shorter than 150 bp.
@@ -61,7 +61,6 @@ to clear the data from the barcodes that would influence further analysis we can
 ## analysis after the filtering
 
 the plots after the filtering are:
-
 
 nanopore qc
 rename all envs

@@ -1,6 +1,5 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from collections import defaultdict
 
 from handle_npz_pkl import extract_seq, extract_npz, extract_pkl
 from pileup_plots import coverage
@@ -60,7 +59,6 @@ if __name__ == "__main__":
     l=np.shape(pileup)[2]
     fncf, rncf, tncf = ncf(pileup,reference,l)
     fcv, rcv = coverage(pileup,l)
-    np.set_printoptions(threshold=999999999)
 
     for bp in range(l):
         if np.isnan(tncf[bp]):

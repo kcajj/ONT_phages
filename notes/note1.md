@@ -58,13 +58,23 @@ the thing is that in this case there is no super covered region, we have at max 
 look at the alignment with the references:
 it's good.
 
-EC2D2: 
+EC2D2: https://www.ncbi.nlm.nih.gov/nuccore/MZ501100.1?report=fasta
+
+<pre>
+
+</pre>
 
 EM11: https://www.ncbi.nlm.nih.gov/nuccore/MZ501111.1?report=fasta
 
+<pre>
+
+</pre>
 
 EM60: https://www.ncbi.nlm.nih.gov/nuccore/MZ501093.1?report=fasta
 
+<pre>
+
+</pre>
 
 ### pileup
 
