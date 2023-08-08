@@ -70,3 +70,8 @@ the plots after the filtering are:
 
 nanopore qc
 rename all envs
+
+normalise for t0 frequences
+finish timepoint analysis
+add plot frequency scores to the pipeline
+secondary mapping is too ugly to be added to the pipeline

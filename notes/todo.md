@@ -44,7 +44,8 @@
         - [x] clip length distribution
         - [x] non consensus sites
         - [ ] secondary mappings distribution
-
+    - [ ] frequences
+    
 - [x] snakemake
     - [x] pipeline
     - [x] local and cluster profiles

@@ -63,7 +63,7 @@ def threshold_on_value_of_array(to_filter, array, t):
 
     return output_tris
 
-def generate_frequencies(pileup,reference,clips_dict,insertions_dict,t):
+def generate_frequencies(pileup,reference,clips_dict,insertions_dict,t1,t2):
 
     l=np.shape(pileup)[2]
     
@@ -101,8 +101,8 @@ def generate_frequencies(pileup,reference,clips_dict,insertions_dict,t):
     
     for key,val in arrays.items():
         if key=='clips':
-            arrays[key]=threshold_on_value_of_array(val,maps_array,3)
+            arrays[key]=threshold_on_value_of_array(val,maps_array,t1)
         else:
-            arrays[key]=threshold_on_value_of_array(val,coverage_array,t)
+            arrays[key]=threshold_on_value_of_array(val,coverage_array,t2)
     
     return arrays

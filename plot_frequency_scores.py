@@ -38,9 +38,10 @@ if __name__ == "__main__":
     clips_dict=extract_pkl(clips_file,'count')
     insertions_dict=extract_pkl(insertions_file)
 
-    t=10
+    t1=3
+    t2=10
     
-    frequencies=generate_frequencies(pileup,reference,clips_dict,insertions_dict,t)
+    frequencies=generate_frequencies(pileup,reference,clips_dict,insertions_dict,t1,t2)
 
     #check the counter of read mapping position in build_pileup script, saved in the clips dictionary
 
@@ -58,16 +59,14 @@ if __name__ == "__main__":
     for key in frequencies.keys():
         significant_sites[key]=[]
 
-    t2=0.7 #threshold on score
+    t3=0.7 #threshold on score
+    t4=0.1
 
     for key,val in frequencies.items():
         for pos,score in enumerate(val[2]): #run along the total scores
-            if score>t2:
-                if val[0][pos]-val[1][pos]<0.1:
+            if score>t3:
+                if val[0][pos]-val[1][pos]<t4:
                     significant_sites[key].append((score,pos))
-    
-    for key,val in significant_sites.items():
-        print(key,val)
 
     #normalise for base frequences
 
