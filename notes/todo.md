@@ -33,12 +33,17 @@
     - [x] build the pileup of the alignment
         - [x] understand the script
         - [ ] try to build your own pileup script
+        - [ ] pysam documentation (sooo long!!)
     - [x] extract and look at the information of the pileup (write a py script that plots the useful data)
-        - [x] fastq integrity
         - [x] coverage
         - [x] non consensus frequency
         - [x] clips
         - [x] gaps
+    - [ ] statistics on the alignments
+        - [x] fastq quality
+        - [x] clip length distribution
+        - [x] non consensus sites
+        - [ ] secondary mappings distribution
 
 - [x] snakemake
     - [x] pipeline
