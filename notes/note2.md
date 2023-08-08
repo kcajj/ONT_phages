@@ -62,5 +62,11 @@ to clear the data from the barcodes that would influence further analysis we can
 
 the plots after the filtering are:
 
+![threshold_clips](images/plots_with_threshold/EC2D2/clips.png)
+![threshold_coverage](images/plots_with_threshold/EC2D2/coverage.png)
+![threshold_gaps](images/plots_with_threshold/EC2D2/gaps.png)
+![threshold_insertions](images/plots_with_threshold/EC2D2/insertions.png)
+![threshold_non_consensus_frequency](images/plots_with_threshold/EC2D2/non_consensus_frequency.png)
+
 nanopore qc
 rename all envs

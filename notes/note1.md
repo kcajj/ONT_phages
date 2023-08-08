@@ -61,19 +61,25 @@ it's good.
 EC2D2: https://www.ncbi.nlm.nih.gov/nuccore/MZ501100.1?report=fasta
 
 <pre>
-
+minimap2 -a data/references/EC2D2_reference.fasta results/EC2D2/assemblies/new_chemistry.fasta
+contig_1	0	MZ501100.1	1	60	55874S94975M1S	*	0	0	*	NM:i:3	ms:i:189932	AS:i:189932	nn:i:0	tp:A:P	cm:i:17750	s1:i:94930	s2:i:0	de:f:0.0000	SA:Z:MZ501100.1,94675,+,123S55751M94976S,60,3;	rl:i:0
+contig_1	2048	MZ501100.1	94675	60	123H55751M94976H	*	0	0	*	NM:i:3	ms:i:111484	AS:i:111484	nn:i:0	tp:A:P	cm:i:10429	s1:i:55722	s2:i:0	de:f:0.0001	SA:Z:MZ501100.1,1,+,55874S94975M1S,60,3;	rl:i:0
 </pre>
 
 EM11: https://www.ncbi.nlm.nih.gov/nuccore/MZ501111.1?report=fasta
 
 <pre>
-
+minimap2 -a data/references/EM11_reference.fasta results/EM11/assemblies/new_chemistry.fasta
+contig_1	16	MZ501111.1	1	60	45689S10728M1D8346M1I32724M1I31674M1D133M1D74M2D8929M1D2787M1D6M13S	*	0	0	*	NM:i:13	ms:i:190729	AS:i:190728	nn:i:0	tp:A:P	cm:i:17901	s1:i:95318	s2:i:52	de:f:0.0001	SA:Z:MZ501111.1,94973,-,45687M2I95416S,60,6;	rl:i:0
+contig_1	2064	MZ501111.1	94973	60	895M1I19426M1I25366M95416H	*	0	0	*	NM:i:6	ms:i:91338	AS:i:91338	nn:i:0	tp:A:P	cm:i:8577	s1:i:45637	s2:i:0	de:f:0.0001	SA:Z:MZ501111.1,1,-,45689S95403M5D13S,60,13;	rl:i:0
 </pre>
 
 EM60: https://www.ncbi.nlm.nih.gov/nuccore/MZ501093.1?report=fasta
 
 <pre>
-
+minimap2	VN:2.26-r1175	CL:minimap2 -a data/references/EM60_reference.fasta results/EM60/assemblies/new_chemistry.fasta
+contig_1	0	MZ501093.1	1	60	42508S10729M1D8347M1I19003M1D43888M1D74M1D6801M1D5430M140S	*	0	0	*	NM:i:11	ms:i:188478	AS:i:188478	nn:i:0	tp:A:P	cm:i:17718	s1:i:94184	s2:i:0	de:f:0.0001	SA:Z:MZ501093.1,93845,+,42502M6I94413S,60,8;	rl:i:0
+contig_1	2048	MZ501093.1	93845	60	945M1I555M1I15457M1I179M1I9834M1I11979M1I3553M94413H	*	0	0	*	NM:i:8	ms:i:84956	AS:i:84956	nn:i:0	tp:A:P	cm:i:7957	s1:i:42448	s2:i:0	de:f:0.0002	SA:Z:MZ501093.1,1,+,42508S94273M4D140S,60,11;	rl:i:0
 </pre>
 
 ### pileup
