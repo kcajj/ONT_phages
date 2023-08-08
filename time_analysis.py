@@ -10,15 +10,15 @@ if __name__ == "__main__":
         description="visualise pileup data",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
-    parser.add_argument("--in_dir", help="directory with all the files from different timesteps"
-                        "--timesteps", help="file names to parse, separated by a comma")
+    parser.add_argument("--in_dir", help="directory with all the files from different timesteps")
+    parser.add_argument("--timesteps", help="file names to parse, separated by a comma")
 
     args = parser.parse_args()
     in_dir=args.in_dir
     timesteps=args.timesteps
     '''
     in_dir='significant_sites/EC2D2'
-    timesteps='new_chemistry'
+    timesteps='0'
     timesteps=timesteps.split(',')
 
     complete_timespan=[]

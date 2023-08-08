@@ -36,8 +36,9 @@ def get_total_mappings(clips_dict,l):
     reverse_mappings=np.zeros(l)
     for pos,clip_data in clips_dict.items():
         pos=pos-1
-        forward_mappings[pos]=clip_data[0]
-        reverse_mappings[pos]=clip_data[1]
+        print(pos,clip_data)
+        forward_mappings[pos]=clip_data[2]
+        reverse_mappings[pos]=clip_data[3]
     return forward_mappings,reverse_mappings
 
 def sum_forward_reverse(fwd,rev):
@@ -100,7 +101,7 @@ def generate_frequencies(pileup,reference,clips_dict,insertions_dict,t):
     
     for key,val in arrays.items():
         if key=='clips':
-            arrays[key]=threshold_on_value_of_array(val,maps_array,t)
+            arrays[key]=threshold_on_value_of_array(val,maps_array,3)
         else:
             arrays[key]=threshold_on_value_of_array(val,coverage_array,t)
     

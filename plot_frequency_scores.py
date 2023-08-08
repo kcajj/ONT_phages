@@ -16,17 +16,19 @@ if __name__ == "__main__":
     parser.add_argument("--in_dir", help="directory containing pileup data")
     parser.add_argument("--ref", help="reference sequence")
     parser.add_argument("--out_dir", help="directory to save results")
+    parser.add_argument("--timestep", help="name of the timestep under analysis")
 
     args = parser.parse_args()
     in_folder=args.in_dir
     out_folder=args.out_dir
     ref_file=args.ref
+    timestep=args.timestep
     '''
     in_folder='results/EC2D2/pileup/new_chemistry/new_chemistry'
-    out_folder='significant_sites'
+    out_folder='significant_sites/EC2D2'
     ref_file='results/EC2D2/assemblies/new_chemistry.fasta'
-    name='EC2D2'
-
+    timestep='0'
+    
     pileup_file=f'{in_folder}/allele_counts.npz'
     clips_file=f'{in_folder}/clips.pkl.gz'
     insertions_file=f'{in_folder}/insertions.pkl.gz'
@@ -37,6 +39,7 @@ if __name__ == "__main__":
     insertions_dict=extract_pkl(insertions_file)
 
     t=10
+    
     frequencies=generate_frequencies(pileup,reference,clips_dict,insertions_dict,t)
 
     #check the counter of read mapping position in build_pileup script, saved in the clips dictionary
@@ -65,5 +68,7 @@ if __name__ == "__main__":
     
     for key,val in significant_sites.items():
         print(key,val)
+
     #normalise for base frequences
-    store_sites(significant_sites,name,out_folder)
+
+    store_sites(significant_sites,timestep,out_folder)
