@@ -11,7 +11,7 @@ def store_sites(dictionary_input,out_file):
         pickle.dump(dictionary_input, fp)
 
 if __name__ == "__main__":
-    '''
+    
     import argparse
 
     parser = argparse.ArgumentParser(
@@ -27,10 +27,10 @@ if __name__ == "__main__":
     out_file=args.out
     ref_file=args.ref
     '''
-    in_folder='results/EC2D2/pileup/new_chemistry/new_chemistry'
-    out_file='significant_sites/EC2D2/new_chemistry.pkl'
-    ref_file='results/EC2D2/assemblies/new_chemistry.fasta'
-    
+    in_folder='results/EM11/pileup/new_chemistry/new_chemistry'
+    out_file='significant_sites/EM11/new_chemistry.pkl'
+    ref_file='results/EM11/assemblies/new_chemistry.fasta'
+    '''
     pileup_file=f'{in_folder}/allele_counts.npz'
     clips_file=f'{in_folder}/clips.pkl.gz'
     insertions_file=f'{in_folder}/insertions.pkl.gz'

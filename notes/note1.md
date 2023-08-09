@@ -39,7 +39,7 @@ now we have to align the reads with the assembly that we created before. we will
 
 then we have to convert sam to bam, we can use the samtools, more specifically samtools sort. then samtools index to be able to look at the bam in igv.
 
-![artifact](artifact.png)
+![artifact](images/artifact.png)
 
 we noticed something weird! the first 127 basepairs are hypercovered and disjoint with respect to the rest of the genome, the blast didn't give a strong match, they are not even part of the nanopore barcodes. they are probably just an assembly artifact.
 we have some more information! all of the aligned bases in this region are supplementary, meaning that the main part of the read aligns somewhere and a little overhang aligns at the beginning.

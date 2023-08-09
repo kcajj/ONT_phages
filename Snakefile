@@ -14,7 +14,7 @@ rule flye:
         cores = 4,
         coverage = 40
     conda:
-        'conda_envs/phage_genome_assembly.yml'
+        'conda_envs/genome_assembly.yml'
     shell:
         """
         flye --nano-hq {input.reads} \
@@ -33,7 +33,7 @@ rule minimap:
     output:
         alignment = 'results/{phage}/mapping/{ref_tag}/{qry_tag}.sam'
     conda:
-        'conda_envs/phage_read_mapping.yml'
+        'conda_envs/read_mapping.yml'
     shell:
         """
         minimap2 -ax map-ont \
@@ -49,7 +49,7 @@ rule bam:
         bam = 'results/{phage}/mapping/{ref_tag}/{qry_tag}.bam',
         bai = 'results/{phage}/mapping/{ref_tag}/{qry_tag}.bam.bai'
     conda:
-        'conda_envs/phage_read_mapping.yml'
+        'conda_envs/read_mapping.yml'
     params:
         cores = 4
     shell:
@@ -67,7 +67,7 @@ rule build_pileup:
     output:
         pileup_folder = directory('results/{phage}/pileup/{ref_tag}/{qry_tag}')
     conda:
-        'conda_envs/pileup.yml'
+        'conda_envs/scientific_python.yml'
     params:
         quality = 20,
         clip_length = 270
@@ -86,7 +86,7 @@ rule plot_pileup:
     output:
         plot_folder = directory('plots/{phage}/{ref_tag}/{qry_tag}')
     conda:
-        'conda_envs/pileup.yml'
+        'conda_envs/scientific_python.yml'
     shell:
         """
         python pileup_analysis.py --in_dir {input.pileup_folder} \
@@ -101,7 +101,7 @@ rule alginment_to_ref:
     output:
         alignment = 'results/{phage}/mapping/reference/alignment_with_reference_{tag}.bam'
     conda:
-        'conda_envs/phage_read_mapping.yml'
+        'conda_envs/read_mapping.yml'
     shell:
         """
         minimap2 -a \
@@ -117,7 +117,7 @@ rule identify_significant_sites:
     output:
         significant_sites = 'significant_sites/{phage}/{ref_tag}/{qry_tag}.pkl'
     conda:
-        'conda_envs/pileup.yml'
+        'conda_envs/scientific_python.yml'
     shell:
         """
         python plot_frequency_scores.py --in_dir {input.pileup_folder} \

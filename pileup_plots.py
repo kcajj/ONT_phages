@@ -8,8 +8,9 @@ def coverage(pileup,l):
     reverse_coverage=np.zeros(l)
     for nuc_i,nuc in enumerate(forward):
         for pos,val in enumerate(nuc):
-            forward_coverage[pos]+=forward[nuc_i,pos]
-            reverse_coverage[pos]+=reverse[nuc_i,pos]
+            if nuc_i<4:
+                forward_coverage[pos]+=forward[nuc_i,pos]
+                reverse_coverage[pos]+=reverse[nuc_i,pos]
     return forward_coverage,reverse_coverage
 
 def non_consensus_frequency(pileup,reference,l):

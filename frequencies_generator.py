@@ -40,6 +40,18 @@ def get_total_mappings(clips_dict,l):
         reverse_mappings[pos]=clip_data[3]
     return forward_mappings,reverse_mappings
 
+def gap_coverage(pileup,l):
+    #the nucleotides are stored in the first 4 rows of the pileup
+    forward=pileup[0]
+    reverse=pileup[1]
+    forward_coverage=np.zeros(l)
+    reverse_coverage=np.zeros(l)
+    for nuc_i,nuc in enumerate(forward):
+        for pos,val in enumerate(nuc):
+            forward_coverage[pos]+=forward[nuc_i,pos]
+            reverse_coverage[pos]+=reverse[nuc_i,pos]
+    return forward_coverage,reverse_coverage
+
 def sum_forward_reverse(fwd,rev):
     #takes forward and reverse counts, gives total counts
     total=np.zeros(np.shape(fwd))
@@ -59,7 +71,6 @@ def threshold_on_value_of_array(to_filter, array, t):
             for i,v in enumerate(output_tris):
                 output_tris[i].append(to_filter[i][pos])
         check=True
-
     return output_tris
 
 def generate_frequencies(pileup,reference,clips_dict,insertions_dict,t1,t2):
@@ -81,19 +92,23 @@ def generate_frequencies(pileup,reference,clips_dict,insertions_dict,t1,t2):
     forward_maps, reverse_maps = get_total_mappings(clips_dict,l)
     tot_maps = sum_forward_reverse(forward_maps,reverse_maps)
     maps_array=(forward_maps,reverse_maps,tot_maps)
+
+    forward_gap_coverage, reverse_gap_coverage = gap_coverage(pileup,l)
+    tot_gap_coverage = sum_forward_reverse(forward_gap_coverage,reverse_gap_coverage)
+    gap_coverage_array=(forward_gap_coverage,reverse_gap_coverage,tot_gap_coverage)
     
     for key,val in arrays.items():
         fwd,rev=val
         tot=sum_forward_reverse(fwd,rev)
-        if key=='clips':
-            fwd=fwd/forward_maps
-            rev=rev/reverse_maps
-            tot=tot/tot_maps
-        else:
-            fwd=fwd/forward_coverage
-            rev=rev/reverse_coverage
-            tot=tot/tot_coverage
-        arrays[key]=(fwd,rev,tot)
+        array=[fwd,rev,tot]
+        for i,direction in enumerate(array):
+            if key=='clips':
+                array[i]=array[i]/maps_array[i]
+            if key=='gaps':
+                array[i]=array[i]/gap_coverage_array[i]
+            else:
+                array[i]=array[i]/coverage_array[i]
+        arrays[key]=array
 
     fncf, rncf, tncf = ncf(pileup,reference,l)
     arrays['ncf'] = (fncf, rncf, tncf)

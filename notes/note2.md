@@ -72,6 +72,12 @@ nanopore qc
 rename all envs
 
 normalise for t0 frequences
-finish timepoint analysis
-add plot frequency scores to the pipeline
 secondary mapping is too ugly to be added to the pipeline
+
+check the significant results
+change the datastructure for the time analysis
+run the pipeline for the time analysis
+
+check the old chemistry data
+
+try to polish the no_barcode assembly
