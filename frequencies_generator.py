@@ -36,7 +36,6 @@ def get_total_mappings(clips_dict,l):
     reverse_mappings=np.zeros(l)
     for pos,clip_data in clips_dict.items():
         pos=pos-1
-        print(pos,clip_data)
         forward_mappings[pos]=clip_data[2]
         reverse_mappings[pos]=clip_data[3]
     return forward_mappings,reverse_mappings

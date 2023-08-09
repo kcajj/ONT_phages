@@ -1,6 +1,6 @@
 import pickle
 import matplotlib.pyplot as plt
-
+from collections import defaultdict
 # Read dictionary pkl file
 if __name__ == "__main__":
     '''
@@ -31,14 +31,26 @@ if __name__ == "__main__":
             complete_timespan.append(significant_sites)
 
     timestep_counter=0
+    lines_to_plot=defaultdict(list)
     #complete timespan is a list that has as many dictionaries as the number of timesteps, each contains as many dictionaries as the parameters
 
     for parameter in complete_timespan[0].keys():
         for timestep in complete_timespan:
             for dot in timestep[parameter]:
                 
-                plt.scatter(timestep_counter,dot[0],label=dot[1])
+                lines_to_plot[dot[1]].append((timestep_counter,dot[0]))
 
             timestep_counter+=1
         timestep_counter=0
-        plt.show()
+    
+    for label,list_of_points in lines_to_plot.items():
+        x=[]
+        y=[]
+        for p in list_of_points:
+            
+            x.append(p[0])
+            y.append(p[1])
+        plt.plot(x,y)
+        plt.legend(label)
+
+    plt.show()

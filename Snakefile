@@ -1,14 +1,14 @@
 configfile: "config.yml"
 
-nanopore_reads = 'data/nanopore/no_barcodes/{phage}_{tag}.fastq.gz'
+nanopore_reads = 'data/nanopore/{phage}_{tag}.fastq.gz'
 reference = 'data/references/{phage}_reference.fasta'
 
 rule flye:
     input:
         reads = nanopore_reads
     output:
-        flye_folder = directory('results/no_barcodes/{phage}/assemblies/{tag}_flye'),
-        assembly = 'results/no_barcodes/{phage}/assemblies/{tag}.fasta'
+        flye_folder = directory('results/{phage}/assemblies/{tag}_flye'),
+        assembly = 'results/{phage}/assemblies/{tag}.fasta'
     params:
         genome_size = lambda w : config["genome-size"][w.phage],
         cores = 4,
@@ -31,7 +31,7 @@ rule minimap:
         reads = lambda w : expand(rules.flye.input.reads, tag=w.qry_tag, phage=w.phage),
         reference = lambda w : expand(rules.flye.output.assembly, tag=w.ref_tag, phage=w.phage)
     output:
-        alignment = 'results/no_barcodes/{phage}/mapping/{ref_tag}/{qry_tag}.sam'
+        alignment = 'results/{phage}/mapping/{ref_tag}/{qry_tag}.sam'
     conda:
         'conda_envs/phage_read_mapping.yml'
     shell:
@@ -46,8 +46,8 @@ rule bam:
     input:
         sam = rules.minimap.output.alignment
     output:
-        bam = 'results/no_barcodes/{phage}/mapping/{ref_tag}/{qry_tag}.bam',
-        bai = 'results/no_barcodes/{phage}/mapping/{ref_tag}/{qry_tag}.bam.bai'
+        bam = 'results/{phage}/mapping/{ref_tag}/{qry_tag}.bam',
+        bai = 'results/{phage}/mapping/{ref_tag}/{qry_tag}.bam.bai'
     conda:
         'conda_envs/phage_read_mapping.yml'
     params:
@@ -65,7 +65,7 @@ rule build_pileup:
     input:
         bam = rules.bam.output.bam
     output:
-        pileup_folder = directory('results/no_barcodes/{phage}/pileup/{ref_tag}/{qry_tag}')
+        pileup_folder = directory('results/{phage}/pileup/{ref_tag}/{qry_tag}')
     conda:
         'conda_envs/pileup.yml'
     params:
@@ -84,7 +84,7 @@ rule plot_pileup:
         pileup_folder = rules.build_pileup.output.pileup_folder,
         ref = lambda w : expand(rules.flye.output.assembly, tag=w.ref_tag, phage=w.phage)
     output:
-        plot_folder = directory('plots/no_barcodes/{phage}/{ref_tag}/{qry_tag}')
+        plot_folder = directory('plots/{phage}/{ref_tag}/{qry_tag}')
     conda:
         'conda_envs/pileup.yml'
     shell:
@@ -99,7 +99,7 @@ rule alginment_to_ref:
         reference = reference,
         assembly = rules.flye.output.assembly
     output:
-        alignment = 'results/no_barcodes/{phage}/mapping/reference/alignment_with_reference_{tag}.bam'
+        alignment = 'results/{phage}/mapping/reference/alignment_with_reference_{tag}.bam'
     conda:
         'conda_envs/phage_read_mapping.yml'
     shell:
@@ -110,7 +110,24 @@ rule alginment_to_ref:
             > {output.alignment}
         """
 
+rule identify_significant_sites:
+    input:
+        pileup_folder = rules.build_pileup.output.pileup_folder,
+        ref = lambda w : expand(rules.flye.output.assembly, tag=w.ref_tag, phage=w.phage)
+    output:
+        significant_sites = 'significant_sites/{phage}/{ref_tag}/{qry_tag}.pkl'
+    conda:
+        'conda_envs/pileup.yml'
+    shell:
+        """
+        python plot_frequency_scores.py --in_dir {input.pileup_folder} \
+            --ref {input.ref} \
+            --out {output.significant_sites}
+        """
+
 rule all:
     input:
-        assemblies = expand(rules.plot_pileup.output.plot_folder,ref_tag='new_chemistry',qry_tag='new_chemistry',phage=['EC2D2','EM11','EM60']),
-        reference_alignments = expand(rules.alginment_to_ref.output.alignment,phage=['EC2D2','EM11','EM60'],tag='new_chemistry')
+        new_chemistry_assemblies = expand(rules.plot_pileup.output.plot_folder,ref_tag='new_chemistry',qry_tag='new_chemistry',phage=['EC2D2','EM11','EM60']),
+        old_chemistry_assemblies = expand(rules.plot_pileup.output.plot_folder,ref_tag='old_chemistry',qry_tag='old_chemistry',phage=['EC2D2','EM11','EM60']),
+        reference_alignments = expand(rules.alginment_to_ref.output.alignment,phage=['EC2D2','EM11','EM60'],tag=['new_chemistry','old_chemistry']),
+        significant_sites = expand(rules.identify_significant_sites.output.significant_sites,phage=['EC2D2','EM11','EM60'],ref_tag='new_chemistry',qry_tag='new_chemistry')

@@ -88,6 +88,7 @@ sites with mutations with the reference:
 96984 C->t
 98910 G->a
 24323 c->t
+![Alt text](image.png)
 
 ### pileup
 
