@@ -1,7 +1,9 @@
-import pickle
+import pandas as pd
 import matplotlib.pyplot as plt
 from collections import defaultdict
-# Read dictionary pkl file
+import numpy as np
+import random
+
 if __name__ == "__main__":
     '''
     import argparse
@@ -17,19 +19,50 @@ if __name__ == "__main__":
     in_dir=args.in_dir
     timesteps=args.timesteps
     '''
-    in_dir='significant_sites/EC2D2'
-    timesteps='0'
-    timesteps=timesteps.split(',')
+    in_dir='scores/EC2D2/new_chemistry'
+    timesteps={'new_chemistry':0}
+    ##!!!design problem!!!!!!!!
 
     complete_timespan=[]
 
-    for step in timesteps:
-        file=f'{in_dir}/{step}.pkl'
-        with open(file, 'rb') as fp:
-            significant_sites = pickle.load(fp)
+    for step in timesteps.keys():
+        file=f'{in_dir}/{step}.csv'
+        timesteps[step]=pd.read_csv(file,index_col=0)
 
-            complete_timespan.append(significant_sites)
+    #timesteps is a dictionary in which the key is the timepoint, the value is a dataframe with the data of that timepoint
 
+    parameters_timespan={}
+    for parameter in timesteps['new_chemistry']:######!!!!!!!!!!!!design problem!!!!!!!!!!!!!!!!
+        parameters_timespan[parameter]=pd.DataFrame()
+        for timestep in timesteps.keys():
+            timestep_data=timesteps[timestep][parameter]
+            parameters_timespan[parameter].insert(0,timestep,timestep_data,True)
+
+    for parameter,timepoints_data in parameters_timespan.items():
+        print(parameter)
+        print(timepoints_data)
+        standard_deviations=[]
+        for row in timepoints_data.itertuples():
+            #standard_deviations.append(np.std(row[1:]))
+            standard_deviations.append(random.random())
+        series_standard_deviations=pd.Series(standard_deviations)
+        significant_sites=series_standard_deviations.nlargest(n=10)
+        
+        to_plot={}
+        for site in significant_sites.index:
+            for row in timepoints_data.itertuples():
+                if row[0]==site:
+                    to_plot[site]=row[1:]
+        
+        #timesteps=[0,1,3,5]
+        timesteps=[0]
+        print(to_plot)
+        for site,linepoints in to_plot.items():
+            plt.plot(timesteps,linepoints)
+        plt.show()
+
+        break
+    '''
     timestep_counter=0
     lines_to_plot=defaultdict(list)
     #complete timespan is a list that has as many dictionaries as the number of timesteps, each contains as many dictionaries as the parameters
@@ -54,3 +87,4 @@ if __name__ == "__main__":
         plt.legend(label)
 
     plt.show()
+    '''

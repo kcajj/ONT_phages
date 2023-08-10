@@ -115,7 +115,7 @@ rule identify_significant_sites:
         pileup_folder = rules.build_pileup.output.pileup_folder,
         ref = lambda w : expand(rules.flye.output.assembly, tag=w.ref_tag, phage=w.phage)
     output:
-        significant_sites = 'significant_sites/{phage}/{ref_tag}/{qry_tag}.pkl'
+        significant_sites = 'significant_sites/{phage}/{ref_tag}/{qry_tag}.csv'
     conda:
         'conda_envs/scientific_python.yml'
     shell:
@@ -127,4 +127,7 @@ rule identify_significant_sites:
 
 rule all:
     input:
-        new_chemistry_assemblies = expand(rules.plot_pileup.output.plot_folder,ref_tag='new_chemistry',qry_tag='new_chemistry',phage=['EC2D2','EM11','EM60'])
+        new_chemistry_assemblies = expand(rules.plot_pileup.output.plot_folder,ref_tag='new_chemistry',qry_tag='new_chemistry',phage=['EC2D2','EM11','EM60']),
+        old_chemistry_assemblies = expand(rules.plot_pileup.output.plot_folder,ref_tag='old_chemistry',qry_tag='old_chemistry',phage=['EC2D2','EM11','EM60']),
+        reference_alignments = expand(rules.alginment_to_ref.output.alignment,phage=['EC2D2','EM11','EM60'],tag=['new_chemistry','old_chemistry']),
+        significant_sites = expand(rules.identify_significant_sites.output.significant_sites,phage=['EC2D2','EM11','EM60'],ref_tag='new_chemistry',qry_tag='new_chemistry')

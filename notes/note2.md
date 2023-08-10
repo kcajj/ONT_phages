@@ -71,19 +71,9 @@ the plots after the filtering are:
 nanopore qc
 rename all envs
 
-normalise for t0 frequences
-secondary mapping is too ugly to be added to the pipeline
-
-check the significant results
+add secondary mapping to the pipeline
 change the datastructure for the time analysis
 run the pipeline for the time analysis
-
-check the old chemistry data
-
-try to polish the no_barcode assembly
-
-145967 mthylation ec2d2 filtered assembly
-
 
 i was removing elements underneath the coverage threshold from the array, as opposed to sending them to zero.
 i was considering as non consensus the gaps

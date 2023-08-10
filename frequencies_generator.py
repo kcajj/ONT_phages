@@ -64,10 +64,17 @@ def threshold_on_value_of_array(to_filter, array, t):
     for pos,val in enumerate(to_filter[0]):
         for direction,vector in enumerate(to_filter):
             if array[direction][pos]<t:
-                to_filter[direction][pos]=0
+                to_filter[direction][pos]=np.nan
     return to_filter
 
-def generate_frequencies(pileup,reference,clips_dict,insertions_dict,clips_threshold,gap_cov_threshold,cov_threshold):
+def threshold_on_value_of_delta(to_filter, t):
+    for pos,val in enumerate(to_filter[0]):
+        if abs(to_filter[0][pos]-to_filter[1][pos])>t:
+            for vector in to_filter:
+                vector[pos]=np.nan
+    return to_filter
+
+def generate_frequencies(pileup,reference,clips_dict,insertions_dict,clips_threshold,gap_cov_threshold,cov_threshold,delta_fr_threshold):
 
     l=np.shape(pileup)[2]
     
@@ -108,6 +115,7 @@ def generate_frequencies(pileup,reference,clips_dict,insertions_dict,clips_thres
     arrays['ncf'] = [fncf, rncf, tncf]
     
     #arrays has as many keys as the parameters, each parameters has 3 vectors
+
     for key,three_vect in arrays.items():
         if key=='clips':
             arrays[key]=threshold_on_value_of_array(three_vect,maps_array,clips_threshold)
@@ -116,4 +124,10 @@ def generate_frequencies(pileup,reference,clips_dict,insertions_dict,clips_thres
         else:
             arrays[key]=threshold_on_value_of_array(three_vect,coverage_array,cov_threshold)
 
+    for key,three_vect in arrays.items():
+        arrays[key]=threshold_on_value_of_delta(three_vect,delta_fr_threshold)
+
+    for key,three_vect in arrays.items():
+        arrays[key]=arrays[key][2]
+        
     return arrays
