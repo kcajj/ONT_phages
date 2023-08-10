@@ -14,7 +14,8 @@ sites with mutations with the reference:
 96984 C->t
 98910 G->a
 24323 c->t
-![Alt text](image.png)
+
+![GATC_methylation](images/GATC_methylation.png)
 
 as you can see from the image the basecall depends mainly on the direction of the sequenced strand.
 

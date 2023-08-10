@@ -81,3 +81,9 @@ run the pipeline for the time analysis
 check the old chemistry data
 
 try to polish the no_barcode assembly
+
+145967 mthylation ec2d2 filtered assembly
+
+
+i was removing elements underneath the coverage threshold from the array, as opposed to sending them to zero.
+i was considering as non consensus the gaps

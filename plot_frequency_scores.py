@@ -11,7 +11,7 @@ def store_sites(dictionary_input,out_file):
         pickle.dump(dictionary_input, fp)
 
 if __name__ == "__main__":
-    
+    '''
     import argparse
 
     parser = argparse.ArgumentParser(
@@ -27,10 +27,10 @@ if __name__ == "__main__":
     out_file=args.out
     ref_file=args.ref
     '''
-    in_folder='results/EM11/pileup/new_chemistry/new_chemistry'
-    out_file='significant_sites/EM11/new_chemistry.pkl'
-    ref_file='results/EM11/assemblies/new_chemistry.fasta'
-    '''
+    in_folder='results/EC2D2/pileup/new_chemistry/new_chemistry'
+    out_file='significant_sites/EC2D2/new_chemistry.pkl'
+    ref_file='results/EC2D2/assemblies/new_chemistry.fasta'
+    
     pileup_file=f'{in_folder}/allele_counts.npz'
     clips_file=f'{in_folder}/clips.pkl.gz'
     insertions_file=f'{in_folder}/insertions.pkl.gz'
@@ -40,10 +40,11 @@ if __name__ == "__main__":
     clips_dict=extract_pkl(clips_file,'count')
     insertions_dict=extract_pkl(insertions_file)
 
-    t1=3
-    t2=10
+    clips_threshold=3
+    gap_cov_threshold=50
+    cov_threshold=50
     
-    frequencies=generate_frequencies(pileup,reference,clips_dict,insertions_dict,t1,t2)
+    frequencies=generate_frequencies(pileup,reference,clips_dict,insertions_dict,clips_threshold,gap_cov_threshold,cov_threshold)
 
     #check the counter of read mapping position in build_pileup script, saved in the clips dictionary
 
@@ -61,14 +62,21 @@ if __name__ == "__main__":
     for key in frequencies.keys():
         significant_sites[key]=[]
 
-    t3=0.7 #threshold on score
-    t4=0.1
+    #score threshold for gaps should be higher because they are not affected by the quality filter
+
+    score_threshold=0.7
+    gaps_score_threshold=0.9
+    delta_threshold=0.1
 
     for key,val in frequencies.items():
         for pos,score in enumerate(val[2]): #run along the total scores
-            if score>t3:
-                if val[0][pos]-val[1][pos]<t4:
-                    significant_sites[key].append((score,pos))
+            if score>score_threshold:
+                if key=='gaps':
+                    if score>gaps_score_threshold:
+                        significant_sites[key].append((score,pos))
+                else:
+                    if score>score_threshold:
+                            significant_sites[key].append((score,pos))
 
     #normalise for base frequences
     for i,v in significant_sites.items():

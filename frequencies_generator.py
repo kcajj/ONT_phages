@@ -20,7 +20,7 @@ def ncf(pileup, reference, l):
             forward_total+=forward[i_nuc][pos]
             reverse_total+=reverse[i_nuc][pos]
             total+=forward[i_nuc][pos]+reverse[i_nuc][pos]
-            if not nuc==ref_nuc:
+            if (not nuc==ref_nuc) and i_nuc<4:
                 forward_non_consensus+=forward[i_nuc][pos]
                 reverse_non_consensus+=reverse[i_nuc][pos]
                 non_consensus+=forward[i_nuc][pos]+reverse[i_nuc][pos]
@@ -28,7 +28,7 @@ def ncf(pileup, reference, l):
         forward_non_consensus_freq[pos]=forward_non_consensus/forward_total
         reverse_non_consensus_freq[pos]=reverse_non_consensus/reverse_total
         non_consensus_freq[pos]=non_consensus/total
-
+    
     return forward_non_consensus_freq,reverse_non_consensus_freq,non_consensus_freq
 
 def get_total_mappings(clips_dict,l):
@@ -61,41 +61,35 @@ def sum_forward_reverse(fwd,rev):
 
 def threshold_on_value_of_array(to_filter, array, t):
     #takes three arrays to filter on the basis of three values of another array
-    output_tris=([],[],[])
-    check=True
     for pos,val in enumerate(to_filter[0]):
         for direction,vector in enumerate(to_filter):
             if array[direction][pos]<t:
-                check=False
-        if check:
-            for i,v in enumerate(output_tris):
-                output_tris[i].append(to_filter[i][pos])
-        check=True
-    return output_tris
+                to_filter[direction][pos]=0
+    return to_filter
 
-def generate_frequencies(pileup,reference,clips_dict,insertions_dict,t1,t2):
+def generate_frequencies(pileup,reference,clips_dict,insertions_dict,clips_threshold,gap_cov_threshold,cov_threshold):
 
     l=np.shape(pileup)[2]
     
     arrays={}
     fwd,rev=clips(clips_dict,l)
-    arrays['clips']=(fwd,rev)
+    arrays['clips']=[fwd,rev]
     fwd,rev=insertions(insertions_dict,l)
-    arrays['insertions']=(fwd,rev)
+    arrays['insertions']=[fwd,rev]
     fwd,rev=gaps(pileup,l)
-    arrays['gaps']=(fwd,rev)
+    arrays['gaps']=[fwd,rev]
 
     forward_coverage, reverse_coverage = coverage(pileup,l)
     tot_coverage = sum_forward_reverse(forward_coverage,reverse_coverage)
-    coverage_array=(forward_coverage,reverse_coverage,tot_coverage)
+    coverage_array=[forward_coverage,reverse_coverage,tot_coverage]
 
     forward_maps, reverse_maps = get_total_mappings(clips_dict,l)
     tot_maps = sum_forward_reverse(forward_maps,reverse_maps)
-    maps_array=(forward_maps,reverse_maps,tot_maps)
+    maps_array=[forward_maps,reverse_maps,tot_maps]
 
     forward_gap_coverage, reverse_gap_coverage = gap_coverage(pileup,l)
     tot_gap_coverage = sum_forward_reverse(forward_gap_coverage,reverse_gap_coverage)
-    gap_coverage_array=(forward_gap_coverage,reverse_gap_coverage,tot_gap_coverage)
+    gap_coverage_array=[forward_gap_coverage,reverse_gap_coverage,tot_gap_coverage]
     
     for key,val in arrays.items():
         fwd,rev=val
@@ -111,12 +105,15 @@ def generate_frequencies(pileup,reference,clips_dict,insertions_dict,t1,t2):
         arrays[key]=array
 
     fncf, rncf, tncf = ncf(pileup,reference,l)
-    arrays['ncf'] = (fncf, rncf, tncf)
+    arrays['ncf'] = [fncf, rncf, tncf]
     
-    for key,val in arrays.items():
+    #arrays has as many keys as the parameters, each parameters has 3 vectors
+    for key,three_vect in arrays.items():
         if key=='clips':
-            arrays[key]=threshold_on_value_of_array(val,maps_array,t1)
+            arrays[key]=threshold_on_value_of_array(three_vect,maps_array,clips_threshold)
+        if key=='gaps':
+            arrays[key]=threshold_on_value_of_array(three_vect,gap_coverage_array,gap_cov_threshold)
         else:
-            arrays[key]=threshold_on_value_of_array(val,coverage_array,t2)
-    
+            arrays[key]=threshold_on_value_of_array(three_vect,coverage_array,cov_threshold)
+
     return arrays

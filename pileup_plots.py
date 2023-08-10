@@ -28,7 +28,7 @@ def non_consensus_frequency(pileup,reference,l):
         for i_nuc,nuc in enumerate(alphabet):
             forward_total+=forward[i_nuc][pos]
             reverse_total+=reverse[i_nuc][pos]
-            if not nuc==ref_nuc:    
+            if (not nuc==ref_nuc) and i_nuc<4:
                 forward_non_consensus+=forward[i_nuc][pos]
                 reverse_non_consensus+=reverse[i_nuc][pos]
         forward_non_consensus_freq[pos]=forward_non_consensus/forward_total
