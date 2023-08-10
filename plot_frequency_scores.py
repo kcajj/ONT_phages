@@ -6,7 +6,7 @@ from handle_npz_pkl import extract_seq, extract_npz, extract_pkl
 from frequencies_generator import generate_frequencies
 
 if __name__ == "__main__":
-    '''
+    
     import argparse
 
     parser = argparse.ArgumentParser(
@@ -25,7 +25,7 @@ if __name__ == "__main__":
     in_folder='results/EC2D2/pileup/new_chemistry/new_chemistry'
     out_file='scores/EC2D2/new_chemistry/new_chemistry.csv'
     ref_file='results/EC2D2/assemblies/new_chemistry.fasta'
-    
+    '''
     pileup_file=f'{in_folder}/allele_counts.npz'
     clips_file=f'{in_folder}/clips.pkl.gz'
     insertions_file=f'{in_folder}/insertions.pkl.gz'

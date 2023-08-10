@@ -20,7 +20,7 @@ if __name__ == "__main__":
     timesteps=args.timesteps
     '''
     in_dir='scores/EC2D2/new_chemistry'
-    timesteps={'new_chemistry':0}
+    timesteps={'new_chemistry':0,'1':0,'3':0,'5':0}
     ##!!!design problem!!!!!!!!
 
     complete_timespan=[]
@@ -41,27 +41,36 @@ if __name__ == "__main__":
     for parameter,timepoints_data in parameters_timespan.items():
         print(parameter)
         print(timepoints_data)
-        standard_deviations=[]
+        score_functions=[]
         for row in timepoints_data.itertuples():
-            #standard_deviations.append(np.std(row[1:]))
-            standard_deviations.append(random.random())
-        series_standard_deviations=pd.Series(standard_deviations)
-        significant_sites=series_standard_deviations.nlargest(n=10)
+
+
+            score_function=np.std(row[1:])
+            #score_function=np.nanmax(row[1:])-np.nanmin(row[1:])
+            #score_function=row[-1]-row[1]
+
+
+            score_functions.append(score_function)
+        series_score_functions=pd.Series(score_functions)
+        significant_sites=series_score_functions.nlargest(n=10)
         
+        print(significant_sites)
+
         to_plot={}
         for site in significant_sites.index:
             for row in timepoints_data.itertuples():
                 if row[0]==site:
                     to_plot[site]=row[1:]
         
-        #timesteps=[0,1,3,5]
-        timesteps=[0]
+        timesteps=[0,1,3,5]
+        #timesteps=[0]
         print(to_plot)
         for site,linepoints in to_plot.items():
             plt.plot(timesteps,linepoints)
+            plt.title(parameter)
+        plt.legend(to_plot.keys())
         plt.show()
 
-        break
     '''
     timestep_counter=0
     lines_to_plot=defaultdict(list)
