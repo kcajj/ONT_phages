@@ -27,7 +27,7 @@ once the plots are ok we have to apply the filters on the basis of the distribut
 
     and this read length distribution
 
-    ![EM11_length](images/fastq_statistics/EM11_legth.png)
+    ![EM11_length](images/fastq_statistics/EM11_length.png)
 
 3. the third sample has this nucleotide quality distribution:
 
@@ -35,7 +35,7 @@ once the plots are ok we have to apply the filters on the basis of the distribut
 
     and this read length distribution
 
-    ![EM60_length](images/fastq_statistics/EM60_legth.png)
+    ![EM60_length](images/fastq_statistics/EM60_length.png)
 
 ### clip length statistics
 
@@ -69,11 +69,15 @@ the plots after the filtering are:
 ![threshold_non_consensus_frequency](images/plots_with_threshold/EC2D2/non_consensus_frequency.png)
 
 nanopore qc
-rename all envs
 
 add secondary mapping to the pipeline
-change the datastructure for the time analysis
-run the pipeline for the time analysis
 
 i was removing elements underneath the coverage threshold from the array, as opposed to sending them to zero.
 i was considering as non consensus the gaps
+
+
+decide thresholds on the basis of distributions, keep them low.
+
+plot frequency distributions at different timepoints.
+
+map conversion

@@ -13,13 +13,13 @@ if __name__ == "__main__":
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
     parser.add_argument("--in_dir", help="directory with all the files from different timesteps")
-    parser.add_argument("--timesteps", help="file names to parse, separated by a comma")
+    parser.add_argument("--timesteps", help="file names to read, separated by a comma")
 
     args = parser.parse_args()
     in_dir=args.in_dir
     timesteps=args.timesteps
     '''
-    in_dir='scores/EM60/new_chemistry'
+    in_dir='scores/EM11/new_chemistry'
     timesteps={'new_chemistry':0,'1':0,'3':0,'5':0}
     ##!!!design problem!!!!!!!!
 
@@ -37,34 +37,34 @@ if __name__ == "__main__":
             parameters_timespan[parameter].insert(i,timestep,timestep_data,True)
 
     for parameter,timepoints_data in parameters_timespan.items():
-        if parameter == 'ncf':
-            score_functions=[]
-            for row in timepoints_data.itertuples():
+        #if parameter == 'ncf':
+        score_functions=[]
+        for row in timepoints_data.itertuples():
+    
+            if not(np.isnan(row[1:]).any()) and row[0]>200 and row[0]<120000:
+                #score_function=np.std(row[1:])
+                #score_function=np.nanmax(row[1:])-np.nanmin(row[1:])
+                score_function=row[-1]-row[1]
+
+                score_functions.append(score_function)
+
+            else:
+                score_functions.append(np.nan)
+
+        series_score_functions=pd.Series(score_functions)
+        significant_sites=series_score_functions.nlargest(n=10)
         
-                if not(np.isnan(row[1:]).any()) and row[0]>200 and row[0]<120000:
-                    score_function=np.std(row[1:])
-                    #score_function=np.nanmax(row[1:])-np.nanmin(row[1:])
-                    #score_function=row[-1]-row[1]
+        print(significant_sites)
 
-                    score_functions.append(score_function)
-
-                else:
-                    score_functions.append(np.nan)
-
-            series_score_functions=pd.Series(score_functions)
-            significant_sites=series_score_functions.nlargest(n=10)
-            
-            print(significant_sites)
-
-            to_plot={}
-            for site in significant_sites.index:
-                for row in timepoints_data.itertuples():
-                    if row[0]==site:
-                        to_plot[site]=row[1:]
-            
-            timesteps=[0,1,3,5]
-            for site,linepoints in to_plot.items():
-                plt.plot(timesteps,linepoints)
-                plt.title(parameter)
-            plt.legend(to_plot.keys())
-            plt.show()
+        to_plot={}
+        for site in significant_sites.index:
+            for row in timepoints_data.itertuples():
+                if row[0]==site:
+                    to_plot[site]=row[1:]
+        
+        timesteps=[0,1,3,5]####!!!!!!!!!!!!!!!!!!!!!!!!!!!design problem!!!!!!!!!!!!!!!!!!!
+        for site,linepoints in to_plot.items():
+            plt.plot(timesteps,linepoints)
+            plt.title(parameter)
+        plt.legend(to_plot.keys())
+        plt.show()

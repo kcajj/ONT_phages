@@ -84,7 +84,7 @@ rule plot_pileup:
         pileup_folder = rules.build_pileup.output.pileup_folder,
         ref = lambda w : expand(rules.flye.output.assembly, tag=w.ref_tag, phage=w.phage)
     output:
-        plot_folder = directory('plots/{phage}/{ref_tag}/{qry_tag}')
+        plot_folder = directory('plots/pileup_plots/{phage}/{ref_tag}/{qry_tag}')
     conda:
         'conda_envs/scientific_python.yml'
     shell:
