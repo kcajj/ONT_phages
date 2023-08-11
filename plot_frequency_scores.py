@@ -35,24 +35,13 @@ if __name__ == "__main__":
     clips_dict=extract_pkl(clips_file,'count')
     insertions_dict=extract_pkl(insertions_file)
 
-    clips_threshold=3
-    gap_cov_threshold=50
-    cov_threshold=50
-    delta_fr_threshold=0.1
+    clips_threshold=0
+    gap_cov_threshold=10
+    cov_threshold=10
+    delta_fr_threshold=1
     
     frequencies=generate_frequencies(pileup,reference,clips_dict,insertions_dict,clips_threshold,gap_cov_threshold,cov_threshold,delta_fr_threshold)
-
-    #check the counter of read mapping position in build_pileup script, saved in the clips dictionary
-
-    for key,vector in frequencies.items():
-        for element in vector:
-            if np.isnan(element):
-                element=0
-        plt.hist(element,bins=200)
-        plt.title(key)
-        plt.yscale('log')
-        #plt.show()
-
+    
     to_store=pd.DataFrame(frequencies)
     to_store.to_csv(out_file)
     

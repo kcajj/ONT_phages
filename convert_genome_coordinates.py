@@ -1,17 +1,29 @@
+import pysam
 
-def convert_coordinates(phage,assembly_site,offset,genome_length):
+def process_sam(sam_file):
+    #for each contig find the starting point and the cigar
+    return cigars
 
-    if assembly_site<(genome_length-offset):
-        reference_site=offset+assembly_site
-    else:
-        reference_site=assembly_site-(genome_length-offset)
+def is_matching(site,cigars):
+    matching=False
+    for start,cigar in cigars.items():
+        #compute if the site is in a matching region
+        return matching,start,cigar
 
-    return reference_site
+def convert_to_reference(site,start,cigar):
+    insertions='insertions preceeding the mapping position'
+    clip='clip preceeding the mapping position'
+    gaps='gaps preceeding the mapping position'
+    reference=start+site+gaps-clip-insertions
+    return reference
 
-offset_dictionary={'EM11':94975}
-genome_length_dictionary={'EM11':142668}
+sites=[12]
+sam_file='file'
 
-phage='EM11'
-assembly_site=58828
-reference_site=convert_coordinates(phage,assembly_site,offset_dictionary[phage],genome_length_dictionary[phage])
-print(reference_site)
+#cigars is a dicitonary in which the keys are the starting sites, the values are the cigar strings
+cigars=process_sam(sam_file)
+
+for site in sites:
+    matching,start,cigar=is_matching(site,cigars)
+    if matching:
+        reference=convert_to_reference(site,start,cigar)

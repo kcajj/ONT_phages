@@ -36,6 +36,29 @@ if __name__ == "__main__":
             timestep_data=timesteps[timestep][parameter]
             parameters_timespan[parameter].insert(i,timestep,timestep_data,True)
 
+    ###
+    #plot the frequency distributions of each timestep
+    ###
+
+    for parameter,timepoints_data in parameters_timespan.items():
+        fig, axs = plt.subplots(4,figsize=(10,10),sharex=True)
+        fig.suptitle(parameter)
+        for i,timepoint in enumerate(timepoints_data):
+            to_plot=[]
+            for frequency in timepoints_data[timepoint]:
+                if not(np.isnan(frequency)):
+                    to_plot.append(frequency)
+            axs[i].hist(to_plot,bins=200)
+            axs[i].set_title(timepoint)
+            axs[i].set_yscale('log')
+            #axs[i].title(timepoint)
+        plt.show()
+
+    '''
+    ###
+    #plot the highest variation sites in the genome over time
+    ###
+
     for parameter,timepoints_data in parameters_timespan.items():
         #if parameter == 'ncf':
         score_functions=[]
@@ -68,3 +91,5 @@ if __name__ == "__main__":
             plt.title(parameter)
         plt.legend(to_plot.keys())
         plt.show()
+    
+        '''
