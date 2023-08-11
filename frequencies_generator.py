@@ -61,10 +61,13 @@ def sum_forward_reverse(fwd,rev):
 
 def threshold_on_value_of_array(to_filter, array, t):
     #takes three arrays to filter on the basis of three values of another array
-    for pos,val in enumerate(to_filter[0]):
-        for direction,vector in enumerate(to_filter):
-            if array[direction][pos]<t:
-                to_filter[direction][pos]=np.nan
+    for pos,val in enumerate(array[0]):
+        for direction,vector in enumerate(array):
+            if vector[pos]<t:
+                for v in to_filter:
+                    v[pos]=np.nan
+                    #to_filter[2][pos]=np.nan
+                break
     return to_filter
 
 def threshold_on_value_of_delta(to_filter, t):

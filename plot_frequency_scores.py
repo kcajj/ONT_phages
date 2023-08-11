@@ -22,9 +22,9 @@ if __name__ == "__main__":
     out_file=args.out
     ref_file=args.ref
     '''
-    in_folder='results/EC2D2/pileup/new_chemistry/new_chemistry'
-    out_file='scores/EC2D2/new_chemistry/new_chemistry.csv'
-    ref_file='results/EC2D2/assemblies/new_chemistry.fasta'
+    in_folder='results/EM11/pileup/new_chemistry/new_chemistry'
+    out_file='scores/EM11/new_chemistry/new_chemistry.csv'
+    ref_file='results/EM11/assemblies/new_chemistry.fasta'
     '''
     pileup_file=f'{in_folder}/allele_counts.npz'
     clips_file=f'{in_folder}/clips.pkl.gz'
@@ -57,18 +57,20 @@ if __name__ == "__main__":
     to_store.to_csv(out_file)
     
     '''
+    print(frequencies)
+
     significant_sites={}
     for key in frequencies.keys():
         significant_sites[key]=[]
 
     #score threshold for gaps should be higher because they are not affected by the quality filter
 
-    score_threshold=0.7
+    score_threshold=0.5
     gaps_score_threshold=0.9
     delta_threshold=0.1
 
-    for key,val in frequencies.items():
-        for pos,score in enumerate(val[2]): #run along the total scores
+    for key,vector in frequencies.items():
+        for pos,score in enumerate(vector): #run along the total scores
             if score>score_threshold:
                 if key=='gaps':
                     if score>gaps_score_threshold:
@@ -76,6 +78,6 @@ if __name__ == "__main__":
                 else:
                     if score>score_threshold:
                             significant_sites[key].append((score,pos))
-    
-    store_sites(significant_sites,out_file)
+
+    print(significant_sites)
     '''

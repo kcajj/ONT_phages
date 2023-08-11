@@ -27,7 +27,7 @@ def get_points(pp,sp):
 
 if __name__ == "__main__":
     # Replace 'your_file.bam' with the path to your BAM file
-    bam_file_path = 'results/EM60/mapping/new_chemistry/new_chemistry.bam'
+    bam_file_path = 'results/EC2D2/mapping/new_chemistry/new_chemistry.bam'
     primary_positions, secondary_positions = find_reads_with_secondary_mapping(bam_file_path)
     points = get_points(primary_positions,secondary_positions)
     
@@ -40,4 +40,5 @@ if __name__ == "__main__":
     plt.scatter(x,y)
     plt.ylabel('secondary mapping')
     plt.xlabel('primary mapping')
+    plt.legend(secondary_positions.keys())
     plt.show()
