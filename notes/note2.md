@@ -68,16 +68,25 @@ the plots after the filtering are:
 ![threshold_insertions](images/plots_with_threshold/EC2D2/insertions.png)
 ![threshold_non_consensus_frequency](images/plots_with_threshold/EC2D2/non_consensus_frequency.png)
 
-nanopore qc
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 add secondary mapping to the pipeline
 
 i was removing elements underneath the coverage threshold from the array, as opposed to sending them to zero.
 i was considering as non consensus the gaps
-
-
-decide thresholds on the basis of distributions, keep them low.
-
-plot frequency distributions at different timepoints.
-
-map conversion
