@@ -1,29 +1,53 @@
 import pysam
 
-def process_sam(sam_file):
-    #for each contig find the starting point and the cigar
-    return cigars
-
-def is_matching(site,cigars):
+def is_matching(site,bam_file):
     matching=False
-    for start,cigar in cigars.items():
-        #compute if the site is in a matching region
-        return matching,start,cigar
+    with pysam.AlignmentFile(bam_file, "rb") as bam:
+        for i, read in enumerate(bam):
+            tot_len=0
+            if matching==True: return matching,start,cigar
+            for ic, (block_type, block_len) in enumerate(read.cigar):
+                if tot_len+block_len>site:
+                    if block_type==0:
+                        matching=True
+                        start=read.reference_start
+                        cigar=read.cigar
+                        break
+                    start=read.reference_start
+                    cigar=read.cigar
+                    break
+                tot_len+=block_len
+    return matching,start,cigar
 
 def convert_to_reference(site,start,cigar):
-    insertions='insertions preceeding the mapping position'
-    clip='clip preceeding the mapping position'
-    gaps='gaps preceeding the mapping position'
+    tot_len=0
+    insertions=0
+    gaps=0
+    clip=0
+    for ic, (block_type, block_len) in enumerate(cigar):
+        if tot_len+block_len>site:
+            break
+        if block_type==1: #insertion
+            insertions+=block_len
+        if block_type==2: #deletion
+            gaps+=block_len
+        if block_type==4: #softclip
+            clip+=block_len
+        if block_type==5: #hardclip
+            clip+=block_len
+        tot_len+=block_len
     reference=start+site+gaps-clip-insertions
     return reference
 
-sites=[12]
-sam_file='file'
+sites=[1000]
+bam_file='results/EC2D2/mapping/reference/alignment_with_reference_new_chemistry.bam'
 
-#cigars is a dicitonary in which the keys are the starting sites, the values are the cigar strings
-cigars=process_sam(sam_file)
-
-for site in sites:
-    matching,start,cigar=is_matching(site,cigars)
-    if matching:
-        reference=convert_to_reference(site,start,cigar)
+if __name__=='__main__':
+    for site in sites:
+        matching,start,cigar=is_matching(site,bam_file)
+        print(matching, start, cigar)
+        if matching:
+            reference=convert_to_reference(site,start,cigar)
+        else:
+            reference='There is no correspondance on the reference genome'
+        print(reference)
