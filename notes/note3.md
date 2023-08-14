@@ -41,4 +41,3 @@ minimap2 -a EC2D2_reference.fasta polish_output/consensus.fasta
 contig_1	0	MZ501100.1	1	60	55766S94977M	*	0	0	*	NM:i:7	ms:i:189912	AS:i:189912	nn:i:0	tp:A:P	cm:i:17740	s1:i:94906	s2:i:0	de:f:0.0001	SA:Z:MZ501100.1,94660,+,55766M94977S,60,5;	rl:i:0
 contig_1	2048	MZ501100.1	94660	60	55766M94977H	*	0	0	*	NM:i:13	ms:i:111434	AS:i:111434	nn:i:0	tp:A:P	cm:i:10408	s1:i:55703	s2:i:0	de:f:0.0002	SA:Z:MZ501100.1,1,+,55758S94949M28D,60,30;	rl:i:0
 </pre>
-

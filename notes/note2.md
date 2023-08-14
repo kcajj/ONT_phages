@@ -157,8 +157,3 @@ now we know the exact position of the modified base in the assembly, but unfortu
 
 we can see the relation between secondary and primary mapping in the reads that have a secondary mapping, it could give us information about genomic rearrangements.
 
-
-use no barcode data
-remove genome threshold in time analysis
-add secondary mapping to the pipeline
-are methylation sites increasing?

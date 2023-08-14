@@ -123,12 +123,21 @@ def parameters_distributions(pileup,reference,clips_dict,insertions_dict,clips_t
         if key=='start_mapping':
             plt.hist(v,bins=1600)
             plt.title(key)
-            plt.xlim([0,50])
+            plt.xlim([0,120])
             plt.yscale('log')
+            plt.xlabel('number of reads that start mapping in the site')
+            plt.ylabel('number of sites')
+            line = plt.axvline(x = 10, color = 'r', label = '10 reads - threshold')
             plt.show()
         plt.hist(v,bins=200)
         plt.title(key)
+        if key=='gap_coverage':
+            plt.xlabel('gap coverage')
+        else:
+            plt.xlabel('coverage')
+        plt.ylabel('number of sites')
         plt.yscale('log')
+        line = plt.axvline(x = 100, color = 'r', label = '100x coverage - threshold')
         plt.show()
 
     for key,three_vect in arrays.items():
@@ -141,4 +150,8 @@ def parameters_distributions(pileup,reference,clips_dict,insertions_dict,clips_t
         plt.hist(frequency_distribution,bins=200)
         plt.title(key)
         plt.yscale('log')
+        plt.xlabel('forward - reverse frequencies')
+        plt.ylabel('number of sites')
+        line1 = plt.axvline(x = 0.2, color = 'r', label = '0.2 divergence - threshold')
+        line2 = plt.axvline(x = -0.2, color = 'r', label = '-0.2 divergence - threshold')
         plt.show()

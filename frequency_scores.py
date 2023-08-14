@@ -7,7 +7,7 @@ from frequencies_generator import generate_frequencies
 from parameters_distribution import parameters_distributions
 
 if __name__ == "__main__":
-    
+    '''
     import argparse
 
     parser = argparse.ArgumentParser(
@@ -26,7 +26,7 @@ if __name__ == "__main__":
     in_folder='results/EC2D2/pileup/new_chemistry/new_chemistry'
     out_file='scores/EC2D2/new_chemistry/new_chemistry.csv'
     ref_file='results/EC2D2/assemblies/new_chemistry.fasta'
-    '''
+    
     pileup_file=f'{in_folder}/allele_counts.npz'
     clips_file=f'{in_folder}/clips.pkl.gz'
     insertions_file=f'{in_folder}/insertions.pkl.gz'
@@ -36,10 +36,10 @@ if __name__ == "__main__":
     clips_dict=extract_pkl(clips_file,'count')
     insertions_dict=extract_pkl(insertions_file)
 
-    clips_threshold=0
-    gap_cov_threshold=0
-    cov_threshold=0
-    delta_fr_threshold=1
+    clips_threshold=10
+    gap_cov_threshold=100
+    cov_threshold=100
+    delta_fr_threshold=0.1
 
     #parameters_distributions(pileup,reference,clips_dict,insertions_dict,clips_threshold,gap_cov_threshold,cov_threshold,delta_fr_threshold)
     
@@ -47,29 +47,3 @@ if __name__ == "__main__":
     
     to_store=pd.DataFrame(frequencies)
     to_store.to_csv(out_file)
-    
-    '''
-    print(frequencies)
-
-    significant_sites={}
-    for key in frequencies.keys():
-        significant_sites[key]=[]
-
-    #score threshold for gaps should be higher because they are not affected by the quality filter
-
-    score_threshold=0.5
-    gaps_score_threshold=0.9
-    delta_threshold=0.1
-
-    for key,vector in frequencies.items():
-        for pos,score in enumerate(vector): #run along the total scores
-            if score>score_threshold:
-                if key=='gaps':
-                    if score>gaps_score_threshold:
-                        significant_sites[key].append((score,pos))
-                else:
-                    if score>score_threshold:
-                            significant_sites[key].append((score,pos))
-
-    print(significant_sites)
-    '''
