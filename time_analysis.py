@@ -76,7 +76,7 @@ if __name__ == "__main__":
         score_functions=[]
         for row in timepoints_data.itertuples():
     
-            if not(np.isnan(row[1:]).any()) and row[0]>200 and row[0]<120000:
+            if not(np.isnan(row[1:]).any()):
                 #score_function=np.std(row[1:])
                 #score_function=np.nanmax(row[1:])-np.nanmin(row[1:])
                 score_function=row[-1]-row[1]

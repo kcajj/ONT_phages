@@ -53,6 +53,16 @@ we have to check also the un aligned mid portion of the sams and the last part. 
 we have to look at the alignment between the reads and the reference sequence. we can see a peak in the coverage at 8000 bp, it looks like the initial part of the genome. this is due to the biological processes of the phages we are studying, the genome presents a high coverage at a certain position because it linearises and then decreases over time.
 the thing is that in this case there is no super covered region, we have at max 2000 of coverage, we have no chemistry artifact, that's because in the reference sequence there is not the sequence of the chemistry.
 
+there is an artifact also in EM60:
+![second_artifact](images/artifact2.png)
+
+we have performed the basecall again with a corrected pipeline, we performed some trial and error tests to figure out which ont options were needed, unfortunately ont doesn't give much data.
+
+the good thing is that the new assemblies are great, we will continue our work on them.
+
+continue this analysis in [another note](note3.md)
+
+
 ### alignment of the assembly with the reference sequences
 
 look at the alignment with the references:
@@ -81,14 +91,6 @@ minimap2	VN:2.26-r1175	CL:minimap2 -a data/references/EM60_reference.fasta resul
 contig_1	0	MZ501093.1	1	60	42508S10729M1D8347M1I19003M1D43888M1D74M1D6801M1D5430M140S	*	0	0	*	NM:i:11	ms:i:188478	AS:i:188478	nn:i:0	tp:A:P	cm:i:17718	s1:i:94184	s2:i:0	de:f:0.0001	SA:Z:MZ501093.1,93845,+,42502M6I94413S,60,8;	rl:i:0
 contig_1	2048	MZ501093.1	93845	60	945M1I555M1I15457M1I179M1I9834M1I11979M1I3553M94413H	*	0	0	*	NM:i:8	ms:i:84956	AS:i:84956	nn:i:0	tp:A:P	cm:i:7957	s1:i:42448	s2:i:0	de:f:0.0002	SA:Z:MZ501093.1,1,+,42508S94273M4D140S,60,11;	rl:i:0
 </pre>
-
-sites with mutations with the reference:
-90,094 A -> G
-144,446 G -> A
-96984 C->t
-98910 G->a
-24323 c->t
-![Alt text](image.png)
 
 ### pileup
 

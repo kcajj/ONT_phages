@@ -26,7 +26,8 @@ if __name__ == "__main__":
     clips_file=f'{in_folder}/clips.pkl.gz'
     insertions_file=f'{in_folder}/insertions.pkl.gz'
 
-    k=1000
+    k1=1000
+    k2=10
 
     pileup=extract_npz(pileup_file,'arr_0')
     reference=extract_seq(ref_file)
@@ -36,16 +37,16 @@ if __name__ == "__main__":
     l=np.shape(pileup)[2]
 
     y1,y2=coverage(pileup,l)
-    saveplot(y1,y2,k,out_folder,'coverage')
+    saveplot(y1,y2,k1,out_folder,'coverage')
     
     y1,y2=non_consensus_frequency(pileup,reference,l)
-    saveplot(y1,y2,k,out_folder,'non_consensus_frequency')
+    saveplot(y1,y2,k1,out_folder,'non_consensus_frequency')
 
     y1,y2=clips(clips_dict,l)
-    saveplot(y1,y2,k,out_folder,'clips')
+    saveplot(y1,y2,k2,out_folder,'clips')
 
     y1,y2=insertions(insertions_dict,l)
-    saveplot(y1,y2,k,out_folder,'insertions')
+    saveplot(y1,y2,k2,out_folder,'insertions')
 
     y1,y2=gaps(pileup,l)
-    saveplot(y1,y2,k,out_folder,'gaps')
+    saveplot(y1,y2,k2,out_folder,'gaps')

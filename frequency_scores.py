@@ -7,7 +7,7 @@ from frequencies_generator import generate_frequencies
 from parameters_distribution import parameters_distributions
 
 if __name__ == "__main__":
-    '''
+    
     import argparse
 
     parser = argparse.ArgumentParser(
@@ -26,7 +26,7 @@ if __name__ == "__main__":
     in_folder='results/EC2D2/pileup/new_chemistry/new_chemistry'
     out_file='scores/EC2D2/new_chemistry/new_chemistry.csv'
     ref_file='results/EC2D2/assemblies/new_chemistry.fasta'
-    
+    '''
     pileup_file=f'{in_folder}/allele_counts.npz'
     clips_file=f'{in_folder}/clips.pkl.gz'
     insertions_file=f'{in_folder}/insertions.pkl.gz'
@@ -37,11 +37,11 @@ if __name__ == "__main__":
     insertions_dict=extract_pkl(insertions_file)
 
     clips_threshold=0
-    gap_cov_threshold=10
-    cov_threshold=10
+    gap_cov_threshold=0
+    cov_threshold=0
     delta_fr_threshold=1
 
-    parameters_distributions(pileup,reference,clips_dict,insertions_dict,clips_threshold,gap_cov_threshold,cov_threshold,delta_fr_threshold)
+    #parameters_distributions(pileup,reference,clips_dict,insertions_dict,clips_threshold,gap_cov_threshold,cov_threshold,delta_fr_threshold)
     
     frequencies=generate_frequencies(pileup,reference,clips_dict,insertions_dict,clips_threshold,gap_cov_threshold,cov_threshold,delta_fr_threshold)
     

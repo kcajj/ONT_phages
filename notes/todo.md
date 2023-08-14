@@ -40,11 +40,15 @@
         - [x] clips
         - [x] gaps
     - [ ] statistics on the alignments
-        - [x] fastq quality
+        - [x] fastq quality and length of the reads
         - [x] clip length distribution
-        - [x] non consensus sites
-        - [ ] secondary mappings distribution
-    - [ ] frequences
+        - [x] secondary mappings distribution
+        - [x] distribution of paramers in EC2D2 data (coverage, gap coverage, starting mapping sites, fwd-rev scores)
+        - [x] significant sites (ncf, gaps, insertions and clips)
+            - [x] plots over time
+        
+    - [ ] convert genome coordinates from assembly to reference
+
     
 - [x] snakemake
     - [x] pipeline

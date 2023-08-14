@@ -120,6 +120,12 @@ def parameters_distributions(pileup,reference,clips_dict,insertions_dict,clips_t
     
     coverage_arrays={'start_mapping':maps_array[2],'gap_coverage':gap_coverage_array[2],'coverage':coverage_array[2]}
     for key,v in coverage_arrays.items():
+        if key=='start_mapping':
+            plt.hist(v,bins=1600)
+            plt.title(key)
+            plt.xlim([0,50])
+            plt.yscale('log')
+            plt.show()
         plt.hist(v,bins=200)
         plt.title(key)
         plt.yscale('log')
