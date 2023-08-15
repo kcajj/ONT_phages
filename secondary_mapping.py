@@ -26,19 +26,26 @@ def get_points(pp,sp):
 
 
 if __name__ == "__main__":
-    # Replace 'your_file.bam' with the path to your BAM file
-    bam_file_path = 'results/EC2D2/mapping/new_chemistry/new_chemistry.bam'
-    primary_positions, secondary_positions = find_reads_with_secondary_mapping(bam_file_path)
-    points = get_points(primary_positions,secondary_positions)
     
-    x=[]
-    y=[]
-    for p in points:
-        x.append(p[0])
-        y.append(p[1])
+    phages=['EC2D2','EM11','EM60']
+    times=['new_chemistry','1','3','5']
 
-    plt.scatter(x,y)
-    plt.ylabel('secondary mapping')
-    plt.xlabel('primary mapping')
-    plt.legend(secondary_positions.keys())
-    plt.show()
+    for phage in phages:
+        for time in times:
+            bam_file_path = f'results/{phage}/mapping/new_chemistry/{time}.bam'
+            primary_positions, secondary_positions = find_reads_with_secondary_mapping(bam_file_path)
+            points = get_points(primary_positions,secondary_positions)
+            
+            x=[]
+            y=[]
+            for p in points:
+                x.append(p[0])
+                y.append(p[1])
+
+            figure=plt.figure()
+            plt.scatter(x,y)
+            plt.ylabel('secondary mapping')
+            plt.xlabel('primary mapping')
+            plt.legend(secondary_positions.keys())
+            figure.savefig(f'plots/secondary_mapping/{phage}/{time}.png')
+            plt.close()

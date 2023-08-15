@@ -62,11 +62,11 @@ to clear the data from the barcodes that would influence further analysis we can
 
 the plots after the filtering are:
 
-![threshold_clips](images/plots_with_threshold/EC2D2/clips.png)
-![threshold_coverage](images/plots_with_threshold/EC2D2/coverage.png)
-![threshold_gaps](images/plots_with_threshold/EC2D2/gaps.png)
-![threshold_insertions](images/plots_with_threshold/EC2D2/insertions.png)
-![threshold_non_consensus_frequency](images/plots_with_threshold/EC2D2/non_consensus_frequency.png)
+![threshold_clips](/plots/pileup_plots/EC2D2/new_chemistry/new_chemistry/clips.png)
+![threshold_coverage](/plots/pileup_plots/EC2D2/new_chemistry/new_chemistry/coverage.png)
+![threshold_gaps](/plots/pileup_plots/EC2D2/new_chemistry/new_chemistry/gaps.png)
+![threshold_insertions](/plots/pileup_plots/EC2D2/new_chemistry/new_chemistry/insertions.png)
+![threshold_non_consensus_frequency](/plots/pileup_plots/EC2D2/new_chemistry/new_chemistry/non_consensus_frequency.png)
 
 nice but maybe we want to change the convolution window.
 
@@ -105,9 +105,15 @@ The first problem regards a sampling bias: our frequencies can be considered as 
 
 To avoid this problem in the non-consensus frequency, insertion frequency and gap frequency, we can look at the distribution of the coverage and choose an appropriate threshold that prevents us to have many sites with low coverage. (if we set thet threshold to 100 we say that our frequencies will have a precision of 1%, we can trust a lot our measures)
 
+![gap_coverage_distr](/plots/parameters_distributions/EC2D2/new_chemistry/gap_coverage.png)
 
+![coverage_distr](/plots/parameters_distributions/EC2D2/new_chemistry/coverage.png)
 
 by looking at the graph we can see that in our dataset there are no problems with coverage. unfortunately we are just looking at one phage in one timepoint.
+
+the same reasoning can be applied to clips, we cannot assume that a site has many clips if only one read starts mapping to that site (and it has a clip). we will put a high threshold on the number of reads that have to start mapping in a site to admit the computation of the frequency, this will prevent us to have any measure of clip frequencies (most sites have only one read).
+
+![clips_distr](/plots/parameters_distributions/EC2D2/new_chemistry/start_mapping.png)
 
 a second problem that we could experience is related to the diversgence between forward and reverse frequencies: it can happen that for some reason we get a very different frequency in the forward and reverse strand, in this case we are not interested in the frequency, even if the total frequency might be high.
 
@@ -115,7 +121,10 @@ Some cases in which such phenomenon can occur in ONT are the methylation sites, 
 
 we can look at the distribution of the divergence between the forward and reverse frequences of all the parameters.
 
-
+![fwd-rev_clips](/plots/parameters_distributions/EC2D2/new_chemistry/delta_fwd-rev_clips.png)
+![fwd-rev_gaps](/plots/parameters_distributions/EC2D2/new_chemistry/delta_fwd-rev_gaps.png)
+![fwd-rev_ins](/plots/parameters_distributions/EC2D2/new_chemistry/delta_fwd-rev_insertions.png)
+![fwd-rev_ncf](/plots/parameters_distributions/EC2D2/new_chemistry/delta_fwd-rev_ncf.png)
 
 as you can see for some parameters the divergence is more obvious, but in general, by selecting measures that do not show more than 0.2 of divergence we can take the majority of the measures.
 
@@ -152,6 +161,14 @@ these are the resulting plots of the 10 most significant sites for each paramete
 ### converting the sites from the assembly to the reference
 
 now we know the exact position of the modified base in the assembly, but unfortunately we have a frameshift, solved with a script.
+
+unfortunately we can only remap to a reference coordinates of assemblies that are mapped forward on the reference.
+so we have to find the reverse complement of assemblies that have been assembled in the reverse direction.
+then we rerun the mapping to reference rule on snakemake to have the forward mapping.
+
+it should be easy.
+
+
 
 ### BONUS: secondary mapping
 

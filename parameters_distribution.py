@@ -78,7 +78,7 @@ def threshold_on_value_of_delta(to_filter, t):
                 vector[pos]=np.nan
     return to_filter
 
-def parameters_distributions(pileup,reference,clips_dict,insertions_dict,clips_threshold,gap_cov_threshold,cov_threshold,delta_fr_threshold):
+def parameters_distributions(out_folder,pileup,reference,clips_dict,insertions_dict,clips_threshold,gap_cov_threshold,cov_threshold,delta_fr_threshold):
 
     l=np.shape(pileup)[2]
     
@@ -121,24 +121,28 @@ def parameters_distributions(pileup,reference,clips_dict,insertions_dict,clips_t
     coverage_arrays={'start_mapping':maps_array[2],'gap_coverage':gap_coverage_array[2],'coverage':coverage_array[2]}
     for key,v in coverage_arrays.items():
         if key=='start_mapping':
-            plt.hist(v,bins=1600)
-            plt.title(key)
-            plt.xlim([0,120])
+            figure=plt.figure()
+            plt.hist(v,bins=200)
+            plt.title(str(out_folder+' '+key))
             plt.yscale('log')
             plt.xlabel('number of reads that start mapping in the site')
             plt.ylabel('number of sites')
             line = plt.axvline(x = 10, color = 'r', label = '10 reads - threshold')
-            plt.show()
-        plt.hist(v,bins=200)
-        plt.title(key)
-        if key=='gap_coverage':
-            plt.xlabel('gap coverage')
+            figure.savefig(f'{out_folder}/{key}.png')
+            plt.close()
         else:
-            plt.xlabel('coverage')
-        plt.ylabel('number of sites')
-        plt.yscale('log')
-        line = plt.axvline(x = 100, color = 'r', label = '100x coverage - threshold')
-        plt.show()
+            figure=plt.figure()
+            plt.hist(v,bins=200)
+            plt.title(str(out_folder+' '+key))
+            if key=='gap_coverage':
+                plt.xlabel('gap coverage')
+            else:
+                plt.xlabel('coverage')
+            plt.ylabel('number of sites')
+            plt.yscale('log')
+            line = plt.axvline(x = 100, color = 'r', label = '100x coverage - threshold')
+            figure.savefig(f'{out_folder}/{key}.png')
+            plt.close()
 
     for key,three_vect in arrays.items():
         arrays[key]=threshold_on_value_of_delta(three_vect,delta_fr_threshold)
@@ -147,11 +151,13 @@ def parameters_distributions(pileup,reference,clips_dict,insertions_dict,clips_t
     for key,three_vect in arrays.items():
         for pos,val in enumerate(three_vect[0]):
             frequency_distribution.append(three_vect[0][pos]-three_vect[1][pos])
+        figure=plt.figure()
         plt.hist(frequency_distribution,bins=200)
-        plt.title(key)
+        plt.title(str(out_folder+' '+key))
         plt.yscale('log')
         plt.xlabel('forward - reverse frequencies')
         plt.ylabel('number of sites')
         line1 = plt.axvline(x = 0.2, color = 'r', label = '0.2 divergence - threshold')
         line2 = plt.axvline(x = -0.2, color = 'r', label = '-0.2 divergence - threshold')
-        plt.show()
+        figure.savefig(f'{out_folder}/delta_fwd-rev_{key}.png')
+        plt.close()

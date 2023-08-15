@@ -23,27 +23,34 @@ if __name__ == "__main__":
     out_file=args.out
     ref_file=args.ref
     '''
-    in_folder='results/EC2D2/pileup/new_chemistry/new_chemistry'
-    out_file='scores/EC2D2/new_chemistry/new_chemistry.csv'
-    ref_file='results/EC2D2/assemblies/new_chemistry.fasta'
-    
-    pileup_file=f'{in_folder}/allele_counts.npz'
-    clips_file=f'{in_folder}/clips.pkl.gz'
-    insertions_file=f'{in_folder}/insertions.pkl.gz'
-    
-    pileup=extract_npz(pileup_file,'arr_0')
-    reference=extract_seq(ref_file)
-    clips_dict=extract_pkl(clips_file,'count')
-    insertions_dict=extract_pkl(insertions_file)
 
-    clips_threshold=10
-    gap_cov_threshold=100
-    cov_threshold=100
-    delta_fr_threshold=0.1
+    phages=['EC2D2','EM11','EM60']
+    times=['new_chemistry','1','3','5']
 
-    #parameters_distributions(pileup,reference,clips_dict,insertions_dict,clips_threshold,gap_cov_threshold,cov_threshold,delta_fr_threshold)
-    
-    frequencies=generate_frequencies(pileup,reference,clips_dict,insertions_dict,clips_threshold,gap_cov_threshold,cov_threshold,delta_fr_threshold)
-    
-    to_store=pd.DataFrame(frequencies)
-    to_store.to_csv(out_file)
+    for phage in phages:
+        for time in times:
+            in_folder=f'results/{phage}/pileup/new_chemistry/{time}'
+            out_file=f'scores/{phage}/new_chemistry/{time}.csv'
+            ref_file=f'results/{phage}/assemblies/new_chemistry.fasta'
+            
+            pileup_file=f'{in_folder}/allele_counts.npz'
+            clips_file=f'{in_folder}/clips.pkl.gz'
+            insertions_file=f'{in_folder}/insertions.pkl.gz'
+            
+            pileup=extract_npz(pileup_file,'arr_0')
+            reference=extract_seq(ref_file)
+            clips_dict=extract_pkl(clips_file,'count')
+            insertions_dict=extract_pkl(insertions_file)
+
+            clips_threshold=10
+            gap_cov_threshold=100
+            cov_threshold=100
+            delta_fr_threshold=0.2
+
+            out_dir=f'plots/parameters_distributions/{phage}/{time}'
+            #parameters_distributions(out_dir,pileup,reference,clips_dict,insertions_dict,clips_threshold,gap_cov_threshold,cov_threshold,delta_fr_threshold)
+            
+            frequencies=generate_frequencies(pileup,reference,clips_dict,insertions_dict,clips_threshold,gap_cov_threshold,cov_threshold,delta_fr_threshold)
+            
+            to_store=pd.DataFrame(frequencies)
+            to_store.to_csv(out_file)
