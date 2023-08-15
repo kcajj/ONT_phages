@@ -54,8 +54,8 @@ if __name__ == "__main__":
         
                 if not(np.isnan(row[1:]).any()):
                     #score_function=np.std(row[1:])
-                    #score_function=np.nanmax(row[1:])-np.nanmin(row[1:])
-                    score_function=row[-1]-row[1]
+                    score_function=np.nanmax(row[1:])-np.nanmin(row[1:])
+                    #score_function=row[-1]-row[1]
 
                     score_functions.append(score_function)
 

@@ -15,8 +15,4 @@ are methylation sites increasing?
 ! va bene la finestra dei pileup plots?
 vanno bene le thresholds delle frequenze?
 
-salva tutti i grafici della time analysis.
-
-raddrizza le assemblies reversed e rifai i mapping a mano
-
-raccogli tutti i siti interessanti.
+score on the basis of an entropy, if there is less disorder we give more power to the observation

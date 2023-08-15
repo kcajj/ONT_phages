@@ -30,11 +30,11 @@ def convert_to_reference(site,start,cigar):
             break
         if block_type==1: #insertion
             insertions+=block_len
-        if block_type==2: #deletion
+        elif block_type==2: #deletion
             gaps+=block_len
-        if block_type==4: #softclip
+        elif block_type==4: #softclip
             clip+=block_len
-        if block_type==5: #hardclip
+        elif block_type==5: #hardclip
             clip+=block_len
         tot_len+=block_len
     reference=start+site+gaps-clip-insertions
@@ -42,7 +42,7 @@ def convert_to_reference(site,start,cigar):
 
 data={'EC2D2':[],
        'EM11':[84166,89018,76089,82280],
-       'EM60':[]}
+       'EM60':[50198]}
 
 if __name__=='__main__':
     for phage, sites in data.items():

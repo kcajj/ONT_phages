@@ -12,7 +12,7 @@ def find_reads_with_secondary_mapping(bam_file):
                 secondary_positions[read.query_name].append(read.reference_start+((read.reference_end-read.reference_start)/2))
         for read in bam.fetch():
             if read.query_name in secondary_positions.keys():
-                if not read.is_secondary:
+                if not(read.is_secondary) and not(read.is_supplementary):
                     primary_positions[read.query_name]=read.reference_start+((read.reference_end-read.reference_start)/2)
 
     return primary_positions, secondary_positions

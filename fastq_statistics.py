@@ -5,6 +5,8 @@ import matplotlib.pyplot as plt
 
 len_dict={}
 
+lens=[]
+
 qual_dict={}
 for n in range(100):
     qual_dict[n]=0
@@ -19,11 +21,12 @@ for phage in phages:
                 len_dict[l]=1
             else:
                 len_dict[l]+=1
-            q=record.format('qual')
-            q_string=q.replace('\n',' ')
-            q_list=q_string.split(' ')[8:-1]
-            for nuc_qscore in q_list:
-                qual_dict[int(nuc_qscore)]+=1
+            lens.append(l)
+            #q=record.format('qual')
+            #q_string=q.replace('\n',' ')
+            #q_list=q_string.split(' ')[8:-1]
+            #for nuc_qscore in q_list:
+            #    qual_dict[int(nuc_qscore)]+=1
 
     print('the total number of reads is:', sum(len_dict.values()))
     max_len=max(len_dict.keys())
@@ -38,6 +41,10 @@ for phage in phages:
     plt.plot(b,len_distr)
     plt.ylabel('number of reads')
     plt.xlabel('length of the read')
+    plt.show()
+
+    plt.hist(lens, len(lens), density=True, histtype='step', cumulative=True)
+    plt.xlim([0,20000])
     plt.show()
 
     x=np.linspace(0,100,100)

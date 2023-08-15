@@ -168,12 +168,15 @@ then we rerun the mapping to reference rule on snakemake to have the forward map
 
 it should be easy.
 
+gaps:
 the assembly site 84166 maps on the reference genome of EM11 at 38473
 GGAGTTGGAT
 GGAGTTGGAT
 the assembly site 89018 maps on the reference genome of EM11 at 43326
 AAAAATGTCC
 AAAAATGTCC
+
+non consensus sites:
 the assembly site 76089 maps on the reference genome of EM11 at 30396
 ACCCGTATGG
 ACCCGTATGG
@@ -181,8 +184,44 @@ the assembly site 82280 maps on the reference genome of EM11 at 36587
 ACCCAACCAG
 ACCCAACCAG
 
-
 ### BONUS: secondary mapping
 
 we can see the relation between secondary and primary mapping in the reads that have a secondary mapping, it could give us information about genomic rearrangements.
+
+
+### BONUS: presence of mutations on the same dna molecule
+
+we want to analyse the mutations that we have found from the graphs. we choose mutations that are near
+
+phages=['EM11']
+times=['3']
+interesting_sites=[82280, 76089]
+consensus_sites=['A','A']
+genome_limits=[75000,83000]
+
+{'just_1': 60, 'just_2': 74, 'both': 157, 'consensus': 27}
+number of reads that span the region with both mutations: 318
+{'just_1': 0.18867924528301888, 'just_2': 0.23270440251572327, 'both': 0.4937106918238994, 'consensus': 0.08490566037735849}
+
+
+phages=['EM11']
+times=['5']
+interesting_sites=[82280, 76089]
+consensus_sites=['A','A']
+genome_limits=[75000,83000]
+
+{'just_1': 26, 'just_2': 49, 'both': 106, 'consensus': 24}
+number of reads that span the region with both mutations: 205
+{'just_1': 0.12682926829268293, 'just_2': 0.23902439024390243, 'both': 0.5170731707317073, 'consensus': 0.11707317073170732}
+
+
+phages=['EM11']
+times=['1']
+interesting_sites=[77655, 82934]
+consensus_sites=['A','G']
+genome_limits=[76000,83000]
+
+{'just_1': 47, 'just_2': 41, 'both': 119, 'consensus': 20}
+number of reads that span the region with both mutations: 227
+{'just_1': 0.20704845814977973, 'just_2': 0.18061674008810572, 'both': 0.5242290748898678, 'consensus': 0.0881057268722467}
 
