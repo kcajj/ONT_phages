@@ -40,21 +40,24 @@ def convert_to_reference(site,start,cigar):
     reference=start+site+gaps-clip-insertions
     return reference
 
-sites=[58828]
-bam_file='results/EM11/mapping/reference/alignment_with_reference_new_chemistry.bam'
+data={'EC2D2':[],
+       'EM11':[84166,89018,76089,82280],
+       'EM60':[]}
 
 if __name__=='__main__':
-    for site in sites:
-        matching,start,cigar=is_matching(site,bam_file)
-        if matching:
-            mapping=convert_to_reference(site,start,cigar)
-            output=f'the assembly site {str(site)} maps on the reference genome at {str(mapping)}'
-        else:
-            output=f'There is no correspondance on the reference genome for assembly site {str(site)}'
-        print(output)
+    for phage, sites in data.items():
+        bam_file=f'results/{phage}/mapping/reference/alignment_with_reference_new_chemistry.bam'
+        for site in sites:
+            matching,start,cigar=is_matching(site,bam_file)
+            if matching:
+                mapping=convert_to_reference(site,start,cigar)
+                output=f'the assembly site {str(site)} maps on the reference genome of {phage} at {str(mapping)}'
+            else:
+                output=f'There is no correspondance on the reference genome for assembly site {str(site)}'
+            print(output)
 
-    for assembly in SeqIO.parse('results/EM11/assemblies/new_chemistry.fasta','fasta'):
-        print(assembly.seq[site:site+10])
-    
-    for reference in SeqIO.parse('data/references/EM11_reference.fasta','fasta'):
-        print(reference.seq[mapping:mapping+10])
+            for assembly in SeqIO.parse('results/EM11/assemblies/new_chemistry.fasta','fasta'):
+                print(assembly.seq[site:site+10])
+            
+            for reference in SeqIO.parse('data/references/EM11_reference.fasta','fasta'):
+                print(reference.seq[mapping:mapping+10])

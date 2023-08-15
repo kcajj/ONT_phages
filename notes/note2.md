@@ -168,6 +168,18 @@ then we rerun the mapping to reference rule on snakemake to have the forward map
 
 it should be easy.
 
+the assembly site 84166 maps on the reference genome of EM11 at 38473
+GGAGTTGGAT
+GGAGTTGGAT
+the assembly site 89018 maps on the reference genome of EM11 at 43326
+AAAAATGTCC
+AAAAATGTCC
+the assembly site 76089 maps on the reference genome of EM11 at 30396
+ACCCGTATGG
+ACCCGTATGG
+the assembly site 82280 maps on the reference genome of EM11 at 36587
+ACCCAACCAG
+ACCCAACCAG
 
 
 ### BONUS: secondary mapping

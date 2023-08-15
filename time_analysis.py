@@ -25,15 +25,12 @@ if __name__ == "__main__":
                 timestep_data=timesteps[timestep][parameter]
                 parameters_timespan[parameter].insert(i,timestep,timestep_data,True)
 
-        ###
-        #plot the highest variation sites in the genome over time
-        ###
-
         for parameter,timepoints_data in parameters_timespan.items():
 
             ###
             #plot the frequency distributions of each timestep
             ###
+            
             fig, axs = plt.subplots(4,figsize=(10,10),sharex=True)
             fig.suptitle(parameter)
             for i,timepoint in enumerate(timepoints_data):
@@ -48,7 +45,10 @@ if __name__ == "__main__":
             fig.savefig(f'plots/time_analysis/{phage}/distribution_{parameter}.png')
             plt.close()
 
-            #if parameter == 'ncf':
+            ###
+            #plot the highest variation sites in the genome over time
+            ###
+
             score_functions=[]
             for row in timepoints_data.itertuples():
         
@@ -77,6 +77,6 @@ if __name__ == "__main__":
                 plt.plot(timesteps,linepoints)
                 plt.title(parameter)
             plt.legend(to_plot.keys())
-            
+
             frequencies_on_time.savefig(f'plots/time_analysis/{phage}/time_dynamics_{parameter}.png')
             plt.close()
