@@ -199,9 +199,9 @@ interesting_sites=[82280, 76089]
 consensus_sites=['A','A']
 genome_limits=[75000,83000]
 
-{'just_1': 60, 'just_2': 74, 'both': 157, 'consensus': 27}
-number of reads that span the region with both mutations: 318
-{'just_1': 0.18867924528301888, 'just_2': 0.23270440251572327, 'both': 0.4937106918238994, 'consensus': 0.08490566037735849}
+number of reads that span the region with both mutations: 294
+{'just_first': 10, 'just_second': 27, 'both': 145, 'both_consensus': 112}
+{'just_first': 0.034013605442176874, 'just_second': 0.09183673469387756, 'both': 0.4931972789115646, 'both_consensus': 0.38095238095238093}
 
 
 phages=['EM11']
@@ -210,9 +210,9 @@ interesting_sites=[82280, 76089]
 consensus_sites=['A','A']
 genome_limits=[75000,83000]
 
-{'just_1': 26, 'just_2': 49, 'both': 106, 'consensus': 24}
-number of reads that span the region with both mutations: 205
-{'just_1': 0.12682926829268293, 'just_2': 0.23902439024390243, 'both': 0.5170731707317073, 'consensus': 0.11707317073170732}
+number of reads that span the region with both mutations: 196
+{'just_first': 9, 'just_second': 15, 'both': 112, 'both_consensus': 60}
+{'just_first': 0.04591836734693878, 'just_second': 0.07653061224489796, 'both': 0.5714285714285714, 'both_consensus': 0.30612244897959184}
 
 
 phages=['EM11']
@@ -221,7 +221,7 @@ interesting_sites=[77655, 82934]
 consensus_sites=['A','G']
 genome_limits=[76000,83000]
 
-{'just_1': 47, 'just_2': 41, 'both': 119, 'consensus': 20}
-number of reads that span the region with both mutations: 227
-{'just_1': 0.20704845814977973, 'just_2': 0.18061674008810572, 'both': 0.5242290748898678, 'consensus': 0.0881057268722467}
+number of reads that span the region with both mutations: 214
+{'just_first': 8, 'just_second': 10, 'both': 75, 'both_consensus': 121}
+{'just_first': 0.037383177570093455, 'just_second': 0.04672897196261682, 'both': 0.35046728971962615, 'both_consensus': 0.5654205607476636}
 

@@ -5,8 +5,11 @@ def is_matching(site,bam_file):
     matching=False
     with pysam.AlignmentFile(bam_file, "rb") as bam:
         for i, read in enumerate(bam):
+
             tot_len=0
+
             if matching==True: return matching,start,cigar
+
             for ic, (block_type, block_len) in enumerate(read.cigar):
                 if tot_len+block_len>site:
                     if block_type==0:
@@ -14,10 +17,12 @@ def is_matching(site,bam_file):
                         start=read.reference_start
                         cigar=read.cigar
                         break
+                    #matching is false
                     start=read.reference_start
                     cigar=read.cigar
                     break
-                tot_len+=block_len
+                if block_type==0 or block_type==2:
+                    tot_len+=block_len
     return matching,start,cigar
 
 def convert_to_reference(site,start,cigar):
@@ -32,11 +37,15 @@ def convert_to_reference(site,start,cigar):
             insertions+=block_len
         elif block_type==2: #deletion
             gaps+=block_len
+            tot_len+=block_len
         elif block_type==4: #softclip
             clip+=block_len
         elif block_type==5: #hardclip
             clip+=block_len
-        tot_len+=block_len
+        elif block_type==0:
+            tot_len+=block_len
+        else:
+            print(block_type, block_len)
     reference=start+site+gaps-clip-insertions
     return reference
 
