@@ -30,6 +30,13 @@
     - [x] convert sam file to bam with samtools
         - [ ] read samtools documentation (too long, too many tools)
     - [x] look at the bam file on igv
+
+- [x] snakemake
+    - [x] pipeline
+    - [x] local and cluster profiles
+    - [x] allow other phages and other timepoints
+
+- [x] manipulation of the data
     - [x] build the pileup of the alignment
         - [x] understand the script
         - [ ] try to build your own pileup script
@@ -39,20 +46,16 @@
         - [x] non consensus frequency
         - [x] clips
         - [x] gaps
-    - [ ] statistics on the alignments
+    - [x] statistics on the alignments
         - [x] fastq quality and length of the reads
         - [x] clip length distribution
         - [x] secondary mappings distribution
         - [x] distribution of paramers in EC2D2 data (coverage, gap coverage, starting mapping sites, fwd-rev scores)
         - [x] significant sites (ncf, gaps, insertions and clips)
             - [x] plots over time
-        
-    - [ ] convert genome coordinates from assembly to reference
+    - [x] convert genome coordinates from assembly to reference
+    - [x] discover if mutations are on the same reads or not
 
-    
-- [x] snakemake
-    - [x] pipeline
-    - [x] local and cluster profiles
-    - [x] allow other phages and other timepoints
+- [ ] biological interpretation
 
-- [ ] pangraph
+- [ ] new dataset

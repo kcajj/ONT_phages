@@ -45,8 +45,8 @@ def convert_to_reference(site,start,cigar):
     return reference
 
 data={'EC2D2':[],
-       'EM11':[82280,76089],
-       'EM60':[50198,50197,79121]}
+       'EM11':[82280,76089,78356,77655,82934,53019,   84165,89018,88770,93603],
+       'EM60':[79121,50197,     71479, 87471,74128,73035]}
 
 #these are assembly sites (query of the bam alignment that we are considering) that show high non consensus frequency
 
@@ -57,13 +57,18 @@ if __name__=='__main__':
             matching,start,cigar=is_matching(site,bam_file)
             if matching:
                 mapping=convert_to_reference(site,start,cigar)
+
+                mapping=mapping+1 #frameshif due to python indexing
+
                 output=f'the assembly site {str(site)} maps on the reference genome of {phage} at {str(mapping)}'
             else:
                 output=f'There is no correspondance on the reference genome for assembly site {str(site)}'
             print(output)
 
+            '''
             for assembly in SeqIO.parse(f'results/{phage}/assemblies/new_chemistry.fasta','fasta'):
                 print(assembly.seq[site:site+10])
             
             for reference in SeqIO.parse(f'data/references/{phage}_reference.fasta','fasta'):
                 print(reference.seq[mapping:mapping+10])
+            '''

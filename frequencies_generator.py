@@ -1,6 +1,13 @@
 import numpy as np
 from pileup_plots import coverage,clips,insertions,gaps
 
+def get_entropy(obs):
+    n=sum(obs)
+    entropy=0
+    for observation in obs:
+        entropy-=(observation/n)*np.log((observation/n))
+    return entropy
+
 def ncf(pileup, reference, l):
     forward=pileup[0]
     reverse=pileup[1]
@@ -10,6 +17,9 @@ def ncf(pileup, reference, l):
     non_consensus_freq=np.zeros(l)
 
     for pos,ref_nuc in enumerate(reference):
+        #forward_non_consensus=[0,0,0,0]
+        #reverse_non_consensus=[0,0,0,0]
+        #non_consensus=[0,0,0,0]
         forward_non_consensus=0
         forward_total=0
         reverse_non_consensus=0
@@ -24,6 +34,13 @@ def ncf(pileup, reference, l):
                 forward_non_consensus+=forward[i_nuc][pos]
                 reverse_non_consensus+=reverse[i_nuc][pos]
                 non_consensus+=forward[i_nuc][pos]+reverse[i_nuc][pos]
+        
+        #insert a measure of entropy, if entropy in the site is high, we trust less the measure.
+        #if entropy is low we weight more the observed frequency.
+        #merge the 4 non consensus measures before computing the frequency
+        #forward_non_consensus=sum(forward_non_consensus)/get_entropy(forward_non_consensus)
+        #reverse_non_consensus=sum(reverse_non_consensus)/get_entropy(reverse_non_consensus)
+        #non_consensus=sum(non_consensus)/get_entropy(non_consensus)
 
         forward_non_consensus_freq[pos]=forward_non_consensus/forward_total
         reverse_non_consensus_freq[pos]=reverse_non_consensus/reverse_total
@@ -115,7 +132,7 @@ def generate_frequencies(pileup,reference,clips_dict,insertions_dict,clips_thres
         arrays[key]=array
 
     fncf, rncf, tncf = ncf(pileup,reference,l)
-    arrays['ncf'] = [fncf, rncf, tncf]
+    arrays['non_consensus_frequency'] = [fncf, rncf, tncf]
     
     #arrays has as many keys as the parameters, each parameters has 3 vectors
 

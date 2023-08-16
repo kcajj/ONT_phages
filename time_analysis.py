@@ -41,6 +41,8 @@ if __name__ == "__main__":
                 axs[i].hist(to_plot,bins=200)
                 axs[i].set_title(timepoint)
                 axs[i].set_yscale('log')
+                axs[i].set_ylabel('number of sites')
+                if timepoint=='5': axs[i].set_xlabel('frequency')
 
             fig.savefig(f'plots/time_analysis/{phage}/distribution_{parameter}.png')
             plt.close()
@@ -48,11 +50,12 @@ if __name__ == "__main__":
             ###
             #plot the highest variation sites in the genome over time
             ###
-
+            first_timepoint_threshold=0.15
             score_functions=[]
+
             for row in timepoints_data.itertuples():
         
-                if not(np.isnan(row[1:]).any()):
+                if not(np.isnan(row[1:]).any()) and not(row[1]>first_timepoint_threshold):
                     #score_function=np.std(row[1:])
                     score_function=np.nanmax(row[1:])-np.nanmin(row[1:])
                     #score_function=row[-1]-row[1]
@@ -76,6 +79,8 @@ if __name__ == "__main__":
             for site,linepoints in to_plot.items():
                 plt.plot(timesteps,linepoints)
                 plt.title(parameter)
+                plt.xlabel('days')
+                plt.ylabel('frequency')
             plt.legend(to_plot.keys())
 
             frequencies_on_time.savefig(f'plots/time_analysis/{phage}/time_dynamics_{parameter}.png')

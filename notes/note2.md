@@ -141,22 +141,22 @@ or the difference between lowest and highest timepoint.
 these are the resulting plots of the 10 most significant sites for each parameter of each phage:
 
 1. EC2D2
-    a. non consensus frequency:
-    b. clips
-    c. insertions
-    d. gaps
+    1. non consensus frequency: ![time_dynamics_ncf](/plots/time_analysis/EC2D2/time_dynamics_non_consensus_frequency.png)
+    2. clips: ![time_dynamics_clips](/plots/time_analysis/EC2D2/time_dynamics_clips.png)
+    3. insertions: ![time_dynamics_insertions](/plots/time_analysis/EC2D2/time_dynamics_insertions.png)
+    4. gaps: ![time_dynamics_gaps](/plots/time_analysis/EC2D2/time_dynamics_gaps.png)
 
 2. EM11
-    a. non consensus frequency:
-    b. clips
-    c. insertions
-    d. gaps
+    1. non consensus frequency: ![time_dynamics_ncf](/plots/time_analysis/EM11/time_dynamics_non_consensus_frequency.png)
+    2. clips: ![time_dynamics_clips](/plots/time_analysis/EM11/time_dynamics_clips.png)
+    3. insertions: ![time_dynamics_insertions](/plots/time_analysis/EM11/time_dynamics_insertions.png)
+    4. gaps: ![time_dynamics_gaps](/plots/time_analysis/EM11/time_dynamics_gaps.png)
 
 3. EM60
-    a. non consensus frequency:
-    b. clips
-    c. insertions
-    d. gaps
+    1. non consensus frequency: ![time_dynamics_ncf](/plots/time_analysis/EM60/time_dynamics_non_consensus_frequency.png)
+    2. clips: ![time_dynamics_clips](/plots/time_analysis/EM60/time_dynamics_clips.png)
+    3. insertions: ![time_dynamics_insertions](/plots/time_analysis/EM60/time_dynamics_insertions.png)
+    4. gaps: ![time_dynamics_gaps](/plots/time_analysis/EM60/time_dynamics_gaps.png)
 
 ### converting the sites from the assembly to the reference
 
@@ -168,25 +168,37 @@ then we rerun the mapping to reference rule on snakemake to have the forward map
 
 it should be easy.
 
-gaps:
-the assembly site 84166 maps on the reference genome of EM11 at 38473
-GGAGTTGGAT
-GGAGTTGGAT
-the assembly site 89018 maps on the reference genome of EM11 at 43326
-AAAAATGTCC
-AAAAATGTCC
+EM11
 
 non consensus sites:
-the assembly site 76089 maps on the reference genome of EM11 at 30396
-ACCCGTATGG
-ACCCGTATGG
-the assembly site 82280 maps on the reference genome of EM11 at 36587
-ACCCAACCAG
-ACCCAACCAG
+the assembly site 82280 maps on the reference genome of EM11 at 36588
+the assembly site 76089 maps on the reference genome of EM11 at 30397
+the assembly site 78356 maps on the reference genome of EM11 at 32664
+the assembly site 77655 maps on the reference genome of EM11 at 31963
+the assembly site 82934 maps on the reference genome of EM11 at 37242
+the assembly site 53019 maps on the reference genome of EM11 at 7328
+
+gaps:
+the assembly site 84165 maps on the reference genome of EM11 at 38473
+the assembly site 89018 maps on the reference genome of EM11 at 43327
+the assembly site 88770 maps on the reference genome of EM11 at 43079
+the assembly site 93603 maps on the reference genome of EM11 at 47912
+
+EM60
+
+non consensus sites:
+the assembly site 79121 maps on the reference genome of EM60 at 36619
+the assembly site 50197 maps on the reference genome of EM60 at 7695
+
+gaps:
+the assembly site 71479 maps on the reference genome of EM60 at 28977
+the assembly site 87471 maps on the reference genome of EM60 at 44969
+the assembly site 74128 maps on the reference genome of EM60 at 31626
+the assembly site 73035 maps on the reference genome of EM60 at 30533
 
 ### BONUS: secondary mapping
 
-we can see the relation between secondary and primary mapping in the reads that have a secondary mapping, it could give us information about genomic rearrangements.
+we can see the relation between secondary and primary mapping in the reads that have a secondary mapping, it could give us information about genomic rearrangements. no interesting information found.
 
 
 ### BONUS: presence of mutations on the same dna molecule
@@ -204,6 +216,7 @@ number of reads that span the region with both mutations: 294
 {'just_first': 10, 'just_second': 27, 'both': 145, 'both_consensus': 112}
 {'just_first': 0.034013605442176874, 'just_second': 0.09183673469387756, 'both': 0.4931972789115646, 'both_consensus': 0.38095238095238093}
 </pre>
+
 <pre>
 phages=['EM11']
 times=['5']
@@ -215,6 +228,7 @@ number of reads that span the region with both mutations: 196
 {'just_first': 9, 'just_second': 15, 'both': 112, 'both_consensus': 60}
 {'just_first': 0.04591836734693878, 'just_second': 0.07653061224489796, 'both': 0.5714285714285714, 'both_consensus': 0.30612244897959184}
 </pre>
+
 <pre>
 phages=['EM11']
 times=['1']

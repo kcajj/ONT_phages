@@ -140,7 +140,7 @@ def parameters_distributions(out_folder,pileup,reference,clips_dict,insertions_d
                 plt.xlabel('coverage')
             plt.ylabel('number of sites')
             plt.yscale('log')
-            line = plt.axvline(x = 100, color = 'r', label = '100x coverage - threshold')
+            line = plt.axvline(x = 50, color = 'r', label = '100x coverage - threshold')
             figure.savefig(f'{out_folder}/{key}.png')
             plt.close()
 
@@ -157,7 +157,7 @@ def parameters_distributions(out_folder,pileup,reference,clips_dict,insertions_d
         plt.yscale('log')
         plt.xlabel('forward - reverse frequencies')
         plt.ylabel('number of sites')
-        line1 = plt.axvline(x = 0.2, color = 'r', label = '0.2 divergence - threshold')
-        line2 = plt.axvline(x = -0.2, color = 'r', label = '-0.2 divergence - threshold')
+        line1 = plt.axvline(x = 0.4, color = 'r', label = '0.2 divergence - threshold')
+        line2 = plt.axvline(x = -0.4, color = 'r', label = '-0.2 divergence - threshold')
         figure.savefig(f'{out_folder}/delta_fwd-rev_{key}.png')
         plt.close()

@@ -26,7 +26,7 @@ if __name__ == "__main__":
 
     phages=['EM11']
     times=['3']
-    interesting_sites=[82280, 76089]
+    interesting_sites=[82280, 76089] #these are the assembly sites that show high non consensus frequency
     consensus_sites=['A','A']
     genome_limits=[75000,83000]
 

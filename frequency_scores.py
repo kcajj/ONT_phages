@@ -7,22 +7,6 @@ from frequencies_generator import generate_frequencies
 from parameters_distribution import parameters_distributions
 
 if __name__ == "__main__":
-    '''
-    import argparse
-
-    parser = argparse.ArgumentParser(
-        description="visualise pileup data",
-        formatter_class=argparse.ArgumentDefaultsHelpFormatter,
-    )
-    parser.add_argument("--in_dir", help="directory containing pileup data")
-    parser.add_argument("--ref", help="reference sequence")
-    parser.add_argument("--out", help="output dictionary file")
-
-    args = parser.parse_args()
-    in_folder=args.in_dir
-    out_file=args.out
-    ref_file=args.ref
-    '''
 
     phages=['EC2D2','EM11','EM60']
     times=['new_chemistry','1','3','5']
@@ -48,7 +32,7 @@ if __name__ == "__main__":
             delta_fr_threshold=0.4
 
             out_dir=f'plots/parameters_distributions/{phage}/{time}'
-            #parameters_distributions(out_dir,pileup,reference,clips_dict,insertions_dict,clips_threshold,gap_cov_threshold,cov_threshold,delta_fr_threshold)
+            parameters_distributions(out_dir,pileup,reference,clips_dict,insertions_dict,clips_threshold,gap_cov_threshold,cov_threshold,delta_fr_threshold)
             
             frequencies=generate_frequencies(pileup,reference,clips_dict,insertions_dict,clips_threshold,gap_cov_threshold,cov_threshold,delta_fr_threshold)
             
