@@ -10,19 +10,18 @@ def is_matching(site,bam_file):
 
             if matching==True: return matching,start,cigar
 
-            for ic, (block_type, block_len) in enumerate(read.cigar):
+            for ic, (block_type, block_len) in enumerate(read.cigartuples):
                 if tot_len+block_len>site:
                     if block_type==0:
                         matching=True
                         start=read.reference_start
-                        cigar=read.cigar
+                        cigar=read.cigartuples
                         break
                     #matching is false
                     start=read.reference_start
-                    cigar=read.cigar
+                    cigar=read.cigartuples
                     break
-                if block_type==0 or block_type==2:
-                    tot_len+=block_len
+                tot_len+=block_len
     return matching,start,cigar
 
 def convert_to_reference(site,start,cigar):
@@ -37,21 +36,19 @@ def convert_to_reference(site,start,cigar):
             insertions+=block_len
         elif block_type==2: #deletion
             gaps+=block_len
-            tot_len+=block_len
         elif block_type==4: #softclip
             clip+=block_len
         elif block_type==5: #hardclip
             clip+=block_len
-        elif block_type==0:
-            tot_len+=block_len
-        else:
-            print(block_type, block_len)
+        tot_len+=block_len
     reference=start+site+gaps-clip-insertions
     return reference
 
 data={'EC2D2':[],
-       'EM11':[84166,89018,76089,82280],
-       'EM60':[50198]}
+       'EM11':[82280,76089],
+       'EM60':[50198,50197,79121]}
+
+#these are assembly sites (query of the bam alignment that we are considering) that show high non consensus frequency
 
 if __name__=='__main__':
     for phage, sites in data.items():
@@ -65,8 +62,8 @@ if __name__=='__main__':
                 output=f'There is no correspondance on the reference genome for assembly site {str(site)}'
             print(output)
 
-            for assembly in SeqIO.parse('results/EM11/assemblies/new_chemistry.fasta','fasta'):
+            for assembly in SeqIO.parse(f'results/{phage}/assemblies/new_chemistry.fasta','fasta'):
                 print(assembly.seq[site:site+10])
             
-            for reference in SeqIO.parse('data/references/EM11_reference.fasta','fasta'):
+            for reference in SeqIO.parse(f'data/references/{phage}_reference.fasta','fasta'):
                 print(reference.seq[mapping:mapping+10])
