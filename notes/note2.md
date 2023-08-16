@@ -193,6 +193,7 @@ we can see the relation between secondary and primary mapping in the reads that 
 
 we want to analyse the mutations that we have found from the graphs. we choose mutations that are near
 
+<pre>
 phages=['EM11']
 times=['3']
 interesting_sites=[82280, 76089]
@@ -202,8 +203,8 @@ genome_limits=[75000,83000]
 number of reads that span the region with both mutations: 294
 {'just_first': 10, 'just_second': 27, 'both': 145, 'both_consensus': 112}
 {'just_first': 0.034013605442176874, 'just_second': 0.09183673469387756, 'both': 0.4931972789115646, 'both_consensus': 0.38095238095238093}
-
-
+</pre>
+<pre>
 phages=['EM11']
 times=['5']
 interesting_sites=[82280, 76089]
@@ -213,8 +214,8 @@ genome_limits=[75000,83000]
 number of reads that span the region with both mutations: 196
 {'just_first': 9, 'just_second': 15, 'both': 112, 'both_consensus': 60}
 {'just_first': 0.04591836734693878, 'just_second': 0.07653061224489796, 'both': 0.5714285714285714, 'both_consensus': 0.30612244897959184}
-
-
+</pre>
+<pre>
 phages=['EM11']
 times=['1']
 interesting_sites=[77655, 82934]
@@ -224,4 +225,4 @@ genome_limits=[76000,83000]
 number of reads that span the region with both mutations: 214
 {'just_first': 8, 'just_second': 10, 'both': 75, 'both_consensus': 121}
 {'just_first': 0.037383177570093455, 'just_second': 0.04672897196261682, 'both': 0.35046728971962615, 'both_consensus': 0.5654205607476636}
-
+</pre>

@@ -43,9 +43,9 @@ if __name__ == "__main__":
             insertions_dict=extract_pkl(insertions_file)
 
             clips_threshold=10
-            gap_cov_threshold=100
-            cov_threshold=100
-            delta_fr_threshold=0.2
+            gap_cov_threshold=50
+            cov_threshold=50
+            delta_fr_threshold=0.4
 
             out_dir=f'plots/parameters_distributions/{phage}/{time}'
             #parameters_distributions(out_dir,pileup,reference,clips_dict,insertions_dict,clips_threshold,gap_cov_threshold,cov_threshold,delta_fr_threshold)
