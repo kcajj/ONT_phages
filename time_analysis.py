@@ -32,7 +32,7 @@ if __name__ == "__main__":
             ###
             
             fig, axs = plt.subplots(4,figsize=(10,10),sharex=True)
-            fig.suptitle(parameter)
+            fig.suptitle(str(phage+' '+parameter))
             for i,timepoint in enumerate(timepoints_data):
                 to_plot=[]
                 for frequency in timepoints_data[timepoint]:
@@ -78,7 +78,7 @@ if __name__ == "__main__":
             timesteps=[0,1,3,5]####!!!!!!!!!!!!!!!!!!!!!!!!!!!design problem!!!!!!!!!!!!!!!!!!!
             for site,linepoints in to_plot.items():
                 plt.plot(timesteps,linepoints)
-                plt.title(parameter)
+                plt.title(str('Phage '+phage+' - '+parameter))
                 plt.xlabel('days')
                 plt.ylabel('frequency')
             plt.legend(to_plot.keys())
