@@ -26,4 +26,6 @@ for phage in phages:
     plt.xscale('log')
     plt.yscale('log')
     line = plt.axvline(x = 270, color = 'r', label = '270 bp - threshold')
+    plt.xlabel('clip length')
+    plt.ylabel('number of reads')
     plt.show()

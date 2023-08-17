@@ -1,8 +1,29 @@
 # biological interpretation
 
-our results so far
+from the huge data analysis that we performed we were able to identify some interesting sites in the genome of the phages that were targeted by selective pressure.
 
-possible biological meaning
+Thanks to the genome annotation of these phages we can which are the affected genes:
+
+## summary
+
+| Phage  | type of divergence | position | gene                                                                |
+| ------ | ------------------ | -------- | ------------------------------------------------------------------- |
+| EM11   | snp                | 36588    | lateral tail fiber protein with glycosidase and deacetylase domains |
+| EM11   | snp                | 30397    | lateral tail fiber protein with fibronectin type III domain         |
+| EM11   | snp                | 7328     | major capsid protein                                                |
+| EM60   | snp                | 36619    | lateral tail fiber protein with glycosidase and deacetylase domains |
+| EM60   | snp                | 7695     | major capsid protein                                                |
+| EM11   | gap                | 43327    | lateral tail fiber protein with intimin domain                      |
+| EM60   | gap                | 28977    | lateral tail fiber protein with fibronectin type III domain         |
+| EM60   | gap                | 44969    | lateral tail fiber protein with intimin domain                      |
+
+## EM11
+
+EM11 showed few interesting mutations, two of them follow more or less the same pattern along the days and they affect genes with similar function.
+
+These mutations affect genes involved in the lateral tail fiber protein.
+
+
 
 
 

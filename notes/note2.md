@@ -179,8 +179,8 @@ the assembly site 82934 maps on the reference genome of EM11 at 37242
 the assembly site 53019 maps on the reference genome of EM11 at 7328
 
 gaps:
-the assembly site 84165 maps on the reference genome of EM11 at 38473
 the assembly site 89018 maps on the reference genome of EM11 at 43327
+the assembly site 84165 maps on the reference genome of EM11 at 38473
 the assembly site 88770 maps on the reference genome of EM11 at 43079
 the assembly site 93603 maps on the reference genome of EM11 at 47912
 
