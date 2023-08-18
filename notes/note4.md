@@ -103,3 +103,9 @@ hello, i have some updates regarding what we discussed yesterday:
 5. I tried to put a low threshold on the score of the first timepoint but nothing fancy happened
 
 6. I noticed that in the non consensus frequency graph of EM11 there is a site that follows a similar path as the two i found in EM60 (reaching .3 of non consensus frequency). it maps at 7328 on the reference, part of major capsid protein gene.
+
+
+
+look at aminoacid changes in all mutations 
+
+EM11 82280 aspartate to glycine
