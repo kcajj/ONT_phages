@@ -8,7 +8,7 @@ def find_reads_with_secondary_mapping(bam_file):
     with pysam.AlignmentFile(bam_file, "rb") as bam:
         for read in bam.fetch():
             # Check if the read has a secondary alignment (i.e., supplementary alignment)
-            if read.is_secondary:
+            if read.is_supplementary:
                 secondary_positions[read.query_name].append(read.reference_start+((read.reference_end-read.reference_start)/2))
         for read in bam.fetch():
             if read.query_name in secondary_positions.keys():
@@ -43,8 +43,10 @@ if __name__ == "__main__":
                 x.append(p[0])
                 y.append(p[1])
 
-            plt.scatter(x,y,alpha=0.2)
+                plt.scatter(p[0],p[1],alpha=0.2)
+            #plt.scatter(x,y,alpha=0.2)
             plt.ylabel('secondary mapping')
             plt.xlabel('primary mapping')
-            figure.savefig(f'plots/secondary_mapping/{phage}/{time}.png')
+            #plt.legend(secondary_positions.keys(), bbox_to_anchor=(1, 1))
+            figure.savefig(f'plots/supplementary_mapping/{phage}/{time}.png')
             plt.close()

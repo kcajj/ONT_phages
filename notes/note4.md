@@ -25,13 +25,60 @@ These mutations affect genes involved in the lateral tail fiber protein.
 
 
 
+2. the site of EM60 that you found (36619) corresponds to 79121 in my assembly and i discarded it because the coverage was less than 50 and the difference between forward and reverse frequency is 0.33 at timepoint 1. I corrected the thresholds and now i have it in the plot.
+
+3. the sites with non consensus frequency of 0.4 that I found in EM60 map at 7695 and 7696 in the reference genome. they are part of the major capisd protein, they are the first two positions of the last codon of the gene.
+
+4. the sites with gap frequency at 0.3 that I found in EM60 map at 28977 and 44969 in the reference genome. they are part of lateral tail fiber proteins
+
+5. I tried to put a low threshold on the score of the first timepoint but nothing fancy happened
+
+6. I noticed that in the non consensus frequency graph of EM11 there is a site that follows a similar path as the two i found in EM60 (reaching .3 of non consensus frequency). it maps at 7328 on the reference, part of major capsid protein gene.
+
+## entropy
+
+score on the basis of an entropy, if there is less disorder we give more power to the observation
 
 
+## aminoacid mutaitons 
+look at aminoacid changes in all mutations 
+
+EM11 82280 aspartate(GAC) to glycine(GGC)
+
+## secondary mapping
+
+2bef93e1-3ad8-4eb7-b28d-5cba95221d27
+98222.5
+88534.0
+f4d3a673-f458-4f7e-bd43-d6c540bb10db
+98595.0
+88704.5
+9fcd9145-95f8-4fe7-ad1d-1a649bd62bc0
+98419.0
+88844.0
+2b770158-c5ea-4487-9bcf-dc63deed197b
+97651.0
+88861.5
+1ad37322-6291-4880-8a58-71bdf2fe3612
+97210.0
+89085.0
+7f5b8127-6bcf-4b33-8b78-28a1347ffb9f
+97763.0
+88929.5
+b1c60e02-5fd6-49ce-9d64-1a35d7116459
+96297.0
+89195.5
+
+![Alt text](image.png)
+
+## 3d structure
+
+mutated
+![Alt text](image-1.png)
 
 
-
-
-
+non mutated
+![Alt text](image-2.png)
 
 
 
@@ -46,66 +93,5 @@ red line in fastq quality
 
 are methylation sites increasing?
 
-! va bene la finestra dei pileup plots? 
-vanno bene le thresholds delle frequenze? no
-
-score on the basis of an entropy, if there is less disorder we give more power to the observation
-
-
 36619 reference site with high ncf, corresponds to 79121 in my assembly
 this ite has coverage <100 and divergence between forward and reverse at timepoint 1 is 0.33
-
-put the axis names in the time analysis
-
-hello, i have some updates regarding what we discussed yesterday:
-
-1. the analysis of the mutations on the same read was wrong, i was assuming to have reads without gaps. below there are the new results, i believe that they make more sense given the data of the time analysis graphs.
-    <pre>
-    phages=['EM11']
-    times=['3']
-    interesting_sites=[82280, 76089]
-    consensus_sites=['A','A']
-    genome_limits=[75000,83000]
-
-    number of reads that span the region with both mutations: 294
-    {'just_first': 10, 'just_second': 27, 'both': 145, 'both_consensus': 112}
-    {'just_first': 0.034013605442176874, 'just_second': 0.09183673469387756, 'both': 0.4931972789115646, 'both_consensus': 0.38095238095238093}
-    </pre>
-    <pre>
-    phages=['EM11']
-    times=['5']
-    interesting_sites=[82280, 76089]
-    consensus_sites=['A','A']
-    genome_limits=[75000,83000]
-
-    number of reads that span the region with both mutations: 196
-    {'just_first': 9, 'just_second': 15, 'both': 112, 'both_consensus': 60}
-    {'just_first': 0.04591836734693878, 'just_second': 0.07653061224489796, 'both': 0.5714285714285714, 'both_consensus': 0.30612244897959184}
-    </pre>
-    <pre>
-    phages=['EM11']
-    times=['1']
-    interesting_sites=[77655, 82934]
-    consensus_sites=['A','G']
-    genome_limits=[76000,83000]
-
-    number of reads that span the region with both mutations: 214
-    {'just_first': 8, 'just_second': 10, 'both': 75, 'both_consensus': 121}
-    {'just_first': 0.037383177570093455, 'just_second': 0.04672897196261682, 'both': 0.35046728971962615, 'both_consensus': 0.5654205607476636}
-    </pre>
-
-2. the site of EM60 that you found (36619) corresponds to 79121 in my assembly and i discarded it because the coverage was less than 50 and the difference between forward and reverse frequency is 0.33 at timepoint 1. I corrected the thresholds and now i have it in the plot.
-
-3. the sites with non consensus frequency of 0.4 that I found in EM60 map at 7695 and 7696 in the reference genome. they are part of the major capisd protein, they are the first two positions of the last codon of the gene.
-
-4. the sites with gap frequency at 0.3 that I found in EM60 map at 28977 and 44969 in the reference genome. they are part of lateral tail fiber proteins
-
-5. I tried to put a low threshold on the score of the first timepoint but nothing fancy happened
-
-6. I noticed that in the non consensus frequency graph of EM11 there is a site that follows a similar path as the two i found in EM60 (reaching .3 of non consensus frequency). it maps at 7328 on the reference, part of major capsid protein gene.
-
-
-
-look at aminoacid changes in all mutations 
-
-EM11 82280 aspartate to glycine
