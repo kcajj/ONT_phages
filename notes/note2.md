@@ -200,6 +200,35 @@ the assembly site 73035 maps on the reference genome of EM60 at 30533
 
 we can see the relation between secondary and primary mapping in the reads that have a secondary mapping, it could give us information about genomic rearrangements. no interesting information found.
 
+## supplementary mapping
+
+2bef93e1-3ad8-4eb7-b28d-5cba95221d27
+98222.5
+88534.0
+f4d3a673-f458-4f7e-bd43-d6c540bb10db
+98595.0
+88704.5
+9fcd9145-95f8-4fe7-ad1d-1a649bd62bc0
+98419.0
+88844.0
+2b770158-c5ea-4487-9bcf-dc63deed197b
+97651.0
+88861.5
+1ad37322-6291-4880-8a58-71bdf2fe3612
+97210.0
+89085.0
+7f5b8127-6bcf-4b33-8b78-28a1347ffb9f
+97763.0
+88929.5
+b1c60e02-5fd6-49ce-9d64-1a35d7116459
+96297.0
+89195.5
+
+88000 maps at 42309 in the EM11 reference genome
+98000 maps at 52308 in the EM11 reference genome
+
+![Alt text](images/gap.png)
+
 
 ### BONUS: presence of mutations on the same dna molecule
 
@@ -240,3 +269,9 @@ number of reads that span the region with both mutations: 214
 {'just_first': 8, 'just_second': 10, 'both': 75, 'both_consensus': 121}
 {'just_first': 0.037383177570093455, 'just_second': 0.04672897196261682, 'both': 0.35046728971962615, 'both_consensus': 0.5654205607476636}
 </pre>
+
+## BONUS: entropy
+
+score on the basis of an entropy, if there is less disorder we give more power to the observation.
+
+i implemented this but then the frequencies do not behave anymore like frequencies.

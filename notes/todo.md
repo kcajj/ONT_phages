@@ -60,5 +60,3 @@
     - [ ] sites on reference
     - [ ] 3d structure
     - [ ] supplementary mappings
-
-- [ ] new dataset
