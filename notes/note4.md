@@ -47,15 +47,15 @@ position 621 of the protein
 
 ## 3d structure
 
-mutated
-![Alt text](images/mutated_3dmodel.png)
-
-
 non mutated
+
 ![Alt text](images/3dmodel.png)
 
+mutated
 
+![Alt text](images/mutated_3dmodel.png)
 
+there is no significant change in the structure given by the mutation. the mutation is on the surface of the protein so probably it has some effect on the interactome of the protein, probably increasing the affinity with LPS components such as glycan.
 
 
 
