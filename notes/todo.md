@@ -57,5 +57,8 @@
     - [x] discover if mutations are on the same reads or not
 
 - [ ] biological interpretation
+    - [ ] sites on reference
+    - [ ] 3d structure
+    - [ ] supplementary mappings
 
 - [ ] new dataset

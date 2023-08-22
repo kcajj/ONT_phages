@@ -6,8 +6,7 @@ we have assembled the EC2D2_new_chemistry.fastq.gz reads. with a reference genom
 
 we have used the following flye command:
 <pre>
-flye --nano-hq /scicore/home/neher/GROUP/data/Giacomo_analysis/raw_data/EC2D2_new_chemistry.fastq.gz \
-    --out-dir output_genome_assembly --threads 4 --genome-size 0.163m --asm-coverage 40
+flye --nano-hq /scicore/home/neher/GROUP/data/Giacomo_analysis/raw_data/EC2D2_new_chemistry.fastq.gz --out-dir output_genome_assembly --threads 4 --genome-size 0.163m --asm-coverage 40
 </pre>
 
 we have obtained the following output:

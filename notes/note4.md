@@ -44,6 +44,12 @@ score on the basis of an entropy, if there is less disorder we give more power t
 look at aminoacid changes in all mutations 
 
 EM11 82280 aspartate(GAC) to glycine(GGC)
+position 618 of the protein
+
+EM60 36619 on reference arginine (AGG) glycine (GGG)
+position 621 of the protein
+
+
 
 ## secondary mapping
 
@@ -68,6 +74,9 @@ f4d3a673-f458-4f7e-bd43-d6c540bb10db
 b1c60e02-5fd6-49ce-9d64-1a35d7116459
 96297.0
 89195.5
+
+88000 maps at 42309 in the EM11 reference genome
+98000 maps at 52308 in the EM11 reference genome
 
 ![Alt text](image.png)
 
