@@ -92,6 +92,8 @@ contig_1	0	MZ501093.1	1	60	42508S10729M1D8347M1I19003M1D43888M1D74M1D6801M1D5430
 contig_1	2048	MZ501093.1	93845	60	945M1I555M1I15457M1I179M1I9834M1I11979M1I3553M94413H	*	0	0	*	NM:i:8	ms:i:84956	AS:i:84956	nn:i:0	tp:A:P	cm:i:7957	s1:i:42448	s2:i:0	de:f:0.0002	SA:Z:MZ501093.1,1,+,42508S94273M4D140S,60,11;	rl:i:0
 </pre>
 
+NM:i indicates the edit distance between the two sequences
+
 ### pileup
 
 finally we will build the pileup graph of the alignment thanks to a script produced by the Neher lab: https://github.com/mmolari/morbidostat-genome-analysis/blob/main/scripts/create_allele_counts.py

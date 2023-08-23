@@ -200,6 +200,9 @@ the assembly site 73035 maps on the reference genome of EM60 at 30533
 
 we can see the relation between secondary and primary mapping in the reads that have a secondary mapping, it could give us information about genomic rearrangements. no interesting information found.
 
+secondary mappings are mappings of part of reads that occur in different parts of the genome, it is an additional mapping of part of a read that is already mapped somewhere else.
+supplementary mappings are additional mappings of a read for parts that are not mapped anywhere else.
+
 ## supplementary mapping
 
 2bef93e1-3ad8-4eb7-b28d-5cba95221d27
@@ -270,8 +273,14 @@ number of reads that span the region with both mutations: 214
 {'just_first': 0.037383177570093455, 'just_second': 0.04672897196261682, 'both': 0.35046728971962615, 'both_consensus': 0.5654205607476636}
 </pre>
 
+from these results we get that the paris of mutations that i analysed where on the same background, they are present together in the population of phages.
+some phages have no mutations and some others have both.
+
 ## BONUS: entropy
 
 score on the basis of an entropy, if there is less disorder we give more power to the observation.
 
 i implemented this but then the frequencies do not behave anymore like frequencies.
+
+i basically computed the entropy with the formula: -sum(p(x)*log(p(x))) for the set of non consensus counts. the probabilities are computed on this set of counts, we do not consider the consensus count.
+then the idea was to use this entropy to normalise the non consensus frequency. we divide non consensus frequency for the entropy of the non consensus set.

@@ -24,8 +24,6 @@ EM11 showed few interesting mutations, two of them follow more or less the same 
 
 These mutations affect genes involved in the lateral tail fiber protein.
 
-
-
 2. the site of EM60 that you found (36619) corresponds to 79121 in my assembly and i discarded it because the coverage was less than 50 and the difference between forward and reverse frequency is 0.33 at timepoint 1. I corrected the thresholds and now i have it in the plot.
 
 3. the sites with non consensus frequency of 0.4 that I found in EM60 map at 7695 and 7696 in the reference genome. they are part of the major capisd protein, they are the first two positions of the last codon of the gene.
