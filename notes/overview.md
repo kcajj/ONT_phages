@@ -30,6 +30,12 @@ useful things to know about the cluster:
 cluster setup (in case i will have to do it again in the future):
 - login: ssh username@server address (login.scicore.unibas.ch)
 - login without password: ssh-keygen, ssh-copy-id -i ~/.ssh/id_rsa.pub user@server
+    for github:
+    ssh-keygen -t rsa -b 4096 -C "your_github_email"
+    eval "$(ssh-agent -s)"
+    ssh-add ~/.ssh/id_rsa
+    cat ~/.ssh/id_rsa.pub
+
 - set the server as system folder: add to ".bashrc": alias mount_scicore="sshfs -o reconnect -o follow_symlinks user@login-transfer.server:/server/folder /system/folder. (the system folder has to exist already)
 - connect vscode to the cluster: bottom left corner, click on open a remote window, search for ssh, add new ssh host
 
