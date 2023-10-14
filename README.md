@@ -6,7 +6,7 @@ documentation of each script:
 - clips_length_distribution: this script takes in input the clip data of the pileup and plots the clip length distribution, it was useful to discover that the majority of clips had the same length (they were barcodes).
 - convert_genome_coordinates: takes in input the bam file of the alignment between an assembly and a reference (the alignment must be forward alignment) and some coordinates of the assembly. returns the coordinates in the reference genome.
 - fastq_statistics: takes in input the fastq files, it gives the distribution of the quality for each nucleotide of each read and the distribution of the length of each read. i was trying to plot a cumulative histogram for the distribution of the length but i stopped.
-- frequencies generator: takes in input the forward and reverse counts of the parameters of the alignments and returns the total frequencies after applying some thresholds.
+- frequencies_generator: takes in input the forward and reverse counts of the parameters of the alignments and returns the total frequencies after applying some thresholds.
 - frequency_scores: uses the pileup data. uses frequencies generator to get the frequencies from pileup data, then stores the frequencies in a csv file. it can also plot the parameters distribution
 - handle_npz_pkl: just opens some kind of files, also fasta.
 - parameters_distribution: it can be used from the frequency_scores script, it takes the pileup counts and just plots the distributions of the variables involved in the thresholds.
