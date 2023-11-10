@@ -113,5 +113,5 @@ rule alginment_to_ref:
 rule all:
     input:
         new_chemistry_assemblies = expand(rules.plot_pileup.output.plot_folder,ref_tag='new_chemistry',qry_tag=['new_chemistry','1','3','5'],phage=['EC2D2','EM11','EM60']),
-        old_chemistry_assemblies = expand(rules.plot_pileup.output.plot_folder,ref_tag='old_chemistry',qry_tag='old_chemistry',phage=['EC2D2','EM11','EM60']),
+        # old_chemistry_assemblies = expand(rules.plot_pileup.output.plot_folder,ref_tag='old_chemistry',qry_tag='old_chemistry',phage=['EC2D2','EM11','EM60']),
         reference_alignments = expand(rules.alginment_to_ref.output.alignment,phage=['EC2D2','EM11','EM60'],tag=['new_chemistry','old_chemistry']),
