@@ -3,10 +3,11 @@ import matplotlib.pyplot as plt
 from collections import defaultdict
 import numpy as np
 import random
+from convert_genome_coordinates import convert_coordinate
 
 if __name__ == "__main__":
 
-    phages=['EC2D2','EM11','EM60']
+    phages=['EM11','EM60']
 
     for phage in phages:
         in_dir=f'scores/{phage}/new_chemistry'
@@ -26,33 +27,16 @@ if __name__ == "__main__":
                 parameters_timespan[parameter].insert(i,timestep,timestep_data,True)
 
         for parameter,timepoints_data in parameters_timespan.items():
-
-            ###
-            #plot the frequency distributions of each timestep
-            ###
-            
-            fig, axs = plt.subplots(4,figsize=(10,10),sharex=True)
-            fig.suptitle(str(phage+' '+parameter))
-            for i,timepoint in enumerate(timepoints_data):
-                to_plot=[]
-                for frequency in timepoints_data[timepoint]:
-                    if not(np.isnan(frequency)) and not(np.isinf(frequency)):
-                        to_plot.append(frequency)
-                axs[i].hist(to_plot,bins=200)
-                axs[i].set_title(timepoint)
-                axs[i].set_yscale('log')
-                axs[i].set_ylabel('number of sites')
-                if timepoint=='5': axs[i].set_xlabel('frequency')
-
-            fig.savefig(f'plots/time_analysis/{phage}/distribution_{parameter}.png')
-            plt.close()
+            if phage=="EM11" or phage=="EM60":
+                if parameter=="clips" or parameter=="insertions": continue
 
             ###
             #plot the highest variation sites in the genome over time
             ###
             first_timepoint_threshold=0.15
-            number_of_sites=10
-            score_functions=[]
+            number_of_sites=20
+            sites_to_keep=[]
+            score_functions=[]            
 
             for row in timepoints_data.itertuples():
         
@@ -68,12 +52,43 @@ if __name__ == "__main__":
 
             series_score_functions=pd.Series(score_functions)
             significant_sites=series_score_functions.nlargest(n=number_of_sites)
-            
-            to_plot={}
+
+            significant_sites_with_data={}
             for site in significant_sites.index:
                 for row in timepoints_data.itertuples():
-                    if row[0]==site:
-                        to_plot[site]=row[1:]
+                    if site==row[0]:
+                        significant_sites_with_data[site]=row[1:]
+            
+            converted_significant_sites_with_data={}
+            for significant_site,data in significant_sites_with_data.items():
+                converted_site=convert_coordinate(phage,significant_site)
+                converted_significant_sites_with_data[converted_site]=data
+
+            to_plot={}
+            for site,data in converted_significant_sites_with_data.items():
+                if phage=="EM11":
+                    if parameter=='non_consensus_frequency':
+                        if site in [36588, 30397, 31963, 37242, 7328]:
+                            to_plot[site]=data
+                    elif parameter=="gaps":
+                        if site in [43327, 43079]:
+                            to_plot[site]=data
+                        if site>38472 and site<38475:
+                            to_plot["38472-38475"]=data
+                        if site>47910 and site<47914:
+                            to_plot["47910-47914"]=data
+                        #to_plot[site]=data
+                    else: to_plot[site]=data
+                elif phage=="EM60":
+                    if parameter=="non_consensus_frequency":
+                        if site in [36619, 7696, 7695]:
+                            to_plot[site]=data
+                    elif parameter=="gaps":
+                        if site in [28977, 44969]:
+                            to_plot[site]=data
+                        elif site>30532 and site<30540:
+                            to_plot["30532-3054030540"]=data
+                else: to_plot[site]=data
             
             frequencies_on_time=plt.figure()
             timesteps=[0,1,3,5]####!!!!!!!!!!!!!!!!!!!!!!!!!!!design problem!!!!!!!!!!!!!!!!!!!
@@ -84,5 +99,5 @@ if __name__ == "__main__":
                 plt.ylabel('frequency')
             plt.legend(to_plot.keys())
 
-            frequencies_on_time.savefig(f'plots/time_analysis/{phage}/time_dynamics_{parameter}.png')
+            frequencies_on_time.savefig(f'thesis/{phage}_time_{parameter}.png')
             plt.close()

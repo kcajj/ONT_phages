@@ -168,6 +168,8 @@ then we rerun the mapping to reference rule on snakemake to have the forward map
 
 it should be easy.
 
+<pre>
+
 EM11
 
 non consensus sites:
@@ -196,6 +198,8 @@ the assembly site 87471 maps on the reference genome of EM60 at 44969
 the assembly site 74128 maps on the reference genome of EM60 at 31626
 the assembly site 73035 maps on the reference genome of EM60 at 30533
 
+</pre>
+
 ### BONUS: secondary mapping
 
 we can see the relation between secondary and primary mapping in the reads that have a secondary mapping, it could give us information about genomic rearrangements. no interesting information found.
@@ -205,6 +209,7 @@ supplementary mappings are additional mappings of a read for parts that are not 
 
 ## supplementary mapping
 
+<pre>
 2bef93e1-3ad8-4eb7-b28d-5cba95221d27
 98222.5
 88534.0
@@ -229,6 +234,8 @@ b1c60e02-5fd6-49ce-9d64-1a35d7116459
 
 88000 maps at 42309 in the EM11 reference genome
 98000 maps at 52308 in the EM11 reference genome
+
+</pre>
 
 ![Alt text](images/gap.png)
 

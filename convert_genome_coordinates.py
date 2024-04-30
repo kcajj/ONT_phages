@@ -21,7 +21,7 @@ def is_matching(site,bam_file):
                     start=read.reference_start
                     cigar=read.cigartuples
                     break
-                tot_len+=block_len
+                if block_type!=2: tot_len+=block_len
     return matching,start,cigar
 
 def convert_to_reference(site,start,cigar):
@@ -44,13 +44,7 @@ def convert_to_reference(site,start,cigar):
     reference=start+site+gaps-clip-insertions
     return reference
 
-data={'EC2D2':[],
-       'EM11':[82280,76089,78356,77655,82934,53019,   84165,89018,88770,93603],
-       'EM60':[79121,50197,     71479, 87471,74128,73035]}
-
-#these are assembly sites (query of the bam alignment that we are considering) that show high non consensus frequency
-
-if __name__=='__main__':
+def convert_coordinates(data):
     for phage, sites in data.items():
         bam_file=f'results/{phage}/mapping/reference/alignment_with_reference_new_chemistry.bam'
         for site in sites:
@@ -66,9 +60,32 @@ if __name__=='__main__':
             print(output)
 
             '''
-            for assembly in SeqIO.parse(f'results/{phage}/assemblies/new_chemistry.fasta','fasta'):
+            for assembly in SeqIO.parse(f'data/forward_assemblies/EM11_forward_assembly.fasta','fasta'):
                 print(assembly.seq[site:site+10])
             
             for reference in SeqIO.parse(f'data/references/{phage}_reference.fasta','fasta'):
                 print(reference.seq[mapping:mapping+10])
             '''
+
+def convert_coordinate(phage, site):
+    bam_file=f'results/{phage}/mapping/reference/alignment_with_reference_new_chemistry.bam'
+    matching,start,cigar=is_matching(site,bam_file)
+    if matching:
+        mapping=convert_to_reference(site,start,cigar)
+
+        mapping=mapping+1 #frameshif due to python indexing
+
+        output=mapping
+    else:
+        output=None
+    return output
+
+#these are assembly sites (query of the bam alignment that we are considering) that show high non consensus frequency
+
+if __name__=='__main__':
+
+    data={'EC2D2':[],
+       'EM11':[82280, 76089, 77655, 82934, 53019,    89018, 88770, 84164, 84167, 93601, 93605],
+       'EM60':[79121, 50198, 50197,     71479, 87471, 73034, 73042]}
+    
+    convert_coordinates(data)
