@@ -5,6 +5,18 @@ import numpy as np
 import random
 from convert_genome_coordinates import convert_coordinate
 
+SMALL_SIZE = 12
+MEDIUM_SIZE = 15
+BIGGER_SIZE = 20
+
+plt.rc('font', size=MEDIUM_SIZE)          # controls default text sizes
+plt.rc('axes', titlesize=MEDIUM_SIZE)     # fontsize of the axes title
+plt.rc('axes', labelsize=MEDIUM_SIZE)    # fontsize of the x and y labels
+plt.rc('xtick', labelsize=SMALL_SIZE)    # fontsize of the tick labels
+plt.rc('ytick', labelsize=SMALL_SIZE)    # fontsize of the tick labels
+plt.rc('legend', fontsize=SMALL_SIZE)    # legend fontsize
+plt.rc('figure', titlesize=BIGGER_SIZE)  # fontsize of the figure title
+
 if __name__ == "__main__":
 
     phages=['EM11','EM60']
@@ -93,11 +105,17 @@ if __name__ == "__main__":
             frequencies_on_time=plt.figure()
             timesteps=[0,1,3,5]####!!!!!!!!!!!!!!!!!!!!!!!!!!!design problem!!!!!!!!!!!!!!!!!!!
             for site,linepoints in to_plot.items():
-                plt.plot(timesteps,linepoints)
-                plt.title(str('Phage '+phage+' - '+parameter))
+                plt.plot(timesteps,linepoints, linewidth=3)
+                if  phage=="EM11":
+                    phage_lab="bas51"
+                else: phage_lab="bas54"
+                if parameter=="non_consensus_frequency":
+                    par_lab="non consensus frequency"
+                else: par_lab=parameter
+                plt.title(str('Phage '+phage_lab+' - '+par_lab))
                 plt.xlabel('days')
                 plt.ylabel('frequency')
             plt.legend(to_plot.keys())
 
-            frequencies_on_time.savefig(f'thesis/{phage}_time_{parameter}.png')
+            frequencies_on_time.savefig(f'thesis/{phage}_time_{parameter}.png', dpi=600)
             plt.close()
