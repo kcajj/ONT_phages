@@ -99,7 +99,7 @@ if __name__ == "__main__":
                         if site in [28977, 44969]:
                             to_plot[site]=data
                         elif site>30532 and site<30540:
-                            to_plot["30532-3054030540"]=data
+                            to_plot["30532-30540"]=data
                 else: to_plot[site]=data
             
             frequencies_on_time=plt.figure()
