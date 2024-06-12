@@ -113,8 +113,9 @@ if __name__ == "__main__":
                     par_lab="non consensus frequency"
                 else: par_lab=parameter
                 plt.title(str('Phage '+phage_lab+' - '+par_lab))
-                plt.xlabel('days')
+                plt.xlabel('day')
                 plt.ylabel('frequency')
+                plt.ylim(0,1)
             plt.legend(to_plot.keys())
 
             frequencies_on_time.savefig(f'thesis/{phage}_time_{parameter}.png', dpi=600)
